@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Dimensions, View, StatusBar, Platform } from 'react-native'
 import { Button, Text } from 'native-base'
 import { LinearGradient } from 'expo';
-import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { buttonBorderRadius } from '../../constants/gStyles'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -23,7 +24,7 @@ export default class Screen extends Component {
 	render () {
 		return (
 			<LinearGradient 
-				colors={['#e9bc76', '#f2817b']}
+				colors={['#19d7fb', '#1e63ee']}
 				start={{ x: 0.0, y: 1.0 }}
 				end={{ x: 1.0, y: 0.0 }}
 				style={{
@@ -33,11 +34,11 @@ export default class Screen extends Component {
 					alignItems: 'center'
 				}}>
 				<View style={{ position: 'absolute', marginTop: height * 0.28, alignItems: 'center' }}>
-					<FontAwesome 
-						name='shopping-basket' color='white' size={55} />
+					<MaterialIcons 
+						name='store' color='white' size={55} />
 
-					<Text style={{ color: 'white', fontSize: 43, fontWeight: 'bold' }}>INGE</Text>
-					<Text style={{ color: '#EEEEEE', fontSize: 20 }}>e-Commerce Shop UI App Template</Text>
+					<Text style={{ color: 'white', fontSize: 43, fontWeight: 'bold' }}>AWESOME</Text>
+					<Text style={{ color: '#EEEEEE', fontSize: 20 }}>e-Commerce Shop Template</Text>
 				</View>
 				
 				<View style={{ alignItems: 'center', position: 'absolute', marginTop: height * 0.7 }}>
@@ -49,7 +50,8 @@ export default class Screen extends Component {
 						width: width * 0.7,
 						alignItems: 'center',
 						justifyContent: 'center',
-						marginBottom: 37
+						marginBottom: 37,
+						borderRadius: buttonBorderRadius
 					}}>
 						<Text style={{ color: 'white', fontSize: 18 }} uppercase={false}>Login</Text>
 					</Button>
@@ -61,7 +63,8 @@ export default class Screen extends Component {
 						borderWidth: 1.5,
 						width: width * 0.7,
 						alignItems: 'center',
-						justifyContent: 'center'
+						justifyContent: 'center',
+						borderRadius: buttonBorderRadius
 					}}>
 						<Text style={{ color: 'white', fontSize: 18 }} uppercase={false}>Register</Text>
 					</Button>
