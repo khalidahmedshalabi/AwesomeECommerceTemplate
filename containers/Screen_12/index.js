@@ -8,7 +8,7 @@ import IconBadge from 'react-native-icon-badge'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 const CategoryTab = ({ items, innerTitle }) => {
 	return (
@@ -158,8 +158,8 @@ export default class Screen extends Component {
 					style={{ backgroundColor: 'white' }}>
 					<Left style={{ flex: 1 }}>
 						<TouchableOpacity style={{ flexDirection: 'row' }}>
-							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange }} uppercase={false}>Back</Text>
+							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -178,7 +178,7 @@ export default class Screen extends Component {
 											height: 43,
 											width: 43,
 										}}>
-										<FontAwesome name='shopping-cart' size={26} color={colorOrange} />
+										<FontAwesome name='shopping-cart' size={26} color={mainColor} />
 									</View>
 								}
 								BadgeElement={
@@ -212,7 +212,7 @@ export default class Screen extends Component {
 				<ScrollableTabView
 					ref="Tabs"
 					onChangeTab={(tab) => {}}
-					tabBarUnderlineStyle={{ height: 2, backgroundColor: colorOrange }}
+					tabBarUnderlineStyle={{ height: 2, backgroundColor: mainColor }}
 					tabBarActiveTextColor={'black'}
 					tabBarInactiveTextColor={"#B8B8B8"}
 					tabBarTextStyle={{ height: 20, fontWeight: 'normal', fontSize: 13 }}

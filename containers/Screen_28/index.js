@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, FlatList, TouchableOpacity, I18nManager } from 'react-native'
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content } from 'native-base'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { colorOrange } from '../../constants/Colors';
+import { mainColor } from '../../constants/Colors';
 
 const formSpacing = 6
 
@@ -76,7 +76,7 @@ export default class Reviews extends Component {
 
 					<View
 						style={{
-							backgroundColor: colorOrange,
+							backgroundColor: mainColor,
 							paddingVertical: 3,
 							paddingHorizontal: 4
 						}}>
@@ -107,7 +107,7 @@ export default class Reviews extends Component {
 
 					<View style={{ flexDirection: 'row' }}>
 						<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Subtotal: </Text>
-						<Text style={{ color: colorOrange, fontWeight: 'bold', fontSize: 13, marginBottom: formSpacing }}>{item.subtotal}$</Text>
+						<Text style={{ color: mainColor, fontWeight: 'bold', fontSize: 13, marginBottom: formSpacing }}>{item.subtotal}$</Text>
 					</View>
 				</View>
 			</View>
@@ -126,8 +126,8 @@ export default class Reviews extends Component {
 						<Button
 							iconLeft
 							style={{ backgroundColor: 'transparent', elevation: 0 }}>
-							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange }} uppercase={false}>Back</Text>
+							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</Button>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -137,7 +137,7 @@ export default class Reviews extends Component {
 						<Button 
 							transparent
 							onPress={this.onCheckout}>
-							<Text style={{ color: colorOrange }} uppercase={false}>Checkout</Text>
+							<Text style={{ color: mainColor }} uppercase={false}>Checkout</Text>
 						</Button>
 					</Right>
 				</Header>
@@ -164,14 +164,14 @@ export default class Reviews extends Component {
 
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 							<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Total:</Text>
-							<Text style={{ color: colorOrange, fontWeight: 'bold', fontSize: 13, marginBottom: formSpacing }}>{this.state.total}$</Text>
+							<Text style={{ color: mainColor, fontWeight: 'bold', fontSize: 13, marginBottom: formSpacing }}>{this.state.total}$</Text>
 						</View>
 					</View>
 
 					<Button
 						full
 						onPress={this.onCheckout}
-						style={{ marginHorizontal: 14, backgroundColor: colorOrange }}>
+						style={{ marginHorizontal: 14, backgroundColor: mainColor }}>
 						<Text style={{ color: 'white' }}>CHECKOUT</Text>
 					</Button>
 				</Content>

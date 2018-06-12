@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, FlatList, TouchableOpacity, Text } from 'react-native'
 import Stars from 'react-native-stars-rating'
-import { colorOrange } from '../../constants/Colors';
+import { mainColor } from '../../constants/Colors';
 
 export default class Reviews extends Component {
 	constructor() {
@@ -40,7 +40,7 @@ export default class Reviews extends Component {
 						height: 70, 
 						borderRadius: 35, 
 						backgroundColor: '#c8c8c8', 
-						borderColor: colorOrange, 
+						borderColor: mainColor, 
 						borderWidth: 1 
 					}}></View>
 			</View>

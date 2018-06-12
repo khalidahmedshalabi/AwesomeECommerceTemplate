@@ -7,7 +7,7 @@ import IconBadge from 'react-native-icon-badge'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 const formSpacing = 13
 
@@ -189,7 +189,7 @@ export default class Screen extends Component {
 					style={{
 						backgroundColor: item.selected ? '#fff' : item.bgColor,
 						borderWidth: item.selected ? 4 : 0,
-						borderColor: item.selected ? colorOrange : '#fff',
+						borderColor: item.selected ? mainColor : '#fff',
 						width: 40,
 						height: 40,
 						borderRadius: 40/2,
@@ -221,8 +221,8 @@ export default class Screen extends Component {
 					style={{ backgroundColor: 'white' }}>
 					<Left style={{ flex: 1 }}>
 						<TouchableOpacity style={{ flexDirection: 'row' }}>
-							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange }} uppercase={false}>Back</Text>
+							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -241,7 +241,7 @@ export default class Screen extends Component {
 											height: 43,
 											width: 43,
 										}}>
-										<FontAwesome name='shopping-cart' size={26} color={colorOrange} />
+										<FontAwesome name='shopping-cart' size={26} color={mainColor} />
 									</View>
 								}
 								BadgeElement={
@@ -294,7 +294,7 @@ export default class Screen extends Component {
 
 									<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 										<Text style={{ fontSize: 15, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>225$</Text>
-										<Text style={{ fontSize: 15, color: colorOrange }}>170$</Text>
+										<Text style={{ fontSize: 15, color: mainColor }}>170$</Text>
 									</View>
 								</View>
 
@@ -371,7 +371,7 @@ export default class Screen extends Component {
 						<Button
 							iconLeft
 							full
-							style={{ backgroundColor: colorOrange, elevation: 0, marginTop: formSpacing }}>
+							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing }}>
 							<FontAwesome name='shopping-cart' size={18} color='white' />
 							<Text style={{ color: 'white' }}>ADD TO CART</Text>
 						</Button>

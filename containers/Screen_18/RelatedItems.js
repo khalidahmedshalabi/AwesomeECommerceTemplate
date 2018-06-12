@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, FlatList } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import Stars from 'react-native-stars-rating'
-import { colorOrange } from '../../constants/Colors';
+import { mainColor } from '../../constants/Colors';
 
 export default class Reviews extends Component {
 	constructor() {
@@ -65,7 +65,7 @@ export default class Reviews extends Component {
 	}
 
 	renderProduct = (item) => {
-		const priceTag = <Text style={{ fontSize: 13, color: colorOrange }}>{item.currentPrice}$</Text>
+		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
 		const priceContainer = item.oldPrice === 0 ? priceTag : (
 			<View style={{ flexDirection: 'row' }}>
 				<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
@@ -108,11 +108,11 @@ export default class Reviews extends Component {
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
 						{priceContainer}
 						<View style={{ flexDirection: 'row' }}>
-							<View style={{ backgroundColor: colorOrange, padding: 6, borderRadius: 1, marginRight: 3 }}>
+							<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
 								<Ionicons name='ios-heart-outline' color='white' size={18} />
 							</View>
 
-							<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colorOrange, padding: 6, borderRadius: 1 }}>
+							<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
 								<Ionicons name='md-add' color='white' size={14} />
 								<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
 							</View>

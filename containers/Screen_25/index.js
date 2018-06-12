@@ -4,7 +4,7 @@ import { Container, Body, Left, Right, Header, Button, Title, Badge, Text } from
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Stars from 'react-native-stars-rating'
 import IconBadge from 'react-native-icon-badge'
-import { colorOrange } from '../../constants/Colors';
+import { mainColor } from '../../constants/Colors';
 
 export default class Reviews extends Component {
 	constructor() {
@@ -57,7 +57,7 @@ export default class Reviews extends Component {
 	}
 
 	renderProduct = (item) => {
-		const priceTag = <Text style={{ fontSize: 13, color: colorOrange }}>{item.currentPrice}$</Text>
+		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
 		const priceContainer = item.oldPrice === 0 ? priceTag : (
 			<View style={{ flexDirection: 'row' }}>
 				<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
@@ -77,7 +77,7 @@ export default class Reviews extends Component {
 
 						<View
 							style={{
-								backgroundColor: colorOrange,
+								backgroundColor: mainColor,
 								paddingVertical: 3,
 								paddingHorizontal: 4
 							}}>
@@ -99,7 +99,7 @@ export default class Reviews extends Component {
 
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
 						{priceContainer}
-						<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colorOrange, padding: 6, borderRadius: 1 }}>
+						<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
 							<Ionicons name='md-add' color='white' size={14} />
 							<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
 						</View>
@@ -119,8 +119,8 @@ export default class Reviews extends Component {
 					style={{ backgroundColor: 'white' }}>
 					<Left style={{ flex: 1 }}>
 						<TouchableOpacity style={{ flexDirection: 'row' }}>
-							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange }} uppercase={false}>Back</Text>
+							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -139,7 +139,7 @@ export default class Reviews extends Component {
 											height: 43,
 											width: 43,
 										}}>
-										<FontAwesome name='shopping-cart' size={26} color={colorOrange} />
+										<FontAwesome name='shopping-cart' size={26} color={mainColor} />
 									</View>
 								}
 								BadgeElement={

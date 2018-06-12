@@ -9,7 +9,7 @@ import IconBadge from 'react-native-icon-badge'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 class CategoryTab extends Component {
 	constructor() {
@@ -29,7 +29,7 @@ class CategoryTab extends Component {
 				data={products}
 				style={{ flex: 1, paddingVertical: 14 }}
 				renderItem={({ item }) => {
-					const priceTag = <Text style={{ fontSize: 13, color: colorOrange }}>{item.currentPrice}$</Text>
+					const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
 					const priceContainer = item.oldPrice === 0 ? priceTag : (
 						<View style={{ flexDirection: 'row' }}>
 							<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
@@ -63,11 +63,11 @@ class CategoryTab extends Component {
 								<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
 									{priceContainer}
 									<View style={{ flexDirection: 'row' }}>
-										<View style={{ backgroundColor: colorOrange, padding: 6, borderRadius: 1, marginRight: 3 }}>
+										<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
 											<Ionicons name='ios-heart-outline' color='white' size={18} />
 										</View>
 
-										<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colorOrange, padding: 6, borderRadius: 1 }}>
+										<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
 											<Ionicons name='md-add' color='white' size={14} />
 											<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
 										</View>
@@ -216,7 +216,7 @@ export default class Screen extends Component {
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title1}</Text>
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title2}</Text>
 
-					<Button style={{ elevation: 0, backgroundColor: colorOrange, marginTop: 16, paddingHorizontal: 14 }}>
+					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14 }}>
 						<Text style={{ color: 'white' }}>{item.buttonText}</Text>
 					</Button>
 				</View>
@@ -234,7 +234,7 @@ export default class Screen extends Component {
 					style={{ backgroundColor: 'white' }}>
 					<Left style={{ flex: 1 }}>
 						<TouchableOpacity>
-							<FontAwesome name='bars' size={26} color={colorOrange} />
+							<FontAwesome name='bars' size={26} color={mainColor} />
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -253,7 +253,7 @@ export default class Screen extends Component {
 											height: 43,
 											width: 43,
 										}}>
-										<FontAwesome name='shopping-cart' size={26} color={colorOrange} />
+										<FontAwesome name='shopping-cart' size={26} color={mainColor} />
 									</View>
 								}
 								BadgeElement={
@@ -285,7 +285,7 @@ export default class Screen extends Component {
 				<ScrollableTabView
 					ref="Tabs"
 					onChangeTab={(tab) => {}}
-					tabBarUnderlineStyle={{ height: 2, backgroundColor: colorOrange }}
+					tabBarUnderlineStyle={{ height: 2, backgroundColor: mainColor }}
 					tabBarActiveTextColor={'black'}
 					tabBarInactiveTextColor={"#B8B8B8"}
 					tabBarTextStyle={{ height: 20, fontWeight: 'normal', fontSize: 13 }}

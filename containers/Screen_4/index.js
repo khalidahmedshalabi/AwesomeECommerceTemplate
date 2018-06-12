@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo';
 import { FontAwesome } from '@expo/vector-icons';
 import fontScalling from '../../utils/fontScalling'
 import CountryPicker from 'react-native-country-picker-modal'
+import { mainColor } from '../../constants/Colors'
 
 const PNF = require('google-libphonenumber').PhoneNumberFormat;
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
@@ -120,7 +121,7 @@ export default class Screen extends Component {
 							secureTextEntry={true}
 							style={{ backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03 }} />
 
-						<Button block iconLeft style={{ elevation: 0, backgroundColor: '#ff6e66' }} onPress={this.validNumber} >
+						<Button block iconLeft style={{ elevation: 0, backgroundColor: mainColor }} onPress={this.validNumber} >
 							<Text style={{ color: 'white'}}>REGISTER</Text>
 						</Button>
 					</KeyboardAvoidingView>

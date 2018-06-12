@@ -6,7 +6,7 @@ import Stars from 'react-native-stars-rating'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 const formSpacing = 13
 const loremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
@@ -166,7 +166,7 @@ export default class ItemsDetails extends Component {
 			}}>
 			<View style={{ }}>
 
-			<View style={{ backgroundColor: colorOrange, alignItems: 'center', paddingVertical: 20 }} >
+			<View style={{ backgroundColor: mainColor, alignItems: 'center', paddingVertical: 20 }} >
 				<Text style={{ fontWeight: 'bold', fontSize: 18, color: '#fff' }} >Write Review</Text>
 				<Ionicons onPress={() => {
 					this.setState({ ReviewModalVisible: false });
@@ -269,7 +269,7 @@ export default class ItemsDetails extends Component {
 					style={{
 						backgroundColor: item.selected ? '#fff' : item.bgColor,
 						borderWidth: item.selected ? 4 : 0,
-						borderColor: item.selected ? colorOrange : '#fff',
+						borderColor: item.selected ? mainColor : '#fff',
 						width: 40,
 						height: 40,
 						borderRadius: 40/2,
@@ -330,7 +330,7 @@ export default class ItemsDetails extends Component {
 
 							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 								<Text style={{ fontSize: 15, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>225$</Text>
-								<Text style={{ fontSize: 15, color: colorOrange }}>170$</Text>
+								<Text style={{ fontSize: 15, color: mainColor }}>170$</Text>
 							</View>
 						</View>
 
@@ -439,7 +439,7 @@ export default class ItemsDetails extends Component {
 					<Button
 						iconLeft
 						full
-						style={{ backgroundColor: colorOrange, elevation: 0, marginTop: formSpacing }}>
+						style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing }}>
 						<FontAwesome name='shopping-cart' size={18} color='white' />
 						<Text style={{ color: 'white' }}>ADD TO CART</Text>
 					</Button>

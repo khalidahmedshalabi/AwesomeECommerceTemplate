@@ -8,7 +8,7 @@ import IconBadge from 'react-native-icon-badge'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 export default class Screen extends Component {
 	constructor() {
@@ -146,7 +146,7 @@ export default class Screen extends Component {
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title1}</Text>
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title2}</Text>
 
-					<Button style={{ elevation: 0, backgroundColor: colorOrange, marginTop: 16, paddingHorizontal: 14 }}>
+					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14 }}>
 						<Text style={{ color: 'white' }}>{item.buttonText}</Text>
 					</Button>
 				</View>
@@ -155,7 +155,7 @@ export default class Screen extends Component {
 	}
 
 	renderSectionProduct = (item) => {
-		const priceTag = <Text style={{ fontSize: 13, color: colorOrange }}>{item.currentPrice}$</Text>
+		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
 		const priceContainer = item.oldPrice === 0 ? priceTag : (
 			<View style={{ flexDirection: 'row' }}>
 				<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
@@ -204,7 +204,7 @@ export default class Screen extends Component {
 					<Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
 
 					<TouchableOpacity>
-						<Text style={{ color: colorOrange }} uppercase={false}>More</Text>
+						<Text style={{ color: mainColor }} uppercase={false}>More</Text>
 					</TouchableOpacity>
 				</View>
 
@@ -229,7 +229,7 @@ export default class Screen extends Component {
 					<Left style={{ flex: 1 }}>
 						<TouchableOpacity
 							onPress={() => this.props.navigation.toggleDrawer()}>
-							<FontAwesome name='bars' size={26} color={colorOrange} />
+							<FontAwesome name='bars' size={26} color={mainColor} />
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -248,7 +248,7 @@ export default class Screen extends Component {
 											height: 43,
 											width: 43,
 										}}>
-										<FontAwesome name='shopping-cart' size={26} color={colorOrange} />
+										<FontAwesome name='shopping-cart' size={26} color={mainColor} />
 									</View>
 								}
 								BadgeElement={

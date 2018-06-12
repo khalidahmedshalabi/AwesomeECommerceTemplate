@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Dimensions, View, StatusBar, Platform, TouchableOpacity, TouchableHighlight, Modal, TextInput, I18nManager } from 'react-native'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Container, Body, Left, Right, Header, Button, Title, Badge, Text, Input, Label, Item, Form, Content, Radio, ListItem, Picker,  } from 'native-base';
+import { mainColor } from '../../constants/Colors'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-import { colorOrange } from '../../constants/Colors'
 
 export default class Screen extends Component {
 	constructor() {
@@ -72,7 +72,7 @@ export default class Screen extends Component {
 				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: '#505050' }} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
 					<Text style={{ fontWeight: 'bold' }} >cancle</Text>
 				</Button>
-				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: '#ff6e66' }} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
+				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor }} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
 					<Text style={{ fontWeight: 'bold' }} >change</Text>
 				</Button>
 				</Item>
@@ -193,7 +193,7 @@ export default class Screen extends Component {
 				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: '#505050' }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
 					<Text style={{ fontWeight: 'bold' }} >cancle</Text>
 				</Button>
-				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: '#ff6e66' }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
+				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
 					<Text style={{ fontWeight: 'bold' }} >change</Text>
 				</Button>
 				</Item>
@@ -262,7 +262,7 @@ export default class Screen extends Component {
 				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: '#505050' }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
 					<Text style={{ fontWeight: 'bold' }} >cancle</Text>
 				</Button>
-				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: '#ff6e66' }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
+				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
 					<Text style={{ fontWeight: 'bold' }} >save</Text>
 				</Button>
 				</Item>
@@ -285,8 +285,8 @@ export default class Screen extends Component {
 						<Button
 							iconLeft
 							style={{ backgroundColor: 'transparent', elevation: 0 }}>
-							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange, fontSize: 16, marginLeft: -10 }} uppercase={false}>Back</Text>
+							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor, fontSize: 16, marginLeft: -10 }} uppercase={false}>Back</Text>
 						</Button>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -294,7 +294,7 @@ export default class Screen extends Component {
 					</Body>
 					<Right style={{ flex: 1, }}>
 						<TouchableOpacity transparent>
-							<Text style={{ color: colorOrange, fontSize: 16 }} >Save</Text>
+							<Text style={{ color: mainColor, fontSize: 16 }} >Save</Text>
 						</TouchableOpacity>
 					</Right>
 				</Header>

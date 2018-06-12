@@ -3,6 +3,7 @@ import { Dimensions, View, Text, StatusBar, Platform, TextInput, KeyboardAvoidin
 import { Button } from 'native-base'
 import { LinearGradient } from 'expo';
 import { FontAwesome } from '@expo/vector-icons';
+import { mainColor } from '../../constants/Colors'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -76,7 +77,7 @@ export default class Screen extends Component {
 							underlineColorAndroid='transparent'
 							style={{ backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03 }} />
 
-						<Button block style={{ elevation: 0, backgroundColor: '#ff6e66' }} onPress={this.validate} >
+						<Button block style={{ elevation: 0, backgroundColor: mainColor }} onPress={this.validate} >
 							<Text style={{ color: 'white'}}>SEND</Text>
 						</Button>
 					</KeyboardAvoidingView>

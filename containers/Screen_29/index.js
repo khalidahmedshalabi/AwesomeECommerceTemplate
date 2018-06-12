@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Image, I18nManager } from 'react-native'
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Input } from 'native-base'
 import { Ionicons } from '@expo/vector-icons';
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 
 const formSpacing = 13
@@ -28,8 +28,8 @@ export default class Screen extends Component {
 						<Button
 							iconLeft
 							style={{ backgroundColor: 'transparent', elevation: 0 }}>
-							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange }} uppercase={false}>Back</Text>
+							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</Button>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -122,7 +122,7 @@ export default class Screen extends Component {
 									width: 15, 
 									height: 15, 
 									borderRadius: 1, 
-									backgroundColor: colorOrange,
+									backgroundColor: mainColor,
 									justifyContent: 'center',
 								}}>
 								<Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>-</Text>
@@ -192,7 +192,7 @@ export default class Screen extends Component {
 									width: 15,
 									height: 15,
 									borderRadius: 1,
-									backgroundColor: colorOrange,
+									backgroundColor: mainColor,
 									justifyContent: 'center',
 								}}>
 								<Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>+</Text>
@@ -202,7 +202,7 @@ export default class Screen extends Component {
 
 					<Button
 						full
-						style={{ backgroundColor: colorOrange, elevation: 0, marginHorizontal: 14, marginBottom: 14 }}>
+						style={{ backgroundColor: mainColor, elevation: 0, marginHorizontal: 14, marginBottom: 14 }}>
 						<Text style={{ color: 'white' }}>CONTINUE</Text>
 					</Button>
 				</Content>

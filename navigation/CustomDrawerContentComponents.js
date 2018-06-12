@@ -9,13 +9,13 @@ import {
 } from 'react-native'
 import { LinearGradient } from 'expo';
 import { DrawerItems } from 'react-navigation';
-import { colorOrange } from '../constants/Colors'
+import { mainColor } from '../constants/Colors'
 
 export const CustomDrawer1ContentComponent = (props) => {
 	return (
 		<ScrollView style={{ backgroundColor: '#fff', flex: 1, }}>
 			<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 16, paddingVertical: 28 }} onPress={() => {}} >
-				<View style={{ width: 70, height: 70, borderRadius: 35, backgroundColor: '#c8c8c8', borderColor: colorOrange, borderWidth: 1 }}></View>
+				<View style={{ width: 70, height: 70, borderRadius: 35, backgroundColor: '#c8c8c8', borderColor: mainColor, borderWidth: 1 }}></View>
 				<View style={{ flexDirection: 'column', margin: 20, }}>
 					<Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>Samantha Jones</Text>
 					<Text style={{ fontSize: 16, color: '#969696',  }}>Seattle, USA</Text>

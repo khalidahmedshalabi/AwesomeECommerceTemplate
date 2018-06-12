@@ -21,7 +21,7 @@ import ModalSelector from 'react-native-modal-selector'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 const isSmallWidth = width <= 380;
-import { colorOrange } from '../../constants/Colors'
+import { mainColor } from '../../constants/Colors'
 
 export default class Screen extends Component {
 	constructor(props) {
@@ -154,7 +154,7 @@ export default class Screen extends Component {
 
 						<View
 							style={{
-								backgroundColor: colorOrange,
+								backgroundColor: mainColor,
 								paddingVertical: 3,
 								paddingHorizontal: 4
 							}}>
@@ -166,7 +166,7 @@ export default class Screen extends Component {
 
 					<View style={{ flexDirection: 'row' }}>
 						<Text style={{ fontSize: 13, color: '#969696' }}>{item.quantity} X </Text>
-						<Text style={{ fontSize: 13, color: colorOrange }}>{item.currentPrice}$</Text>
+						<Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
 					</View>
 				</View>
 			</View>
@@ -201,11 +201,11 @@ export default class Screen extends Component {
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}>
 						<View style={{ flexDirection: 'row' }}>
 							<Text style={{ fontSize: 13, color: 'black', fontWeight: 'bold' }}>Subtotal: </Text>
-							<Text style={{ fontSize: 13, color: colorOrange }}>999$</Text>
+							<Text style={{ fontSize: 13, color: mainColor }}>999$</Text>
 						</View>
 
 						<Button
-							style={{ backgroundColor: colorOrange, elevation: 0, paddingHorizontal: 14 }}>
+							style={{ backgroundColor: mainColor, elevation: 0, paddingHorizontal: 14 }}>
 							<Text style={{ color: 'white' }}>CHECKOUT</Text>
 						</Button>
 					</View>
@@ -269,7 +269,7 @@ export default class Screen extends Component {
 						<TouchableOpacity
 							style={{
 								width: buttonWidth,
-								backgroundColor: colorOrange,
+								backgroundColor: mainColor,
 								justifyContent: 'center',
 								alignItems: 'center',
 								borderRadius: 1,
@@ -287,7 +287,7 @@ export default class Screen extends Component {
 	}
 
 	renderProduct = (item) => {
-		const priceTag = <Text style={{ fontSize: 13, color: colorOrange }}>{item.currentPrice}$</Text>
+		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
 		const priceContainer = item.oldPrice === 0 ? priceTag : (
 			<View style={{ flexDirection: 'row' }}>
 				<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
@@ -321,13 +321,13 @@ export default class Screen extends Component {
 						<Text style={{ color: '#969696', textAlign: 'justify', fontSize: 10, marginVertical: 0 }}>{item.description}</Text>
 
 						<View style={{ flexDirection: 'row', marginTop: 8 }}>
-							<View style={{ backgroundColor: colorOrange, padding: 6, borderRadius: 1, marginRight: 3 }}>
+							<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
 								<Ionicons name='ios-heart-outline' color='white' size={14} />
 							</View>
 
 							<TouchableOpacity 
 								onPress={this.onAddToCart}
-								style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colorOrange, padding: 6, borderRadius: 1 }}>
+								style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
 								<Ionicons name='md-add' color='white' size={10} />
 								<Text style={{ color: 'white', fontSize: 10, marginLeft: 3 }}>ADD TO CART</Text>
 							</TouchableOpacity>
@@ -388,13 +388,13 @@ export default class Screen extends Component {
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
 							{priceContainer}
 							<View style={{ flexDirection: 'row' }}>
-								<View style={{ backgroundColor: colorOrange, padding: 6, borderRadius: 1, marginRight: 3 }}>
+								<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
 									<Ionicons name='ios-heart-outline' color='white' size={18} />
 								</View>
 
 								<TouchableOpacity 
 									onPress={this.onAddToCart}
-									style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colorOrange, padding: 6, borderRadius: 1 }}>
+									style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
 									<Ionicons name='md-add' color='white' size={14} />
 									<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
 								</TouchableOpacity>
@@ -460,8 +460,8 @@ export default class Screen extends Component {
 					style={{ backgroundColor: 'white', borderBottomColor: '#e9e9e9', borderBottomWidth: this.state.cartClicked ? 0 : 1 }}>
 					<Left style={{ flex: 1 }}>
 						<TouchableOpacity style={{ flexDirection: 'row' }}>
-							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={colorOrange} />
-							<Text style={{ color: colorOrange }} uppercase={false}>Back</Text>
+							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
+							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
@@ -480,7 +480,7 @@ export default class Screen extends Component {
 											height: 43,
 											width: 43,
 										}}>
-										<FontAwesome name='shopping-cart' size={26} color={colorOrange} />
+										<FontAwesome name='shopping-cart' size={26} color={mainColor} />
 									</View>
 								}
 								BadgeElement={
@@ -508,7 +508,7 @@ export default class Screen extends Component {
 						scrollViewAccessibilityLabel={'Scrollable options'}
 						cancelButtonAccessibilityLabel={'Cancel Button'}
 						cancelText='Cancel'
-						optionTextStyle={{ color: colorOrange }}
+						optionTextStyle={{ color: mainColor }}
 						touchableStyle={{  flex: 1 }}
 						childrenContainerStyle={{ 
 							flexDirection: 'row', 
@@ -536,7 +536,7 @@ export default class Screen extends Component {
 						scrollViewAccessibilityLabel={'Scrollable options'}
 						cancelButtonAccessibilityLabel={'Cancel Button'}
 						cancelText='Cancel'
-						optionTextStyle={{ color: colorOrange }}
+						optionTextStyle={{ color: mainColor }}
 						touchableStyle={{ flex: 1 }}
 						childrenContainerStyle={{
 							flexDirection: 'row',
