@@ -47,7 +47,7 @@ export default class Screen extends Component {
 						name='store' color='white' size={55} />
 
 					<Text style={{ color: 'white', fontSize: 43, fontWeight: 'bold' }}>AWESOME</Text>
-					<Text style={{ color: '#EEEEEE', fontSize: 20 }}>e-Commerce Shop</Text>
+					<Text style={{ color: '#EEEEEE', fontSize: 20 }}>e-Commerce Shop Template</Text>
 				</View>
 				
 				<View style={{ alignItems: 'center', position: 'absolute', marginTop: height * 0.7 }}>
