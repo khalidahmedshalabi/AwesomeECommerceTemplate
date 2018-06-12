@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View/*, StatusBar, Platform*/ } from 'react-native'
+import { StyleSheet, View, StatusBar, Platform } from 'react-native'
 import RootNavigation from './navigation/RootNavigation'
 import { AppLoading, Font } from 'expo';
 
@@ -20,8 +20,8 @@ export default class App extends Component {
 		} else {
 			return (
 				<View style={styles.container}>
-					{/*Platform.OS === 'ios' && <StatusBar barStyle="default" />*/}
-					{/*Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />*/}
+					Platform.OS === 'ios' && <StatusBar barStyle="default" />
+					Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />
 					<RootNavigation />
 				</View>
 			);
@@ -32,7 +32,9 @@ export default class App extends Component {
 		return await Font.loadAsync({
 			Roboto: require("native-base/Fonts/Roboto.ttf"),
 			Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-			Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
+			Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+			MaterialIcons: require("@expo/vector-icons/fonts/MaterialIcons.ttf"),
+			Octicons: require("@expo/vector-icons/fonts/Octicons.ttf")
 		})
 	};
 
