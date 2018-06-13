@@ -7,6 +7,7 @@ import IconBadge from 'react-native-icon-badge'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
+import { buttonBorderRadius } from '../../constants/gStyles';
 
 export default class Screen extends Component {
 	constructor() {
@@ -82,7 +83,7 @@ export default class Screen extends Component {
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title1}</Text>
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title2}</Text>
 
-					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14 }}>
+					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14, borderRadius: buttonBorderRadius }}>
 						<Text style={{ color: 'white' }}>{item.buttonText}</Text>
 					</Button>
 				</View>
