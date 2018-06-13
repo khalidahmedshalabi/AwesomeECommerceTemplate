@@ -16,34 +16,34 @@ export default class Screen extends Component {
 			categories: [
 				{
 					key: '1',
-					title1: 'Winter',
-					title2: 'Collection',
+					title1: 'Summer',
+					title2: 'Season',
 					startFromLeft: true,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#c8c8c8'
 				},
 				{
 					key: '2',
-					title1: 'Spring',
-					title2: 'Looks',
+					title1: 'Winter',
+					title2: 'Season',
 					startFromLeft: false,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#e1e1e1'
 				},
 				{
 					key: '3',
-					title1: '2017',
-					title2: 'Collection',
+					title1: 'Autumn',
+					title2: 'Season',
 					startFromLeft: true,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#c8c8c8'
 				},
 				{
 					key: '4',
-					title1: 'Summer',
-					title2: 'Eighteen',
+					title1: 'Spring',
+					title2: 'Season',
 					startFromLeft: false,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#e1e1e1'
 				}
 			]
@@ -72,8 +72,8 @@ export default class Screen extends Component {
 				justifyContent: 'flex-end',
 				alignItems: item.startFromLeft ? 'flex-start' : 'flex-end'
 			}}>
-
-				<View 
+			
+				<View
 					style={{ 
 						marginBottom: 32, 
 						marginLeft: item.startFromLeft ? 30 : 0,
@@ -104,9 +104,11 @@ export default class Screen extends Component {
 							<FontAwesome name='bars' size={26} color={mainColor} />
 						</TouchableOpacity>
 					</Left>
+
 					<Body style={{ flex: 1 }}>
-						<Title style={{ color: 'black', alignSelf: 'center' }}>Inge</Title>
+						<Title style={{ color: 'black', alignSelf: 'center' }}>Awesome</Title>
 					</Body>
+
 					<Right style={{ flex: 1 }}>
 						<TouchableOpacity>
 							<IconBadge
