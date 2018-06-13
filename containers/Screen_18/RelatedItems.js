@@ -65,24 +65,26 @@ export default class Reviews extends Component {
 		}
 	}
 
-
+	renderProduct = (item) => {
+		return (
+			<ProductCard navigation={this.props.navigation}
+				title={item.title}
+				description={item.description}
+				currentPrice={item.currentPrice}
+				OldPrice={item.oldPrice}
+				stars={item.stars} />
+		)
+	}
 
 	render() {
 		return (
-			<View style={{flex:1,backgroundColor:'white'}}>
-			<FlatList
-		style={{ flex:1 }}
-		data = {this.state.products}
-		contentContainerStyle={{ paddingVertical: 14 }}
-		ItemSeparatorComponent={() => <View style={{ backgroundColor: '#dedede', height: 1 }}></View>}
-		renderItem = {({ item }) => (
-			  <ProductCard navigation={this.props.navigation}
-			  title= item.title
-			  description= item.description
-			  currentPrice= item.currentPrice
-			  OldPrice= item.oldPrice
-			  Stars= item.Stars />
-		  )} />
+			<View style={{flex: 1, backgroundColor: 'white'}}>
+				<FlatList
+					style={{ flex:1 }}
+					data = {this.state.products}
+					contentContainerStyle={{ paddingVertical: 14 }}
+					ItemSeparatorComponent={() => <View style={{ backgroundColor: '#dedede', height: 1 }}></View>}
+					renderItem = {({ item }) => this.renderProduct(item)} />
 			</View>
 		)
 	}
