@@ -34,14 +34,14 @@ export default class Reviews extends Component {
 	renderReviewItem = (item) => (
 		<View style={{ flex: 1, backgroundColor: 'white', padding: 14, flexDirection: 'row' }}>
 			<View style={{ flex: 0.4, alignItems: 'center' }}>
-				<View 
-					style={{ 
-						width: 70, 
-						height: 70, 
-						borderRadius: 35, 
-						backgroundColor: '#c8c8c8', 
-						borderColor: mainColor, 
-						borderWidth: 1 
+				<View
+					style={{
+						width: 70,
+						height: 70,
+						borderRadius: 35,
+						backgroundColor: '#c8c8c8',
+						borderColor: mainColor,
+						borderWidth: 1
 					}}></View>
 			</View>
 
@@ -65,12 +65,14 @@ export default class Reviews extends Component {
 
 	render () {
 		return (
+			<View style={{flex:1,backgroundColor:'white'}}>
 			<FlatList
 				style={{ flex: 1 }}
 				contentContainerStyle={{ padding: 14 }}
-				ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', height: 14 }}></View>}
+				ItemSeparatorComponent={() => <View style={{ backgroundColor: 'gray', height: 1 }}></View>}
 				data={this.state.reviews}
 				renderItem={({ item }) => this.renderReviewItem(item)} />
+				</View>
 		)
 	}
 }
