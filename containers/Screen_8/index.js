@@ -6,6 +6,8 @@ import Carousel from 'react-native-carousel-view'
 import Stars from 'react-native-stars-rating'
 import ScrollableTabView, { ScrollableTabBar } from "react-native-scrollable-tab-view"
 import IconBadge from 'react-native-icon-badge'
+import { buttonBorderRadius} from '../../constants/gStyles';
+import ProductCard from '../../components/ProductCard';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -20,64 +22,29 @@ class CategoryTab extends Component {
 		}
 	}
 
+	renderProduct = (item) => {
+		return (
+			<ProductCard navigation={this.props.navigation}
+				title={item.title}
+				description={item.description}
+				currentPrice={item.currentPrice}
+				oldPrice={item.oldPrice}
+				stars={item.stars} />
+		)
+	}
 
 	render () {
 		const { products } = this.props
 
 		return (
-			<FlatList
-				data={products}
-				style={{ flex: 1, paddingVertical: 14 }}
-				renderItem={({ item }) => {
-					const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
-					const priceContainer = item.oldPrice === 0 ? priceTag : (
-						<View style={{ flexDirection: 'row' }}>
-							<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
-							{priceTag}
-						</View>
-					)
-
-					return (
-						<View
-							onLayout={(event) => this.setState({ cardImgWidth: event.nativeEvent.layout.width * 0.35483870967741935483870967741935 })}
-							style={{ flex: 1, flexDirection: 'row', borderRadius: 1, marginBottom: 8, marginHorizontal: 14, height: this.state.cardImgWidth, }}>
-							<View style={{ flex: 0.55, backgroundColor: '#c8c8c8' }}>
-
-							</View>
-
-							<View style={{ flex: 1, backgroundColor: 'white', padding: 7, justifyContent: 'space-between' }}>
-								<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-
-								<Stars
-									isActive={false}
-									rateMax={5}
-									isHalfStarEnabled={false}
-									onStarPress={(rating) => console.log(rating)}
-									rate={item.stars}
-									color='#f9e784'
-									size={13}
-								/>
-
-								<Text style={{ color: '#969696', textAlign: 'justify', paddingVertical: 8 }}>{item.description}</Text>
-
-								<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-									{priceContainer}
-									<View style={{ flexDirection: 'row' }}>
-										<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
-											<Ionicons name='ios-heart-outline' color='white' size={18} />
-										</View>
-
-										<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
-											<Ionicons name='md-add' color='white' size={14} />
-											<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
-										</View>
-									</View>
-								</View>
-							</View>
-						</View>
-					)
-				}} 
-			/>
+			<View style={{ flex: 1, backgroundColor: 'white' }}>
+				<FlatList
+					style={{ flex: 1 }}
+					data={products}
+					contentContainerStyle={{ paddingVertical: 14 }}
+					ItemSeparatorComponent={() => <View style={{ backgroundColor: '#dedede', height: 1 }}></View>}
+					renderItem={({ item }) => this.renderProduct(item)} />
+			</View>
 		)
 	}
 }
@@ -90,33 +57,33 @@ export default class Screen extends Component {
 			ads: [
 				{
 					key: '1',
-					title1: 'Winter',
-					title2: 'Collection',
+					title1: 'Summer',
+					title2: 'Season',
 					startFromLeft: true,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#c8c8c8'
 				},
 				{
 					key: '2',
-					title1: 'Spring',
-					title2: 'Looks',
+					title1: 'Winter',
+					title2: 'Season',
 					startFromLeft: false,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#e1e1e1'
 				},
 				{
 					key: '3',
-					title1: '2017',
-					title2: 'Collection',
+					title1: 'Autumn',
+					title2: 'Season',
 					startFromLeft: true,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#c8c8c8'
 				},
 			],
 			tabs: [
 				{
 					key: '1',
-					title: 'Top Seller',
+					title: 'First',
 					products: [
 						{
 							key: '1',
@@ -154,21 +121,21 @@ export default class Screen extends Component {
 				},
 				{
 					key: '2',
-					title: 'New Products',
+					title: 'Second',
 					products: [
 						
 					]
 				},
 				{
 					key: '3',
-					title: 'Dresses',
+					title: 'Third',
 					products: [
 
 					]
 				},
 				{
 					key: '4',
-					title: 'Accessories',
+					title: 'Fourth',
 					products: [
 
 					]
@@ -216,7 +183,7 @@ export default class Screen extends Component {
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title1}</Text>
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title2}</Text>
 
-					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14 }}>
+					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14, borderRadius: buttonBorderRadius }}>
 						<Text style={{ color: 'white' }}>{item.buttonText}</Text>
 					</Button>
 				</View>
@@ -238,7 +205,7 @@ export default class Screen extends Component {
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
-						<Title style={{ color: 'black', alignSelf: 'center' }}>Inge</Title>
+						<Title style={{ color: 'black', alignSelf: 'center' }}>Awesome</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
 						<TouchableOpacity>
@@ -286,7 +253,7 @@ export default class Screen extends Component {
 					ref="Tabs"
 					onChangeTab={(tab) => {}}
 					tabBarUnderlineStyle={{ height: 2, backgroundColor: mainColor }}
-					tabBarActiveTextColor={'black'}
+					tabBarActiveTextColor={mainColor}
 					tabBarInactiveTextColor={"#B8B8B8"}
 					tabBarTextStyle={{ height: 20, fontWeight: 'normal', fontSize: 13 }}
 					renderTabBar={ () => (
