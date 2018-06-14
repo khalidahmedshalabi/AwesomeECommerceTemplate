@@ -98,7 +98,7 @@ export default class Screen extends Component {
 	addPaymentModal = () => (
 		<Modal
           animationType="fade"
-          transparent={true}
+          transparent={false}
           visible={this.state.addPaymentModalVisible}
           onRequestClose={() => {
             alert('Modal has been closed.');
@@ -186,15 +186,15 @@ export default class Screen extends Component {
 						</Left>
 					</TouchableHighlight>
 					</ListItem>
-					<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-					<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='Your Account' disabled={this.state.paypalDisabled} />
+					<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7,marginVertical: 5, borderBottomWidth: 0  }}>
+					<TextInput placeholderTextColor='#afafaf' placeholder='Your Account' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} disabled={this.state.paypalDisabled} />
 					</Item>
 				<Item style={{ marginTop: 10, borderBottomWidth: 0 }} >
-				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: '#505050' }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
-					<Text style={{ fontWeight: 'bold' }} >cancle</Text>
+				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: mainColor,borderRadius:buttonBorderRadius }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
+					<Text style={{ fontWeight: 'bold' }} >Change</Text>
 				</Button>
-				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
-					<Text style={{ fontWeight: 'bold' }} >change</Text>
+				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor,borderRadius:buttonBorderRadius }} onPress={() => this.setState({ addPaymentModalVisible: false }) } >
+					<Text style={{ fontWeight: 'bold' }} >Cancel</Text>
 				</Button>
 				</Item>
 			</Form>
