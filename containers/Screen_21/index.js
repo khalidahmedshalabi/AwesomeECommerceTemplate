@@ -3,7 +3,7 @@ import { Dimensions, View, StatusBar, Platform, TouchableOpacity, TouchableHighl
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Container, Body, Left, Right, Header, Button, Title, Badge, Text, Input, Label, Item, Form, Content, Radio, ListItem, Picker,  } from 'native-base';
 import { mainColor } from '../../constants/Colors'
-
+import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
@@ -25,7 +25,7 @@ export default class Screen extends Component {
 			Digits_4: '',
 		}
 	}
-	
+
 	componentWillMount() {
 		StatusBar.setBarStyle('dark-content')
 		if (Platform.OS == 'android') {
@@ -48,7 +48,7 @@ export default class Screen extends Component {
 	changePasswordModal = () => (
 		<Modal
           animationType="fade"
-          transparent={true}
+          transparent={false}
           visible={this.state.chnagePasswordModalVisible}
           onRequestClose={() => {
             alert('Modal has been closed.');
@@ -59,21 +59,21 @@ export default class Screen extends Component {
 				<Item style={{ borderBottomWidth: 0 }} >
 					<Text style={{ fontSize: 15, fontWeight: '400', marginBottom: 15, color: '#505050' }} uppercase={true}>change password</Text>
 				</Item>
-				<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-				<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='Old Password' />
+				<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
+				<TextInput placeholderTextColor='#afafaf' placeholder='Old Password' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 				</Item>
-				<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-				<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='New Password' />
+				<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
+				<TextInput placeholderTextColor='#afafaf' placeholder='New Password' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 				</Item>
-				<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-				<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='Password Confirmation' />
+				<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
+				<TextInput placeholderTextColor='#afafaf' placeholder='Password Confirmation' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 				</Item>
 				<Item style={{ marginTop: 10, borderBottomWidth: 0 }} >
-				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: '#505050' }} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
-					<Text style={{ fontWeight: 'bold' }} >cancle</Text>
+				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: mainColor,borderRadius:buttonBorderRadius }} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
+					<Text style={{ fontWeight: 'bold' }} >Change</Text>
 				</Button>
-				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor }} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
-					<Text style={{ fontWeight: 'bold' }} >change</Text>
+				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor:mainColor,borderRadius:buttonBorderRadius}} onPress={() => this.setState({ chnagePasswordModalVisible: false }) } >
+					<Text style={{ fontWeight: 'bold' }} >Cancel</Text>
 				</Button>
 				</Item>
 			</Form>
@@ -128,7 +128,7 @@ export default class Screen extends Component {
 							<TextInput underlineColorAndroid='transparent' keyboardType="numeric" style={{ backgroundColor: 'red' }} maxLength={4} onChangeText={txt => {
 								this.setState({ Digits_1: txt.toString() })
 								if(txt.length >= 4)
-									this._secDigits.focus()	
+									this._secDigits.focus()
 							}} ref={(c) => this._firstDigits = c} disabled={this.state.creditCardDisabled} placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='' />
 						</Item>
 						<Item onPress={() => this._secDigits.focus()} style={{ flex: 1, backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
@@ -172,7 +172,7 @@ export default class Screen extends Component {
 							</View>
 						</View>
 					</Item>
-					
+
 					<ListItem style={{ borderBottomWidth: 0 }}>
 					<TouchableHighlight onPress={() => this.selectPayment(1)}>
 						<Left>
@@ -307,21 +307,21 @@ export default class Screen extends Component {
 						<Item style={{ borderBottomWidth: 0 }} >
 							<Text style={{ fontSize: 15, fontWeight: '400', marginBottom: 15, color: '#505050' }} uppercase={true}>personal information</Text>
 						</Item>
-						<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-						<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='First Name' />
+						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7,marginVertical: 5, borderBottomWidth: 0  }}>
+						<TextInput placeholderTextColor='#afafaf' placeholder='First Name' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
-						<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-						<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='Last Name' />
+						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
+						<TextInput placeholderTextColor='#afafaf' placeholder='Last Name' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
-						<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-						<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='Phone Number' />
+						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
+						<TextInput placeholderTextColor='#afafaf' placeholder='Phone Number' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
-						<Item fixedLabel style={{ backgroundColor: '#eeeeee', paddingHorizontal: 10, marginVertical: 5, borderBottomWidth: 0  }}>
-						<Input placeholderTextColor='#afafaf' style={{ fontSize: 15, }} placeholder='Email' />
+						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
+						<TextInput placeholderTextColor='#afafaf' placeholder='Email' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
 						<Item style={{ marginTop: 10, borderBottomWidth: 0 }} >
-						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: '#505050' }} onPress={() => this.setState({ chnagePasswordModalVisible: true }) } >
-							<Text style={{ fontWeight: 'bold' }} >change password</Text>
+						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: mainColor , borderRadius:buttonBorderRadius,  }} onPress={() => this.setState({ chnagePasswordModalVisible: true }) } >
+							<Text style={{ fontWeight: 'bold' }} >Change Password</Text>
 						</Button>
 						</Item>
 					</Form>
@@ -335,12 +335,12 @@ export default class Screen extends Component {
 								<Text style={{ color: '#969696', }} >Credit Card - <Text style={{ color: 'red' }} >Primary</Text></Text>
 							</View>
 							<View style={{ flex: 1, }} >
-								<Text style={{ textAlign: 'right', color: '#969696' }} >**** **** **** 7592</Text>
+								<Text style={{ textAlign: 'right', color: '#969696' }} >**** **** **** 3781</Text>
 							</View>
 						</Item>
 						<Item style={{ marginTop: 15, borderBottomWidth: 0 }} >
-						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: '#505050' }} onPress={() => this.setState({ addPaymentModalVisible: true })} >
-							<Text style={{ fontWeight: 'bold' }} >add payment method</Text>
+						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: mainColor , borderRadius:buttonBorderRadius, }} onPress={() => this.setState({ addPaymentModalVisible: true })} >
+							<Text style={{ fontWeight: 'bold' }} >Add Payment Method</Text>
 						</Button>
 						</Item>
 					</Form>
@@ -353,8 +353,8 @@ export default class Screen extends Component {
 							<Text style={{ color: '#969696' }} >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem </Text>
 						</Item>
 						<Item style={{ marginTop: 15, borderBottomWidth: 0 }} >
-						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: '#505050' }} onPress={() => this.setState({ editShippingModalVisible: true })} >
-							<Text style={{ fontWeight: 'bold' }} >edit shipping address</Text>
+						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: mainColor , borderRadius:buttonBorderRadius, }} onPress={() => this.setState({ editShippingModalVisible: true })} >
+							<Text style={{ fontWeight: 'bold' }} >Edit Shipping Address</Text>
 						</Button>
 						</Item>
 					</Form>
