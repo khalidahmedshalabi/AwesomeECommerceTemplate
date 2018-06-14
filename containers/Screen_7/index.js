@@ -9,6 +9,7 @@ import IconBadge from 'react-native-icon-badge'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
+import { buttonBorderRadius, imageBorderRadius } from '../../constants/gStyles';
 
 export default class Screen extends Component {
 	constructor() {
@@ -18,33 +19,33 @@ export default class Screen extends Component {
 			ads: [
 				{
 					key: '1',
-					title1: 'Winter',
-					title2: 'Collection',
+					title1: 'Summer',
+					title2: 'Season',
 					startFromLeft: true,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#c8c8c8'
 				},
 				{
 					key: '2',
-					title1: 'Spring',
-					title2: 'Looks',
+					title1: 'Winter',
+					title2: 'Season',
 					startFromLeft: false,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#e1e1e1'
 				},
 				{
 					key: '3',
-					title1: '2017',
-					title2: 'Collection',
+					title1: 'Autumn',
+					title2: 'Season',
 					startFromLeft: true,
-					buttonText: 'DISCOVER MORE',
+					buttonText: 'KNOW MORE',
 					bgColor: '#c8c8c8'
 				},
 			],
 			sections: [
 				{
 					key: '1',
-					title: 'New Collection',
+					title: 'Summer Collection',
 					products: [
 						{
 							key: '1',
@@ -78,7 +79,7 @@ export default class Screen extends Component {
 				},
 				{
 					key: '2',
-					title: 'We Chose for You',
+					title: 'Suggested for you',
 					products: [
 						{
 							key: '1',
@@ -146,7 +147,7 @@ export default class Screen extends Component {
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title1}</Text>
 					<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 34 }}>{item.title2}</Text>
 
-					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14 }}>
+					<Button style={{ elevation: 0, backgroundColor: mainColor, marginTop: 16, paddingHorizontal: 14, borderRadius: buttonBorderRadius }}>
 						<Text style={{ color: 'white' }}>{item.buttonText}</Text>
 					</Button>
 				</View>
@@ -164,25 +165,27 @@ export default class Screen extends Component {
 		)
 		
 		return (
-			<View style={{ flex: 1, borderRadius: 1, height: 200, width: 170, marginRight: 14 }}>
-				<View style={{ flex: 1, backgroundColor: '#c8c8c8' }}>
+			<View style={{backgroundColor: 'white'}}>
+				<View style={{ flex: 1, borderRadius: 1, height: 200, width: 170, marginRight: 14, paddingLeft: 15 }}>
+					<View style={{ flex: 1, backgroundColor: '#c8c8c8', borderRadius: imageBorderRadius }}>
 
-				</View>
+					</View>
+					
+					<View style={{ flex: 0.38, backgroundColor: 'white', paddingHorizontal: 7, justifyContent: 'center', }}>
+						<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
 
-				<View style={{ flex: 0.38, backgroundColor: 'white', paddingHorizontal: 7, justifyContent: 'center', }}>
-					<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-						{priceContainer}
-						<Stars
-							isActive={false}
-							rateMax={5}
-							isHalfStarEnabled={false}
-							onStarPress={(rating) => console.log(rating)}
-							rate={item.stars}
-							color='#f9e784'
-							size={13}
-						/>
+						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+							{priceContainer}
+							<Stars
+								isActive={false}
+								rateMax={5}
+								isHalfStarEnabled={false}
+								onStarPress={(rating) => console.log(rating)}
+								rate={item.stars}
+								color='#f9e784'
+								size={13}
+							/>
+						</View>
 					</View>
 				</View>
 			</View>
@@ -191,21 +194,22 @@ export default class Screen extends Component {
 
 	renderSection = (section) => {
 		return (
-			<View style={{ flex: 1, paddingLeft: 12 }}>
-				<View
-					style={{ 
-						width: '100%', 
-						flexDirection: 'row', 
-						justifyContent: 'space-between', 
-						alignItems: 'center',
-						paddingRight: 12,
-						marginVertical: 12,
-					}}>
-					<Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
+			<View style={{ flex: 1 }}>
+				<View style={{backgroundColor: 'white'}}>
+					<View
+						style={{ 
+							width: '100%', 
+							flexDirection: 'row', 
+							justifyContent: 'space-between', 
+							alignItems: 'center',
+							marginVertical: 12
+						}}>
+						<Text style={{ fontWeight: 'bold', marginLeft: 15 }}>{section.title}</Text>
 
-					<TouchableOpacity>
-						<Text style={{ color: mainColor }} uppercase={false}>More</Text>
-					</TouchableOpacity>
+						<TouchableOpacity>
+							<Text style={{ color: mainColor, marginRight: 15 }} uppercase={false}>More</Text>
+						</TouchableOpacity>
+					</View>
 				</View>
 
 				<FlatList
@@ -232,9 +236,11 @@ export default class Screen extends Component {
 							<FontAwesome name='bars' size={26} color={mainColor} />
 						</TouchableOpacity>
 					</Left>
+
 					<Body style={{ flex: 1 }}>
-						<Title style={{ color: 'black', alignSelf: 'center' }}>Inge</Title>
+						<Title style={{ color: 'black', alignSelf: 'center' }}>Awesome</Title>
 					</Body>
+
 					<Right style={{ flex: 1 }}>
 						<TouchableOpacity>
 							<IconBadge
@@ -266,24 +272,26 @@ export default class Screen extends Component {
 
 				<FlatList
 					ListHeaderComponent={
-						<Carousel
-							width={width}
-							height={270}
-							delay={2000}
-							indicatorAtBottom={true}
-							indicatorSize={25}
-							indicatorSpace={8}
-							indicatorText="•"
-							inactiveIndicatorText='•'
-							indicatorColor="white" >
-							{this.state.ads.map((ad, index) => this.renderCarouselPage(ad, index))}
-						</Carousel>
+						<View style={{marginBottom: 14}}>
+							<Carousel
+								width={width}
+								height={270}
+								delay={2000}
+								indicatorAtBottom={true}
+								indicatorSize={25}
+								indicatorSpace={8}
+								indicatorText="•"
+								inactiveIndicatorText='•'
+								indicatorColor="white" >
+								{this.state.ads.map((ad, index) => this.renderCarouselPage(ad, index))}
+							</Carousel>
+						</View>
 					}
 					ItemSeparatorComponent={
 						() => <View style={{ height: 14 }}></View>
 					}
 					data={this.state.sections}
-					renderItem={({ item }) => this.renderSection(item)} />
+					renderItem={({ item }) => this.renderSection(item)}/>
 			</Container>
 		)
 	}
