@@ -206,7 +206,7 @@ export default class Screen extends Component {
 	editShippingModal = () => (
 		<Modal
           animationType="fade"
-          transparent={true}
+          transparent={false}
           visible={this.state.editShippingModalVisible}
           onRequestClose={() => {
             alert('Modal has been closed.');
@@ -252,18 +252,18 @@ export default class Screen extends Component {
               onValueChange={this.onValueChange.bind(this)}
             >
               <Picker.Item label="Egypt" value="key0" />
-              <Picker.Item label="Jordan" value="key1" />
-              <Picker.Item label="Test" value="key2" />
-              <Picker.Item label="Test" value="key3" />
-              <Picker.Item label="Test" value="key4" />
+              <Picker.Item label="Engalnd" value="key1" />
+              <Picker.Item label="France" value="key2" />
+              <Picker.Item label="Spain" value="key3" />
+              <Picker.Item label="Russia" value="key4" />
             </Picker>
 				</Item>
 				<Item style={{ marginTop: 10, borderBottomWidth: 0 }} >
-				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7, backgroundColor: '#505050' }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
-					<Text style={{ fontWeight: 'bold' }} >cancle</Text>
+				<Button style={{ flex: 1, justifyContent: 'center', marginRight: 7,borderRadius:buttonBorderRadius, backgroundColor: mainColor }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
+					<Text style={{ fontWeight: 'bold' }} >Save</Text>
 				</Button>
-				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7, backgroundColor: mainColor }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
-					<Text style={{ fontWeight: 'bold' }} >save</Text>
+				<Button style={{ flex: 1, justifyContent: 'center', marginLeft: 7,borderRadius:buttonBorderRadius, backgroundColor: mainColor }} onPress={() => this.setState({ editShippingModalVisible: false }) } >
+					<Text style={{ fontWeight: 'bold' }} >Cancel</Text>
 				</Button>
 				</Item>
 			</Form>
