@@ -5,7 +5,13 @@ import { CustomDrawer1ContentComponent, CustomDrawer2ContentComponent } from './
 import Screen_6 from '../containers/Screen_6'
 import Screen_7 from '../containers/Screen_7'
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Screen_11 from '../containers/Screen_11'
+import Screen_13 from '../containers/Screen_13'
+import Screen_21 from '../containers/Screen_21'
+import Screen_25 from '../containers/Screen_25'
+import Screen_28 from '../containers/Screen_28'
+
+import { FontAwesome, Ionicons, Entypo, Feather, Octicons } from '@expo/vector-icons'
 
 export const drawerNavigator1 = createDrawerNavigator({
 	Home: {
@@ -16,90 +22,106 @@ export const drawerNavigator1 = createDrawerNavigator({
 			),
 		}
 	},
-	Item1: {
-		screen: Screen_6,
+	'My Account': {
+		screen: Screen_21,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='#afafaf' size={25} tintColor={tintColor} />
+				<FontAwesome name='user' color='#afafaf' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item2: {
-		screen: Screen_6,
+	Categories: {
+		screen: Screen_11,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='#afafaf' size={25} tintColor={tintColor} />
+				<Entypo name='grid' color='#afafaf' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item3: {
-		screen: Screen_6,
+	'Products': {
+		screen: Screen_13,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='#afafaf' size={25} tintColor={tintColor} />
+				<Feather name='box' color='#afafaf' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item4: {
-		screen: Screen_6,
+	'Shopping Cart': {
+		screen: Screen_28,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='#afafaf' size={25} tintColor={tintColor} />
+				<FontAwesome name='shopping-cart' color='#afafaf' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-}, 
-{
-	contentComponent: CustomDrawer1ContentComponent,
-	drawerPosition: I18nManager.isRTL ? 'right' : 'left',
-	contentOptions: {
-		labelStyle: { color: 'black', fontWeight: 'bold' },
-		activeTintColor: 'red',
-		iconContainerStyle: {
-			opacity: 1,
-			marginRight: 0,
+	'Wishlist': {
+		screen: Screen_25,
+		navigationOptions: {
+			drawerIcon: ({ tintColor }) => (
+				<Octicons name='checklist' color='#afafaf' size={25} tintColor={tintColor} />
+			),
 		}
-	}
-});
+	},
+},
+	{
+		contentComponent: CustomDrawer1ContentComponent,
+		drawerPosition: I18nManager.isRTL ? 'right' : 'left',
+		contentOptions: {
+			labelStyle: { color: 'black', fontWeight: 'bold' },
+			iconContainerStyle: {
+				opacity: 1,
+				marginRight: 0,
+			}
+		}
+	});
+
 
 export const drawerNavigator2 = createDrawerNavigator({
 	Home: {
 		screen: Screen_7,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-home' color='white' size={25} tintColor={tintColor} />
+				<Ionicons name='ios-home' color= 'white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item1: {
-		screen: Screen_7,
+	'My Account': {
+		screen: Screen_21,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<FontAwesome name='user' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item2: {
-		screen: Screen_7,
+	Categories: {
+		screen: Screen_11,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<Entypo name='grid' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item3: {
-		screen: Screen_7,
+	'Products': {
+		screen: Screen_13,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<Feather name='box' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item4: {
-		screen: Screen_7,
+	'Shopping Cart': {
+		screen: Screen_28,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<FontAwesome name='shopping-cart' color='white' size={25} tintColor={tintColor} />
+			),
+		}
+	},
+	'Wishlist': {
+		screen: Screen_25,
+		navigationOptions: {
+			drawerIcon: ({ tintColor }) => (
+				<Octicons name='checklist' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
@@ -109,7 +131,6 @@ export const drawerNavigator2 = createDrawerNavigator({
 		drawerPosition: I18nManager.isRTL ? 'right' : 'left',
 		contentOptions: {
 			labelStyle: { color: 'white', fontWeight: 'bold' },
-			activeTintColor: 'red',
 			iconContainerStyle: {
 				opacity: 1,
 				marginRight: 0,
