@@ -75,44 +75,53 @@ export const drawerNavigator1 = createDrawerNavigator({
 		}
 	});
 
+
 export const drawerNavigator2 = createDrawerNavigator({
 	Home: {
 		screen: Screen_7,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-home' color='white' size={25} tintColor={tintColor} />
+				<Ionicons name='ios-home' color= 'white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item1: {
-		screen: Screen_7,
+	'My Account': {
+		screen: Screen_21,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<FontAwesome name='user' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item2: {
-		screen: Screen_7,
+	Categories: {
+		screen: Screen_11,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<Entypo name='grid' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item3: {
-		screen: Screen_7,
+	'Products': {
+		screen: Screen_13,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<Feather name='box' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
-	Item4: {
-		screen: Screen_7,
+	'Shopping Cart': {
+		screen: Screen_28,
 		navigationOptions: {
 			drawerIcon: ({ tintColor }) => (
-				<Ionicons name='ios-cube' color='white' size={25} tintColor={tintColor} />
+				<FontAwesome name='shopping-cart' color='white' size={25} tintColor={tintColor} />
+			),
+		}
+	},
+	'Wishlist': {
+		screen: Screen_25,
+		navigationOptions: {
+			drawerIcon: ({ tintColor }) => (
+				<Octicons name='checklist' color='white' size={25} tintColor={tintColor} />
 			),
 		}
 	},
@@ -122,7 +131,6 @@ export const drawerNavigator2 = createDrawerNavigator({
 		drawerPosition: I18nManager.isRTL ? 'right' : 'left',
 		contentOptions: {
 			labelStyle: { color: 'white', fontWeight: 'bold' },
-			activeTintColor: 'red',
 			iconContainerStyle: {
 				opacity: 1,
 				marginRight: 0,
