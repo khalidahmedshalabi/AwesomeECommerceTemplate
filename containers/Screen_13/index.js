@@ -253,13 +253,14 @@ export default class Screen extends Component {
 						<TouchableOpacity
 							style={{
 								width: buttonWidth,
-								backgroundColor: '#505050',
+								backgroundColor: mainColor,
 								justifyContent: 'center',
 								alignItems: 'center',
-								borderRadius: 1,
+								borderRadius: buttonBorderRadius,
 								paddingHorizontal: halfBetweenButton,
 								paddingVertical: 9,
 								elevation: 0,
+
 								//marginRight: isSmallWidth ? 0 : 7,
 								//marginBottom: isSmallWidth ? 10 : 0
 							}}>
@@ -272,7 +273,7 @@ export default class Screen extends Component {
 								backgroundColor: mainColor,
 								justifyContent: 'center',
 								alignItems: 'center',
-								borderRadius: 1,
+								borderRadius: buttonBorderRadius,
 								paddingHorizontal: halfBetweenButton,
 								paddingVertical: 9,
 								elevation: 0,
