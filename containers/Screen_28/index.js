@@ -3,7 +3,7 @@ import { View, FlatList, TouchableOpacity, I18nManager } from 'react-native'
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content } from 'native-base'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { mainColor } from '../../constants/Colors';
-
+import { imageBorderRadius,buttonBorderRadius, inputBorderRadius,boxBorderRadius } from '../../constants/gStyles';
 const formSpacing = 6
 
 export default class Reviews extends Component {
@@ -20,7 +20,7 @@ export default class Reviews extends Component {
 					code: 'B01J88GV0C',
 					price: 159,
 					subtotal: 318,
-					quantity: 2 
+					quantity: 2
 				},
 				{
 					key: '2',
@@ -44,28 +44,23 @@ export default class Reviews extends Component {
 	}
 
 	renderCartItem = (item) => (
-		<View style={{ flex: 1, flexDirection: 'row', borderRadius: 1, backgroundColor: 'white' }}>
+		<View style={{ flex: 1, flexDirection: 'row', borderRadius: boxBorderRadius, backgroundColor: 'white' }}>
 			<View style={{ flex: 0.6, padding: 12, justifyContent: 'center', alignItems: 'center' }}>
-				<View style={{ flex: 0.94, width: '100%', backgroundColor: '#c8c8c8', marginBottom: 10 }}></View>
+				<View style={{ flex: 0.94, width: '100%', backgroundColor: '#c8c8c8', marginBottom: 10 ,borderRadius:imageBorderRadius}}></View>
 
-				<View style={{ flexDirection: 'row', flex: 0.06 }}>
+				<View style={{ flexDirection: 'row', flex: 0.06,top:5 }}>
 					<TouchableOpacity
-						style={{ backgroundColor: '#afafaf', justifyContent: 'center', paddingHorizontal: 5 }}>
-						<Ionicons name='md-remove' size={17} color='#eeeeee' />
+						style={{ backgroundColor:mainColor, justifyContent: 'center', paddingHorizontal:9.5,paddingTop:2.8 ,height:26,width:26,borderRadius:13,marginRight:5}}>
+						<Ionicons name='md-remove' size={17} color='white' />
 					</TouchableOpacity>
-
-					<Text 
-						style={{ 
-							backgroundColor: '#eeeeee', 
-							color: '#afafaf', 
-							paddingHorizontal: 9, 
-							textAlign: 'center', 
-							textAlignVertical: 'center' 
-						}}>{item.quantity}</Text>
-
 					<TouchableOpacity
-						style={{ backgroundColor: '#afafaf', justifyContent: 'center', paddingHorizontal: 5 }}>
-						<Ionicons name='md-add' size={17} color='#eeeeee' />
+					style={{ backgroundColor:'#eeeeee', justifyContent: 'center', paddingHorizontal:1,paddingTop:2.5 ,height:30,width:30,borderRadius:15,top:-3}}>
+					<Text
+						style={{backgroundColor: 'transparent',color: '#afafaf',paddingHorizontal: 9,textAlign: 'center',textAlignVertical: 'center',}}>{item.quantity}</Text>
+						</TouchableOpacity>
+					<TouchableOpacity
+						style={{ backgroundColor:mainColor, justifyContent: 'center',paddingHorizontal:7.5,paddingTop:2.8,height:26,width:26,borderRadius:13,marginLeft:5}}>
+						<Ionicons name='md-add' size={17} color= 'white' />
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -76,14 +71,14 @@ export default class Reviews extends Component {
 
 					<View
 						style={{
-							backgroundColor: mainColor,
+							//backgroundColor: '#5ac8fa',
 							paddingVertical: 3,
 							paddingHorizontal: 4
 						}}>
-						<Ionicons name='md-close' color='white' size={18} />
+						<Ionicons name='ios-close-circle-outline' color='#5ac8fa' size={27} />
 					</View>
 				</View>
-				
+
 				<View style={{ marginTop: formSpacing }}>
 					<View style={{ flexDirection: 'row' }}>
 						<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Size: </Text>
@@ -134,7 +129,7 @@ export default class Reviews extends Component {
 						<Title style={{ color: 'black', alignSelf: 'center' }}>Shopping Cart</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
-						<Button 
+						<Button
 							transparent
 							onPress={this.onCheckout}>
 							<Text style={{ color: mainColor }} uppercase={false}>Checkout</Text>
@@ -171,7 +166,7 @@ export default class Reviews extends Component {
 					<Button
 						full
 						onPress={this.onCheckout}
-						style={{ marginHorizontal: 14, backgroundColor: mainColor }}>
+						style={{ marginHorizontal: 14, backgroundColor: mainColor,borderRadius:buttonBorderRadius }}>
 						<Text style={{ color: 'white' }}>CHECKOUT</Text>
 					</Button>
 				</Content>
