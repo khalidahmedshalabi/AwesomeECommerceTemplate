@@ -1,35 +1,33 @@
 import React, { Component } from 'react'
-import { Dimensions, View, StatusBar, Platform, FlatList, Image, TouchableOpacity, I18nManager } from 'react-native'
+import { View, StatusBar, Platform, FlatList, TouchableOpacity, I18nManager } from 'react-native'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { Container, Body, Left, Right, Header, Button, Title, Text } from 'native-base';
+import { Container, Body, Left, Right, Header, Title, Text } from 'native-base';
 import ScrollableTabView, { ScrollableTabBar } from "react-native-scrollable-tab-view"
 import { LinearGradient } from 'expo';
 import IconBadge from 'react-native-icon-badge'
 
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
 
-const CategoryTab = ({ items, innerTitle }) => {
+const CategoryTab = ({ items }) => {
 	return (
 		<FlatList
+			contentContainerStyle={{paddingHorizontal: 30, paddingVertical: 15}}
+			ItemSeparatorComponent={() => <View style={{backgroundColor: 'transparent', height: 20}}></View>}
+			style={{backgroundColor: 'white'}}
 			data={items}
-			style={{ flex: 1, backgroundColor: 'white', paddingTop: 14, paddingLeft: 22, margin: 14 }}
-			ListHeaderComponent={
-				<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: 18, textAlign: 'left' }}>{innerTitle}</Text>
-			}
-			ItemSeparatorComponent={
-				() => <View style={{ height: 18, backgroundColor: 'transparent' }}></View>
-			}
 			renderItem={({ item }) => {
 				return (
-					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<Image 
-							source={{uri: item.iconImg }}
-							style={{ width: 20, height: 20, marginRight: 22 }} />
-
-						<Text style={{ color: '#B8B8B8' }}>{item.title}</Text>
+					<View style={{
+						flex: 1, 
+						backgroundColor: mainColor, 
+						height: 60, 
+						borderRadius: 40,
+						justifyContent: 'center', 
+						alignItems: 'center'
+						}}>
+						<Text style={{ color: 'white', fontWeight: 'bold' }}>{item.title}</Text>
 					</View>
+					
 				)
 			}} 
 		/>
@@ -44,89 +42,74 @@ export default class Screen extends Component {
 			tabs: [
 				{
 					key: '1',
-					title: 'Top Seller',
-					innerTitle: 'All Categories',
+					title: 'Clothes',
 					items: [
 						{
 							key: '1',
-							title: 'Product 1',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Jackets',
 						},
 						{
 							key: '2',
-							title: 'Product 2',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Coats',
 						},
 						{
 							key: '3',
-							title: 'Product 3',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Trousers',
 						},
 						{
 							key: '4',
-							title: 'Product 4',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Shorts',
 						},
 						{
 							key: '5',
-							title: 'Product 5',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Underwear',
 						},
 						{
 							key: '6',
-							title: 'Product 6',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Suits',
 						},
 						{
 							key: '7',
-							title: 'Product 7',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Skirts',
 						},
 						{
 							key: '8',
-							title: 'Product 8',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Dresses',
 						},
 						{
 							key: '9',
-							title: 'Product 9',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Shoes',
 						},
 						{
 							key: '10',
-							title: 'Product 10',
-							iconImg: 'https://image.flaticon.com/icons/png/512/244/244590.png',
+							title: 'Boots',
 						},
 					]
 				},
 				{
 					key: '2',
-					title: 'New Products',
-					innerTitle: 'All categories',
+					title: 'Electronics',
 					items: [
 						
 					]
 				},
 				{
 					key: '3',
-					title: 'Dresses',
-					innerTitle: 'All categories',
+					title: 'Sports',
 					items: [
 
 					]
 				},
 				{
 					key: '4',
-					title: 'Accessories',
-					innerTitle: 'All categories',
+					title: 'Furniture',
 					items: [
 
 					]
 				},
 				{
 					key: '5',
-					title: 'Fifth',
-					innerTitle: 'All categories',
+					title: 'Weddings',
 					items: [
 
 					]
@@ -195,7 +178,7 @@ export default class Screen extends Component {
 				</Header>
 
 				<LinearGradient
-					colors={['#e9bc76', '#f2817b']}
+					colors={['#19d7fb', '#1e63ee']}
 					start={{ x: 0.0, y: 1.0 }}
 					end={{ x: 1.0, y: 0.0 }}
 					style={{
@@ -211,7 +194,7 @@ export default class Screen extends Component {
 
 				<ScrollableTabView
 					ref="Tabs"
-					onChangeTab={(tab) => {}}
+					onChangeTab={() => { }}
 					tabBarUnderlineStyle={{ height: 2, backgroundColor: mainColor }}
 					tabBarActiveTextColor={'black'}
 					tabBarInactiveTextColor={"#B8B8B8"}
@@ -225,7 +208,7 @@ export default class Screen extends Component {
 					)}
 					initialPage={0}>
 					{
-						this.state.tabs.map((tab, index) => <CategoryTab key={`${index}`} tabLabel={tab.title} innerTitle={tab.innerTitle} items={tab.items} />)
+						this.state.tabs.map((tab, index) => <CategoryTab key={`${index}`} tabLabel={tab.title} items={tab.items} />)
 					}
 				</ScrollableTabView>
 			</Container>
