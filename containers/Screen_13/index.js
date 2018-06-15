@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { 
-	Dimensions, 
-	View, 
-	StatusBar, 
-	Platform, 
-	FlatList, 
-	ScrollView, 
-	TouchableWithoutFeedback, 
+import {
+	Dimensions,
+	View,
+	StatusBar,
+	Platform,
+	FlatList,
+	ScrollView,
+	TouchableWithoutFeedback,
 	TouchableOpacity,
 	I18nManager
 } from 'react-native'
@@ -22,7 +22,7 @@ const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-
+import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
@@ -123,7 +123,7 @@ export default class Screen extends Component {
 			]
 		}
 	}
-	
+
 	componentWillMount() {
 		StatusBar.setBarStyle('dark-content')
 		if (Platform.OS == 'android') {
@@ -176,12 +176,12 @@ export default class Screen extends Component {
 	renderCartContent = () => {
 		if (this.state.cartClicked) {
 			return (
-				<View 
+				<View
 					style={{
 						position: 'absolute',
-						backgroundColor: 'white', 
+						backgroundColor: 'white',
 						width: width,
-						height: height * 0.45, 
+						height: height * 0.45,
 						marginTop: this.state.headerHeight,
 					}}>
 					<View style={{ flexDirection: 'row', height: 1, backgroundColor: '#e9e9e9' }}>
@@ -205,7 +205,7 @@ export default class Screen extends Component {
 						</View>
 
 						<Button
-							style={{ backgroundColor: mainColor, elevation: 0, paddingHorizontal: 14 }}>
+							style={{ backgroundColor: mainColor, elevation: 0, paddingHorizontal: 14 ,borderRadius:buttonBorderRadius}}>
 							<Text style={{ color: 'white' }}>CHECKOUT</Text>
 						</Button>
 					</View>
@@ -299,12 +299,9 @@ export default class Screen extends Component {
 			return (
 				<View style={{ flex: 1, height: 300, borderRadius: 1, marginHorizontal: 5 }}>
 					<View style={{ height: '58%', backgroundColor: '#c8c8c8' }}>
-
 					</View>
-
 					<View style={{ height: '42%', backgroundColor: 'white', paddingHorizontal: 7, justifyContent: 'center', }}>
 						<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
 							{priceContainer}
 							<Stars
@@ -317,29 +314,24 @@ export default class Screen extends Component {
 								size={13}
 							/>
 						</View>
-
 						<Text style={{ color: '#969696', textAlign: 'justify', fontSize: 10, marginVertical: 0 }}>{item.description}</Text>
-
 						<View style={{ flexDirection: 'row', marginTop: 8 }}>
-							<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
-								<Ionicons name='ios-heart-outline' color='white' size={14} />
-							</View>
-
-							<TouchableOpacity 
+						<View style={{ backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3,paddingHorizontal:9, borderRadius:4, marginRight: 7 }}>
+							<FontAwesome name='heart' color='#5ac8fa' size={18} />
+						</View>
+							<TouchableOpacity
 								onPress={this.onAddToCart}
-								style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
-								<Ionicons name='md-add' color='white' size={10} />
-								<Text style={{ color: 'white', fontSize: 10, marginLeft: 3 }}>ADD TO CART</Text>
+								style={{ flexDirection: 'column', alignItems: 'center', backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3, paddingHorizontal:9, borderRadius:4}}>
+								<FontAwesome name='cart-plus' color='#5ac8fa' size={20} />
 							</TouchableOpacity>
 						</View>
 					</View>
-
 					{
-						(item.badgeColor && item.badgeText) ? 
-						<View style={{ 
-							backgroundColor: item.badgeColor, 
-							padding: 4, 
-							position: 'absolute', 
+						(item.badgeColor && item.badgeText) ?
+						<View style={{
+							backgroundColor: item.badgeColor,
+							padding: 4,
+							position: 'absolute',
 							marginTop: 9,
 							marginLeft: 9
 							}}>
@@ -356,13 +348,10 @@ export default class Screen extends Component {
 			return (
 				<View style={{ flex: 1, flexDirection: 'row', borderRadius: 1 }}>
 					<View style={{ flex: 0.6, backgroundColor: '#c8c8c8' }}>
-
 					</View>
-
-					<View style={{ flex: 1, backgroundColor: 'white', padding: 7, justifyContent: 'center' }}>
+					<View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 13, paddingVertical: 9, justifyContent: 'center' }}>
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 							<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-
 							{
 								(item.badgeColor && item.badgeText) ? <Text style={{
 									color: 'white',
@@ -372,7 +361,6 @@ export default class Screen extends Component {
 								}}>{item.badgeText}</Text> : null
 							}
 						</View>
-
 						<Stars
 							isActive={false}
 							rateMax={5}
@@ -388,15 +376,14 @@ export default class Screen extends Component {
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
 							{priceContainer}
 							<View style={{ flexDirection: 'row' }}>
-								<View style={{ backgroundColor: mainColor, padding: 6, borderRadius: 1, marginRight: 3 }}>
-									<Ionicons name='ios-heart-outline' color='white' size={18} />
-								</View>
+							<View style={{ backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3,paddingHorizontal:9, borderRadius:4, marginRight: 7 }}>
+								<FontAwesome name='heart' color='#5ac8fa' size={18} />
+							</View>
 
-								<TouchableOpacity 
+								<TouchableOpacity
 									onPress={this.onAddToCart}
-									style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
-									<Ionicons name='md-add' color='white' size={14} />
-									<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
+									style={{ flexDirection: 'column', alignItems: 'center', backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3, paddingHorizontal:9, borderRadius:4}}>
+									<FontAwesome name='cart-plus' color='#5ac8fa' size={20} />
 								</TouchableOpacity>
 							</View>
 						</View>
@@ -418,23 +405,23 @@ export default class Screen extends Component {
 				</View>
 			</TouchableWithoutFeedback>
 			,
-			<View 
+			<View
 				key='2'
-				style={{ 
-					position: 'absolute', 
-					backgroundColor: 'white', 
-					width: width, 
+				style={{
+					position: 'absolute',
+					backgroundColor: 'white',
+					width: width,
 					borderTopWidth: 1,
 					borderTopColor: '#e1e1e1',
 					padding: 10
 				}}>
-				<View style={{ 
-					flexDirection: 'row', 
-					justifyContent: 'space-between', 
-					alignItems: 'center', 
-					padding: 9, 
+				<View style={{
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					padding: 9,
 					backgroundColor: '#eeeeee',
-					borderRadius: 2 
+					borderRadius: 2
 					}}>
 					<Text style={{ color: '#afafaf', fontSize: 13 }}>Search...</Text>
 					<FontAwesome name={I18nManager.isRTL ? 'arrow-left' : 'arrow-right'} size={16} color='#afafaf' />
@@ -499,7 +486,7 @@ export default class Screen extends Component {
 				<View
 					style={{
 						flexDirection: 'row', backgroundColor: 'white', elevation: 0, }}>
-					
+
 					<ModalSelector
 						data={data}
 						initValue="Categories"
@@ -510,9 +497,9 @@ export default class Screen extends Component {
 						cancelText='Cancel'
 						optionTextStyle={{ color: mainColor }}
 						touchableStyle={{  flex: 1 }}
-						childrenContainerStyle={{ 
-							flexDirection: 'row', 
-							justifyContent: 'space-between', 
+						childrenContainerStyle={{
+							flexDirection: 'row',
+							justifyContent: 'space-between',
 							alignItems: 'center',
 							flex: 1.2,
 							paddingHorizontal: 18
@@ -525,9 +512,9 @@ export default class Screen extends Component {
 							color={'#969696'}
 							size={17} />
 					</ModalSelector>
-					
+
 					<View style={{ backgroundColor: '#e1e1e1', height: '100%', width: 1 }} />
-					
+
 					<ModalSelector
 						data={data}
 						initValue="Sort by"
@@ -554,11 +541,11 @@ export default class Screen extends Component {
 							size={17} />
 					</ModalSelector>
 
-					<View style={{ 
-						flex: 1.3, 
-						flexDirection: 'row', 
+					<View style={{
+						flex: 1.3,
+						flexDirection: 'row',
 						justifyContent: 'space-around',
-						borderLeftWidth: 1, 
+						borderLeftWidth: 1,
 						borderLeftColor: '#e1e1e1',
 						}}>
 						<Button
@@ -590,7 +577,7 @@ export default class Screen extends Component {
 						</Button>
 					</View>
 				</View>
-				
+
 				<View style={{flex: 1, paddingBottom: 20}}>
 					<FlatList
 						key={this.state.isGridView ? 0 : 1}
