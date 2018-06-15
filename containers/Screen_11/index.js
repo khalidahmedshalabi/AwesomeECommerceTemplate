@@ -7,6 +7,7 @@ import IconBadge from 'react-native-icon-badge'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
+import { imageBorderRadius } from '../../constants/gStyles';
 
 export default class Screen extends Component {
 	constructor() {
@@ -60,13 +61,15 @@ export default class Screen extends Component {
 			<View style={{
 				flex: 1,
 				backgroundColor: '#c8c8c8',
-				height: 110,
-				justifyContent: 'center',
-				marginBottom: 15,
-				paddingLeft: 15,
-				borderRadius: 1
+				height: 150,
+				justifyContent: 'flex-end',
+				alignItems: 'center',
+				marginBottom: 14,
+				borderRadius: imageBorderRadius,
+				paddingBottom: 5,
+				marginHorizontal: 10
 			}}>
-				<Text style={{ color: 'white', fontSize: 27, textAlign: 'left' }}>{item.title}</Text>
+				<Text style={{ color: 'white', fontSize: 27}}>{item.title}</Text>
 			</View>
 		)
 	}
@@ -118,7 +121,8 @@ export default class Screen extends Component {
 				</Header>
 
 				<FlatList
-					contentContainerStyle={{ padding: 15 }}
+					contentContainerStyle={{ paddingHorizontal: 10, paddingVertical: 15 }}
+					numColumns={2}
 					data={this.state.categories}
 					renderItem={({ item }) => this.renderCategory(item)} />
 			</Container>
