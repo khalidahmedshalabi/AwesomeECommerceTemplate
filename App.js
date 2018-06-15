@@ -34,6 +34,7 @@ export default class App extends Component {
 			Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
 			Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
 			MaterialIcons: require("@expo/vector-icons/fonts/MaterialIcons.ttf"),
+			"Material Icons": require("@expo/vector-icons/fonts/MaterialIcons.ttf"),
 			Octicons: require("@expo/vector-icons/fonts/Octicons.ttf")
 		})
 	};
