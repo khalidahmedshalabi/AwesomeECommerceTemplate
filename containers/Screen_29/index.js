@@ -3,7 +3,7 @@ import { View, Image, I18nManager } from 'react-native'
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Input } from 'native-base'
 import { Ionicons } from '@expo/vector-icons';
 import { mainColor } from '../../constants/Colors'
-
+import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
 
 const formSpacing = 13
 
@@ -17,8 +17,8 @@ export default class Screen extends Component {
 		return (
 			<Container>
 				<Header
-					onLayout={(event) => this.setState({ 
-						headerHeight: event.nativeEvent.layout.height, 
+					onLayout={(event) => this.setState({
+						headerHeight: event.nativeEvent.layout.height,
 						angleHeight: event.nativeEvent.layout.height / 1.2 })}
 					noShadow={true}
 					androidStatusBarColor='white'
@@ -36,18 +36,18 @@ export default class Screen extends Component {
 						<Title style={{ color: 'black', alignSelf: 'center' }}>Checkout</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
-						
+
 					</Right>
 				</Header>
 
 				<View style={{ flexDirection: 'row', backgroundColor: 'white', marginTop: 1, alignItems: 'center' }}>
-					<View 
-						style={{ 
-							backgroundColor: '#505050', 
-							width: 18, 
-							height: 18, 
-							borderRadius: 9, 
-							justifyContent: 'center', 
+					<View
+						style={{
+							backgroundColor: '#505050',
+							width: 18,
+							height: 18,
+							borderRadius: 9,
+							justifyContent: 'center',
 							alignItems: 'center',
 							marginLeft: 25
 						}}>
@@ -56,7 +56,7 @@ export default class Screen extends Component {
 
 					<Text style={{ color: '#505050', marginLeft: 8 }}>Billing & Shipping</Text>
 
-					<Image 
+					<Image
 						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
 						style={{ height: this.state.angleHeight}} />
 
@@ -111,29 +111,28 @@ export default class Screen extends Component {
 						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
 						style={{ height: this.state.angleHeight }} />
 				</View>
-				
+
 				<Content>
 					<View style={{ backgroundColor: 'white', margin: 14, padding: 14 }}>
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 							<Text style={{ fontWeight: 'bold', color: 'black', marginBottom: formSpacing }}>BILLING INFO</Text>
-							
-							<View 
-								style={{ 
-									width: 15, 
-									height: 15, 
-									borderRadius: 1, 
+
+							<View
+								style={{
+									width: 15,
+									height: 15,
+									borderRadius: 1,
 									backgroundColor: mainColor,
 									justifyContent: 'center',
 								}}>
 								<Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>-</Text>
 							</View>
 						</View>
-						
+
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 }}>
 							<Input
 								style={{ fontSize: 14, backgroundColor: '#eeeeee', marginRight: 7 }}
 								placeholder='First Name' placeholderTextColor='#afafaf' />
-
 							<Input
 								style={{ fontSize: 14, backgroundColor: '#eeeeee', marginLeft: 7 }}
 								placeholder='Last Name' placeholderTextColor='#afafaf' />
@@ -172,7 +171,7 @@ export default class Screen extends Component {
 							<Input
 								style={{ width: this.state.inputWidth, fontSize: 14, backgroundColor: '#eeeeee', marginRight: 7 }}
 								placeholder='State' placeholderTextColor='#afafaf' />
-							
+
 							<View style={{ width: this.state.inputWidth, flexDirection: 'row', backgroundColor: '#eeeeee', marginLeft: 7, justifyContent: 'center' }}>
 								<Input
 									style={{ fontSize: 14 }}
@@ -199,10 +198,9 @@ export default class Screen extends Component {
 							</View>
 						</View>
 					</View>
-
 					<Button
 						full
-						style={{ backgroundColor: mainColor, elevation: 0, marginHorizontal: 14, marginBottom: 14 }}>
+						style={{ backgroundColor: mainColor, elevation: 0, marginHorizontal: 14, marginBottom: 14,borderRadius:buttonBorderRadius }}>
 						<Text style={{ color: 'white' }}>CONTINUE</Text>
 					</Button>
 				</Content>
