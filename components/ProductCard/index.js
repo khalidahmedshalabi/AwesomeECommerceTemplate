@@ -24,6 +24,7 @@ export default class ProductCard extends Component {
 							(this.props.badgeColor && this.props.badgeText) ? <Text style={{
 								color: 'white',
 								backgroundColor: this.props.badgeColor,
+								borderRadius: 5,
 								padding: 4,
 								fontSize: 12
 							}}>{this.props.badgeText}</Text> : null
