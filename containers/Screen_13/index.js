@@ -15,6 +15,7 @@ import { Container, Body, Left, Right, Header, Button, Title, Text } from 'nativ
 import Stars from 'react-native-stars-rating'
 import Modal from "react-native-modal"
 import IconBadge from 'react-native-icon-badge'
+import ProductCard from '../../components/ProductCard';
 
 import ModalSelector from 'react-native-modal-selector'
 
@@ -39,8 +40,8 @@ export default class Screen extends Component {
 					stars: 5,
 					oldPrice: 0,
 					currentPrice: 225,
-					badgeText: 'NEW',
-					badgeColor: '#f7b267',
+					badgeText: 'TREND',
+					badgeColor: '#f44242',
 					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
 				},
 				{
@@ -49,8 +50,8 @@ export default class Screen extends Component {
 					stars: 3,
 					oldPrice: 399,
 					currentPrice: 299,
-					badgeText: 'HOT',
-					badgeColor: '#4ecdc4',
+					badgeText: 'AD',
+					badgeColor: '#41f468',
 					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
 				},
 				{
@@ -79,6 +80,16 @@ export default class Screen extends Component {
 					stars: 4,
 					oldPrice: 180,
 					currentPrice: 140,
+					badgeText: '',
+					badgeColor: '',
+					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+				},
+				{
+					key: '6',
+					title: 'Product 6',
+					stars: 4,
+					oldPrice: 280,
+					currentPrice: 240,
 					badgeText: '',
 					badgeColor: '',
 					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
@@ -118,6 +129,13 @@ export default class Screen extends Component {
 					title: 'Product 5',
 					quantity: 1,
 					currentPrice: 140,
+					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+				},
+				{
+					key: '6',
+					title: 'Product 6',
+					quantity: 1,
+					currentPrice: 240,
 					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
 				},
 			]
@@ -288,15 +306,15 @@ export default class Screen extends Component {
 	}
 
 	renderProduct = (item) => {
-		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
-		const priceContainer = item.oldPrice === 0 ? priceTag : (
-			<View style={{ flexDirection: 'row' }}>
-				<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
-				{priceTag}
-			</View>
-		)
-
 		if(this.state.isGridView) {
+			const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
+			const priceContainer = item.oldPrice === 0 ? priceTag : (
+				<View style={{ flexDirection: 'row' }}>
+					<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
+					{priceTag}
+				</View>
+			)
+
 			return (
 				<View style={{ flex: 1, height: 300, borderRadius: 1, marginHorizontal: 5 }}>
 					<View style={{ height: '58%', backgroundColor: '#c8c8c8' }}>
@@ -328,7 +346,7 @@ export default class Screen extends Component {
 						</View>
 					</View>
 					{
-						(item.badgeColor && item.badgeText) ?
+						(item.badgeColor && item.badgeText && item.badgeBorderRadius) ?
 						<View style={{
 							backgroundColor: item.badgeColor,
 							padding: 4,
@@ -347,49 +365,14 @@ export default class Screen extends Component {
 		}
 		else {
 			return (
-				<View style={{ flex: 1, flexDirection: 'row', borderRadius: 1 }}>
-					<View style={{ flex: 0.6, backgroundColor: '#c8c8c8' }}>
-					</View>
-					<View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 13, paddingVertical: 9, justifyContent: 'center' }}>
-						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-							<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-							{
-								(item.badgeColor && item.badgeText) ? <Text style={{
-									color: 'white',
-									backgroundColor: item.badgeColor,
-									padding: 4,
-									fontSize: 12
-								}}>{item.badgeText}</Text> : null
-							}
-						</View>
-						<Stars
-							isActive={false}
-							rateMax={5}
-							isHalfStarEnabled={false}
-							onStarPress={(rating) => console.log(rating)}
-							rate={item.stars}
-							color='#f9e784'
-							size={13}
-						/>
-
-						<Text style={{ color: '#969696', textAlign: 'justify', paddingVertical: 8 }}>{item.description}</Text>
-
-						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-							{priceContainer}
-							<View style={{ flexDirection: 'row' }}>
-							<View style={{ backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3,paddingHorizontal:9, borderRadius:4, marginRight: 7 }}>
-								<FontAwesome name='heart' color='#5ac8fa' size={18} />
-							</View>
-
-								<TouchableOpacity
-									onPress={this.onAddToCart}
-									style={{ flexDirection: 'column', alignItems: 'center', backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3, paddingHorizontal:9, borderRadius:4}}>
-									<FontAwesome name='cart-plus' color='#5ac8fa' size={20} />
-								</TouchableOpacity>
-							</View>
-						</View>
-					</View>
-				</View>
+				<ProductCard navigation={this.props.navigation}
+					title={item.title}
+					description={item.description}
+					currentPrice={item.currentPrice}
+					oldPrice={item.oldPrice}
+					stars={item.stars}
+					badgeText={item.badgeText}
+					badgeColor={item.badgeColor} />
 			)
 		}
 	}
@@ -422,10 +405,13 @@ export default class Screen extends Component {
 					alignItems: 'center',
 					padding: 9,
 					backgroundColor: '#eeeeee',
-					borderRadius: 2
+					borderRadius: 3
 					}}>
 					<Text style={{ color: '#afafaf', fontSize: 13 }}>Search...</Text>
-					<FontAwesome name={I18nManager.isRTL ? 'arrow-left' : 'arrow-right'} size={16} color='#afafaf' />
+					<FontAwesome
+						name={'search'}
+						color={'#afafaf'}
+						size={15} />
 				</View>
 			</View>
 		]
@@ -453,7 +439,7 @@ export default class Screen extends Component {
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
-						<Title style={{ color: 'black', alignSelf: 'center' }}>Inge</Title>
+						<Title style={{ color: 'black', alignSelf: 'center' }}>Awesome</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
 						<TouchableOpacity>
@@ -486,9 +472,10 @@ export default class Screen extends Component {
 
 				<View
 					style={{
-						flexDirection: 'row', backgroundColor: 'white', elevation: 0, }}>
+						flexDirection: 'row', backgroundColor: 'white', elevation: 0 }}>
 
 					<ModalSelector
+						style={{flex: 0.8}}
 						data={data}
 						initValue="Categories"
 						supportedOrientations={['landscape']}
@@ -514,36 +501,10 @@ export default class Screen extends Component {
 							size={17} />
 					</ModalSelector>
 
-					<View style={{ backgroundColor: '#e1e1e1', height: '100%', width: 1 }} />
-
-					<ModalSelector
-						data={data}
-						initValue="Sort by"
-						supportedOrientations={['landscape']}
-						accessible={true}
-						scrollViewAccessibilityLabel={'Scrollable options'}
-						cancelButtonAccessibilityLabel={'Cancel Button'}
-						cancelText='Cancel'
-						optionTextStyle={{ color: mainColor }}
-						touchableStyle={{ flex: 1 }}
-						childrenContainerStyle={{
-							flexDirection: 'row',
-							justifyContent: 'space-between',
-							alignItems: 'center',
-							flex: 1,
-							paddingHorizontal: 16
-						}}
-						onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-						<Text style={{ color: '#969696', fontSize: 16, marginRight: 6 }} uppercase={false}>Sort by</Text>
-
-						<Ionicons
-							name={'ios-arrow-down'}
-							color={'#969696'}
-							size={17} />
-					</ModalSelector>
+					
 
 					<View style={{
-						flex: 1.3,
+						flex: 1.5,
 						flexDirection: 'row',
 						justifyContent: 'space-around',
 						borderLeftWidth: 1,
@@ -551,22 +512,38 @@ export default class Screen extends Component {
 						}}>
 						<Button
 							style={{ marginLeft: 34 }}
-							onPress={() => this.setState({ isGridView: true })}
+							onPress={() => this.setState({ isGridView: !this.state.isGridView })}
 							transparent>
 							<FontAwesome
-								name={'th-large'}
-								color={this.state.isGridView ? 'black' : '#969696'}
+								name={this.state.isGridView ? 'th-large' : 'th-list' }
+								color={'#969696'}
 								size={21} />
 						</Button>
 
-						<Button
-							onPress={() => this.setState({ isGridView: false })}
-							transparent>
+						<ModalSelector
+							data={data}
+							initValue="Filter"
+							supportedOrientations={['landscape']}
+							accessible={true}
+							scrollViewAccessibilityLabel={'Scrollable options'}
+							cancelButtonAccessibilityLabel={'Cancel Button'}
+							cancelText='Cancel'
+							optionTextStyle={{ color: mainColor }}
+							touchableStyle={{ flex: 1 }}
+							childrenContainerStyle={{
+								flexDirection: 'row',
+								justifyContent: 'space-between',
+								alignItems: 'center',
+								flex: 1,
+								paddingHorizontal: 16
+							}}
+							onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
+
 							<FontAwesome
-								name={'th-list'}
-								color={this.state.isGridView ? '#969696' : 'black'}
+								name={'filter'}
+								color={'#969696'}
 								size={21} />
-						</Button>
+						</ModalSelector>
 
 						<Button
 							onPress={() => {this.setState({ searchBarShown: !this.state.searchBarShown })}}
@@ -579,14 +556,15 @@ export default class Screen extends Component {
 					</View>
 				</View>
 
-				<View style={{flex: 1, paddingBottom: 20}}>
+				<View style={{flex: 1}}>
 					<FlatList
 						key={this.state.isGridView ? 0 : 1}
 						numColumns={this.state.isGridView ? 2 : 1}
 						data={this.state.products}
-						style={{ flex: 1, padding: 14 }}
+						style={{ flex: 1, backgroundColor: 'white' }}
 						ItemSeparatorComponent={
-							() => <View style={{ height: 8, backgroundColor: 'transparent' }}></View>
+							() => this.state.isGridView ? null 
+								: <View style={{ backgroundColor: '#dedede', height: 1 }}></View>
 						}
 						renderItem={({ item }) => this.renderProduct(item)}
 					/>
