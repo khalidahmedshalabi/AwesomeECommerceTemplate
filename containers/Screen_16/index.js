@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Dimensions, StatusBar, Platform, View, FlatList, TouchableOpacity, TextInput, Slider, I18nManager } from 'react-native'
+import { Dimensions, StatusBar, Platform, View, FlatList, TouchableOpacity, TextInput, I18nManager } from 'react-native'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Item, CheckBox } from 'native-base';
+import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Item } from 'native-base';
 import IconBadge from 'react-native-icon-badge'
 import ModalSelector from 'react-native-modal-selector'
+import ColorsList from '../../components/ColorsList';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
+import { inputBorderRadius, buttonBorderRadius } from '../../constants/gStyles';
 
 const formSpacing = 13
 
@@ -16,42 +18,40 @@ export default class Screen extends Component {
 		super()
 
 		this.state = {
-			minPrice: 100,
-			maxPrice: 499,
 			colors: [
 				{
 					key: '1',
 					text: '',
 					textColor: '',
-					bgColor: '#f7b267',
+					bgColor: '#f44141',
 					selected: true,
 				},
 				{
 					key: '2',
 					text: '',
 					textColor: '',
-					bgColor: '#4ecdc4',
+					bgColor: '#f49741',
 					selected: false,
 				},
 				{
 					key: '3',
 					text: '',
 					textColor: '',
-					bgColor: '#9999c3',
+					bgColor: '#4cf441',
 					selected: false,
 				},
 				{
 					key: '4',
 					text: '',
 					textColor: '',
-					bgColor: '#c0e6de',
+					bgColor: '#41f4b2',
 					selected: false,
 				},
 				{
 					key: '5',
 					text: '',
 					textColor: '',
-					bgColor: '#d1495b',
+					bgColor: '#4194f4',
 					selected: false,
 				},
 				{
@@ -129,55 +129,20 @@ export default class Screen extends Component {
 			StatusBar.setTranslucent(false);
 	}*/
 
-	selectItem = (key, type) => {
-		let temp = type == 'sizes' ? this.state.sizes : this.state.colors
+	selectItem = (key) => {
+		let temp = this.state.sizes
 		temp.map(item => {
 			item.key == key ?
 				item.selected = true
 			:
 				item.selected = false
 		})
-		type == 'sizes' ? this.setState({ sizes: temp }) : this.setState({ colors: temp })
+		this.setState({ sizes: temp })
 	}
-	renderColorItem = (item) => {
-		return (
-			<TouchableOpacity onPress={() => this.selectItem(item.key, 'colors')} style={{ alignItems: 'center', }}>
-				<View
-					style={{ 
-						backgroundColor: item.bgColor, 
-						width: 36, 
-						height: 36, 
-						borderRadius: 18,
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}>
-					{
-						item.text ? 
-						<Text style={{ color: item.textColor }}>{item.text}</Text>
-						: null
-					}
-				</View>
-				{
-					item.selected ?
-					<View style={{ 
-						width: 12,
-						height: 12,
-						borderRadius: 6,
-						backgroundColor: 'rgba(255, 255, 255, .9)',
-						position: 'absolute',
-						zIndex: 10,
-						top: 12
-					 }} >
-					</View>
-					: null
-				}
-			</TouchableOpacity>
-		)
-	}
-
+	
 	renderSizeItem = (item) => {
 		return (
-			<TouchableOpacity onPress={() => this.selectItem(item.key, 'sizes')} style={{ alignItems: 'center', }}>
+			<TouchableOpacity onPress={() => this.selectItem(item.key)} style={{ alignItems: 'center', }}>
 				<View
 					style={{
 						backgroundColor: item.selected ? '#fff' : item.bgColor,
@@ -252,13 +217,13 @@ export default class Screen extends Component {
 				</Header>
 
 				<Content scrollEnabled={this.state.scrollEnabled}>
-					<View style={{ flex: 1, alignItems: 'center', padding: 14, }}>
-						<View style={{ width:'100%', backgroundColor: 'white', borderRadius: 1, padding: 14, }}>
+					<View style={{ flex: 1, alignItems: 'center', padding: 14 }}>
+						<View style={{width:'100%', backgroundColor: 'white', borderRadius: 1, padding: 14}}>
 							<View onLayout={(event) => this.setState({ viewWidth: event.nativeEvent.layout.width })}>
 								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Search Keyword</Text>
 								<TextInput
 									underlineColorAndroid='transparent'
-									style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, paddingVertical: 10 }}
+									style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, paddingVertical: 10, borderRadius: inputBorderRadius }}
 									placeholder='Enter item here...'
 									placeholderTextColor='#afafaf' />
 
@@ -278,12 +243,12 @@ export default class Screen extends Component {
 										flexDirection: 'row',
 										justifyContent: 'space-between',
 										alignItems: 'center',
-										flex: 1,
-									}}
+										flex: 1
+							}}
 									onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0 }}>
+									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
 										<TextInput
-											style={{ flex: 1, paddingVertical: 10 }}
+											style={{ flex: 1, paddingVertical: 10}}
 											underlineColorAndroid='transparent'
 											disabled
 											placeholder='Jewellery & Accessories'
@@ -298,64 +263,34 @@ export default class Screen extends Component {
 
 								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Price Range</Text>
 
-								<View style={{ flexDirection: 'row' }}>
-									<View style={{ flex: 0.1 }}>
-										<Text style={{ color: 'black' }}>Min</Text>
-										<Text style={{ color: 'black' }}>Max</Text>
-									</View>
-									<View style={{ flex: 0.9 }}>
-										<Slider
-											style={{ width: '100%', marginBottom: formSpacing }}
-											minimumTrackTintColor={mainColor}
-											maximumTrackTintColor={'#CCCCCC'}
-											thumbTintColor={mainColor}
-											value={this.state.minPrice}
-											minimumValue={1}
-											maximumValue={1000}
-											onSlidingComplete={(value) => this.setState({ minPrice: parseInt(value) })}
-										/>
+								<View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+									<View style={{ flex: 1, backgroundColor: '#eeeeee', flexDirection: 'row', justifyContent: 'space-between', borderRadius: inputBorderRadius, marginRight: 15}}>
+										<TextInput
+											underlineColorAndroid='transparent'
+											style={{flex: 1, backgroundColor: '#eeeeee', paddingLeft: 7, paddingVertical: 10}}
+											keyboardType= 'numeric'
+											placeholder='From...'
+											placeholderTextColor='#afafaf' />
 
-										<Slider
-											style={{ width: '100%', marginBottom: formSpacing }}
-											minimumTrackTintColor={mainColor}
-											maximumTrackTintColor={'#CCCCCC'}
-											thumbTintColor={mainColor}
-											value={this.state.maxPrice}
-											minimumValue={1}
-											maximumValue={1000}
-											onSlidingComplete={(value) => this.setState({ maxPrice: parseInt(value) })}
-										/>
+										<Text style={{flex: 0.2, color: '#afafaf', alignSelf: 'center'}}>$</Text>
+									</View>
+
+									<View style={{ flex: 1, backgroundColor: '#eeeeee', flexDirection: 'row', justifyContent: 'space-between', borderRadius: inputBorderRadius, marginLeft: 15}}>
+										<TextInput
+											underlineColorAndroid='transparent'
+											style={{flex: 1, backgroundColor: '#eeeeee', paddingLeft: 7, paddingVertical: 10}}
+											keyboardType= 'numeric'
+											placeholder='To...'
+											placeholderTextColor='#afafaf' />
+										<Text style={{ flex: 0.2, color: '#afafaf', alignSelf: 'center'}}>$</Text>
 									</View>
 								</View>
 
-								<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: -formSpacing, marginBottom: formSpacing }}>
-									<Text 
-										style={{ 
-											backgroundColor: '#eeeeee',
-											borderRadius: 1,
-											paddingHorizontal: 15,
-											paddingVertical: 12,
-											color: '#afafaf',
-											textAlign: 'left'
-										}}>{this.state.minPrice}$</Text>
-									<Text 
-										style={{ 
-											backgroundColor: '#eeeeee',
-											borderRadius: 1,
-											paddingHorizontal: 15,
-											paddingVertical: 12,
-											color: '#afafaf',
-											textAlign: 'left'
-										}}>{this.state.maxPrice}$</Text>
-								</View>
-								
-								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Colors</Text>
-								<FlatList
-									extraData={this.state}
-									horizontal={true}
-									ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-									data={this.state.colors}
-									renderItem={({ item }) => this.renderColorItem(item)} />
+								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, marginTop: formSpacing, textAlign: 'left' }}>Colors</Text>
+
+								<ColorsList
+									colorsListData={this.state.colors}
+								/>
 
 								<Text style={{ color: 'black', fontWeight: 'bold', marginVertical: formSpacing, textAlign: 'left' }}>Sizes</Text>
 								<FlatList
@@ -368,7 +303,7 @@ export default class Screen extends Component {
 						</View>
 						<Button
 							full
-							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing }}>
+							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing, borderRadius: buttonBorderRadius }}>
 							<Text style={{ color: 'white' }}>Search</Text>
 						</Button>
 					</View>
