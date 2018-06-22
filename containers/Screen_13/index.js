@@ -555,6 +555,7 @@ export default class Screen extends Component {
 						</Button>
 					</View>
 				</View>
+				<View style={{ backgroundColor: '#dedede', height: 1 }}></View>
 
 				<View style={{flex: 1}}>
 					<FlatList
