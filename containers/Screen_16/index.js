@@ -5,7 +5,7 @@ import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Ite
 import IconBadge from 'react-native-icon-badge'
 import ModalSelector from 'react-native-modal-selector'
 import ColorsList from '../../components/ColorsList';
-
+import CounterCard from '../../components/CounterCard';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
@@ -139,7 +139,7 @@ export default class Screen extends Component {
 		})
 		this.setState({ sizes: temp })
 	}
-	
+
 	renderSizeItem = (item) => {
 		return (
 			<TouchableOpacity onPress={() => this.selectItem(item.key)} style={{ alignItems: 'center', }}>
@@ -166,11 +166,13 @@ export default class Screen extends Component {
 
 	render () {
 		const data = [
-			{ key: 0, label: 'Jewellery & Accessories' },
-			{ key: 1, label: 'Test item 2' },
-			{ key: 2, label: 'Test item 3' },
+			{ key: 0, label: 'Available Sizes' },
+			{ key: 1, label: 'Small' },
+			{ key: 2, label: 'Medium' },
+			{ key: 3, label: 'Large' },
+			{ key: 4, label: 'X Large' },
+			{ key: 5, label: 'XX Large' },
 		];
-
 		return (
 			<Container>
 				<Header
@@ -232,7 +234,7 @@ export default class Screen extends Component {
 								<ModalSelector
 									data={data}
 									initValue="Jewellery & Accessories"
-									supportedOrientations={['landscape']}
+									supportedOrientations={['portrait']}
 									accessible={true}
 									scrollViewAccessibilityLabel={'Scrollable options'}
 									cancelButtonAccessibilityLabel={'Cancel Button'}
@@ -293,12 +295,18 @@ export default class Screen extends Component {
 								/>
 
 								<Text style={{ color: 'black', fontWeight: 'bold', marginVertical: formSpacing, textAlign: 'left' }}>Sizes</Text>
-								<FlatList
-									extraData={this.state}
-									horizontal={true}
-									ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-									data={this.state.sizes}
-									renderItem={({ item }) => this.renderSizeItem(item)} />
+								<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
+									scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
+									cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
+									childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
+									onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
+									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
+										<TextInput
+											style={{ flex: 1, paddingVertical: 10}}
+											underlineColorAndroid='transparent' disabled placeholder='Available Sizes' placeholderTextColor='#afafaf' />
+										<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
+									</Item>
+								</ModalSelector>
 							</View>
 						</View>
 						<Button
