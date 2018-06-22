@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Dimensions, StatusBar, Platform, View, FlatList, TouchableOpacity, I18nManager } from 'react-native'
+import { Dimensions, StatusBar, Platform, View, FlatList, TouchableOpacity, I18nManager,TextInput } from 'react-native'
 import { FontAwesome, Ionicons, Octicons } from '@expo/vector-icons';
-import { Container, Body, Left, Right, Header, Button, Title, Text, Content } from 'native-base';
+import { Container, Body, Left, Right, Header, Button, Title, Text, Content ,Item} from 'native-base';
+import ModalSelector from 'react-native-modal-selector'
+import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
 import Stars from 'react-native-stars-rating'
 import IconBadge from 'react-native-icon-badge'
-
+import ColorsList from '../../components/ColorsList';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
-
+import CounterCard from '../../components/CounterCard';
 const formSpacing = 13
 
 export default class Screen extends Component {
@@ -30,6 +32,7 @@ export default class Screen extends Component {
 					textColor: '',
 					bgColor: '#f7b267',
 					selected: true,
+
 				},
 				{
 					key: '2',
@@ -149,16 +152,16 @@ export default class Screen extends Component {
 		return (
 			<TouchableOpacity onPress={() => this.selectItem(item.key, 'colors')} style={{ alignItems: 'center', }}>
 				<View
-					style={{ 
-						backgroundColor: item.bgColor, 
-						width: 36, 
-						height: 36, 
+					style={{
+						backgroundColor: item.bgColor,
+						width: 36,
+						height: 36,
 						borderRadius: 18,
 						justifyContent: 'center',
 						alignItems: 'center'
 					}}>
 					{
-						item.text ? 
+						item.text ?
 						<Text style={{ color: item.textColor }}>{item.text}</Text>
 						: null
 					}
@@ -166,7 +169,7 @@ export default class Screen extends Component {
 
 				{
 					item.selected ?
-					<View style={{ 
+					<View style={{
 						width: 12,
 						height: 12,
 						borderRadius: 6,
@@ -212,6 +215,14 @@ export default class Screen extends Component {
 	)
 
 	render () {
+		const data = [
+			{ key: 0, label: 'Available Sizes' },
+			{ key: 1, label: 'Small' },
+			{ key: 2, label: 'Medium' },
+			{ key: 3, label: 'Large' },
+			{ key: 4, label: 'X Large' },
+			{ key: 5, label: 'XX Large' },
+		];
 		return (
 			<Container>
 				<Header
@@ -226,7 +237,7 @@ export default class Screen extends Component {
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
-						<Title style={{ color: 'black', alignSelf: 'center' }}>Products Filter</Title>
+						<Title style={{ color: 'black', alignSelf: 'center' ,marginLeft:-20 }}>Products Details</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
 						<TouchableOpacity>
@@ -260,8 +271,8 @@ export default class Screen extends Component {
 				<Content>
 					<View style={{ flex: 1, alignItems: 'center', padding: 14, }}>
 						<View
-							style={{ width:'100%', marginBottom: formSpacing }} 
-							onLayout={(event) => this.setState({ 
+							style={{ width:'100%', marginBottom: formSpacing }}
+							onLayout={(event) => this.setState({
 								largeImageWidth: event.nativeEvent.layout.width,
 								smallImageWidth: event.nativeEvent.layout.width * 0.235
 							})}>
@@ -309,9 +320,9 @@ export default class Screen extends Component {
 								/>
 
 								<Text style={{ color: '#969696', marginTop: formSpacing, marginBottom: formSpacing, textAlign: 'left' }}>{loremIpsum}</Text>
-								
+
 								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Features</Text>
-								<View 
+								<View
 									style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 									<View style={{ justifyContent: 'center' }}>
 										<View style={{ flexDirection: 'row' }}>
@@ -337,41 +348,29 @@ export default class Screen extends Component {
 										</View>
 									</View>
 								</View>
-
-								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Available Colors</Text>
-								<FlatList
-									horizontal={true}
-									ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-									data={this.state.colors}
-									renderItem={({ item }) => this.renderColorItem(item)} />
-
-								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginVertical: formSpacing, textAlign: 'left' }}>Available Sizes</Text>
-								<FlatList
-									horizontal={true}
-									ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-									data={this.state.sizes}
-									renderItem={({ item }) => this.renderSizeItem(item)} />
-
+								<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
+									scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
+									cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
+									childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
+									onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
+									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
+										<TextInput
+											style={{ flex: 1, paddingVertical: 10}}
+											underlineColorAndroid='transparent' disabled placeholder='Available Sizes' placeholderTextColor='#afafaf' />
+										<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
+									</Item>
+								</ModalSelector>
+								<ColorsList
+									colorsListData={this.state.colors}
+								/>
 								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, marginTop: formSpacing, textAlign: 'left' }}>Quantity</Text>
-								<View style={{ flexDirection: 'row' }}>
-									<TouchableOpacity
-										style={{ backgroundColor: '#afafaf', justifyContent:'center', paddingHorizontal: 10, paddingVertical: 8 }}>
-										<Ionicons name='md-remove' size={17} color='#eeeeee' />
-									</TouchableOpacity>
-									
-									<Text style={{ backgroundColor: '#eeeeee', color: '#afafaf', paddingHorizontal: 17, paddingVertical: 8 }}>8</Text>
-
-									<TouchableOpacity
-										style={{ backgroundColor: '#afafaf', justifyContent:'center', paddingHorizontal: 10, paddingVertical: 8 }}>
-										<Ionicons name='md-add' size={17} color='#eeeeee' />
-									</TouchableOpacity>
-								</View>
+								<CounterCard quantity={5}/>
 							</View>
 						</View>
 						<Button
 							iconLeft
 							full
-							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing }}>
+							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing ,borderRadius:buttonBorderRadius}}>
 							<FontAwesome name='shopping-cart' size={18} color='white' />
 							<Text style={{ color: 'white' }}>ADD TO CART</Text>
 						</Button>
@@ -379,7 +378,7 @@ export default class Screen extends Component {
 						<Button
 							iconLeft
 							full
-							style={{ backgroundColor: '#505050', elevation: 0, marginTop: formSpacing }}>
+							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing ,borderRadius:buttonBorderRadius }}>
 							<Octicons name='checklist' size={18} color='white' />
 							<Text style={{ color: 'white' }}>TO WISHLIST</Text>
 						</Button>
