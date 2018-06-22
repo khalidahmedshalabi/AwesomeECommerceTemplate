@@ -42,7 +42,7 @@ export default class Screen extends Component {
 						</TouchableOpacity>
 					</Left>
 					<Body style={{ flex: 1 }}>
-						<Title style={{ color: 'black', alignSelf: 'center' }}>Products Filter</Title>
+						<Title style={{ color: 'black', alignSelf: 'center',marginLeft:-20 }}>Products Details</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
 						<TouchableOpacity>
