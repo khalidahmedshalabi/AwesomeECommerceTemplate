@@ -4,6 +4,17 @@ import { FontAwesome } from '@expo/vector-icons';
 import Stars from 'react-native-stars-rating'
 import { mainColor } from '../../constants/Colors';
 export default class ProductCard extends Component {
+	shouldRenderWishList = () => {
+        if(this.props.buttonwishlist)
+        {
+            return(
+				<View style={{ backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3,paddingHorizontal:9, borderRadius:4, marginRight: 7 }}>
+					<FontAwesome name='heart' color='#5ac8fa' size={18} />
+				</View>
+			)
+        }
+
+    };
 	render() {
 		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{this.props.currentPrice}$</Text>
 		const priceContainer = this.props.oldPrice === 0 ? priceTag : (
@@ -43,9 +54,7 @@ export default class ProductCard extends Component {
 							<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
 								{priceContainer}
 								<View style={{ flexDirection: 'row' }}>
-									<View style={{ backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3,paddingHorizontal:9, borderRadius:4, marginRight: 7 }}>
-										<FontAwesome name='heart' color='#5ac8fa' size={18} />
-									</View>
+									{this.shouldRenderWishList()}
 									<View style={{ flexDirection: 'column', alignItems: 'center', backgroundColor: 'white',borderColor:mainColor,borderWidth:1.2,paddingVertical:3, paddingHorizontal:9, borderRadius:4}}>
 										<FontAwesome name='cart-plus' color='#5ac8fa' size={20} />
 									</View>
