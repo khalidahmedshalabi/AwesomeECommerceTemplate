@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import ProductCard from '../../components/ProductCard';
-import { View, FlatList } from 'react-native'
-
+import { Text, View, FlatList } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import Stars from 'react-native-stars-rating'
+import { mainColor } from '../../constants/Colors';
+import ProductCard from '../../components/ProductCard/index';
 export default class Reviews extends Component {
 	constructor() {
 		super()
@@ -68,8 +71,9 @@ export default class Reviews extends Component {
 				title={item.title}
 				description={item.description}
 				currentPrice={item.currentPrice}
-				oldPrice={item.oldPrice}
-				stars={item.stars} />
+				OldPrice={item.oldPrice}
+				stars={item.stars}
+				buttonwishlist={true}/>
 		)
 	}
 
