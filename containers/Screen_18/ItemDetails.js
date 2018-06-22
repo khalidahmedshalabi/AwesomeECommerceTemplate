@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Dimensions, View, FlatList, TouchableOpacity, Modal, StatusBar, } from 'react-native'
+import { Dimensions, View, FlatList, TouchableOpacity, Modal, StatusBar,TextInput } from 'react-native'
 import { FontAwesome, Ionicons, Octicons } from '@expo/vector-icons';
 import { Text, Content, Button, Container, Header, Form, Item, Label, Input, Textarea, } from 'native-base';
 import Stars from 'react-native-stars-rating'
-
+import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
+import ModalSelector from 'react-native-modal-selector'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
-
+import ColorsList from '../../components/ColorsList';
+import CounterCard from '../../components/CounterCard';
 const formSpacing = 13
 const loremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
 
@@ -122,33 +124,34 @@ export default class ItemsDetails extends Component {
 			reviews: [
 				{
 					key: '0',
-					username: 'Hossam Samir',
+					username: 'Alex',
 					rating: 4,
-					comment: 'good item, The quality was awesome.'
+					comment: 'Outstanding product',
+					quantity:1,
 				},
 				{
 					key: '0',
-					username: 'Hossam Samir',
+					username: 'Alex',
 					rating: 4,
-					comment: 'good item, The quality was awesome.'
+					comment: 'Outstanding product'
 				},
 				{
 					key: '0',
-					username: 'Hossam Samir',
+					username: 'Alex',
 					rating: 4,
-					comment: 'good item, The quality was awesome.'
+					comment: 'Outstanding product'
 				},
 				{
 					key: '0',
-					username: 'Hossam Samir',
+					username: 'Alex',
 					rating: 4,
-					comment: 'good item, The quality was awesome.'
+					comment: 'Outstanding product'
 				},
 				{
 					key: '0',
-					username: 'Hossam Samir',
+					username: 'Alex',
 					rating: 4,
-					comment: 'good item, The quality was awesome.'
+					comment: 'Outstanding product'
 				},
 			]
 		}
@@ -229,16 +232,16 @@ export default class ItemsDetails extends Component {
 		return (
 			<TouchableOpacity onPress={() => this.selectItem(item.key, 'colors')} style={{ alignItems: 'center', }}>
 				<View
-					style={{ 
-						backgroundColor: item.bgColor, 
-						width: 36, 
-						height: 36, 
+					style={{
+						backgroundColor: item.bgColor,
+						width: 36,
+						height: 36,
 						borderRadius: 18,
 						justifyContent: 'center',
 						alignItems: 'center'
 					}}>
 					{
-						item.text ? 
+						item.text ?
 						<Text style={{ color: item.textColor }}>{item.text}</Text>
 						: null
 					}
@@ -246,7 +249,7 @@ export default class ItemsDetails extends Component {
 
 				{
 					item.selected ?
-					<View style={{ 
+					<View style={{
 						width: 12,
 						height: 12,
 						borderRadius: 12/2,
@@ -310,6 +313,14 @@ export default class ItemsDetails extends Component {
 	)
 
 	render () {
+		const data = [
+			{ key: 0, label: 'Available Sizes' },
+			{ key: 1, label: 'Small' },
+			{ key: 2, label: 'Medium' },
+			{ key: 3, label: 'Large' },
+			{ key: 4, label: 'X Large' },
+			{ key: 5, label: 'XX Large' },
+		];
 		return (
 			<Content>
 				{this.RenderRatingModal()}
@@ -396,35 +407,25 @@ export default class ItemsDetails extends Component {
 								</View>
 							</View>
 
-							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing }}>Available Colors</Text>
-							<FlatList
-								horizontal={true}
-								ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-								data={this.state.colors}
-								renderItem={({ item }) => this.renderColorItem(item)} />
 
 							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginVertical: formSpacing }}>Available Sizes</Text>
-							<FlatList
-								horizontal={true}
-								ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-								data={this.state.sizes}
-								renderItem={({ item }) => this.renderSizeItem(item)} />
-
+							<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
+								scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
+								cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
+								childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
+								onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
+								<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
+									<TextInput
+										style={{ flex: 1, paddingVertical: 10}}
+										underlineColorAndroid='transparent' disabled placeholder='Available Sizes' placeholderTextColor='#afafaf' />
+									<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
+								</Item>
+							</ModalSelector>
+								<ColorsList
+									colorsListData={this.state.colors}
+								/>
 							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, marginTop: formSpacing }}>Quantity</Text>
-							<View style={{ flexDirection: 'row' }}>
-								<TouchableOpacity
-									style={{ backgroundColor: '#afafaf', justifyContent: 'center', paddingHorizontal: 10, paddingVertical: 8 }}>
-									<Ionicons name='md-remove' size={17} color='#eeeeee' />
-								</TouchableOpacity>
-
-								<Text style={{ backgroundColor: '#eeeeee', color: '#afafaf', paddingHorizontal: 17, paddingVertical: 8 }}>8</Text>
-
-								<TouchableOpacity
-									style={{ backgroundColor: '#afafaf', justifyContent: 'center', paddingHorizontal: 10, paddingVertical: 8 }}>
-									<Ionicons name='md-add' size={17} color='#eeeeee' />
-								</TouchableOpacity>
-							</View>
-							
+							<CounterCard quantity={10}/>
 							<TouchableOpacity onPress={() => this.setState({ ReviewModalVisible: true })} style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 }} >
 								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing,  }}>Reviews</Text>
 								<Text style={{ color: '#4286f4', fontSize: 15, fontWeight: '100', marginBottom: formSpacing,  }}> <Ionicons name='ios-add-circle-outline' color='#4286f4' size={20} style={{ marginHorizontal: 10 }} /> Write a review</Text>
@@ -439,7 +440,7 @@ export default class ItemsDetails extends Component {
 					<Button
 						iconLeft
 						full
-						style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing }}>
+						style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing,borderRadius:buttonBorderRadius }}>
 						<FontAwesome name='shopping-cart' size={18} color='white' />
 						<Text style={{ color: 'white' }}>ADD TO CART</Text>
 					</Button>
@@ -447,7 +448,7 @@ export default class ItemsDetails extends Component {
 					<Button
 						iconLeft
 						full
-						style={{ backgroundColor: '#505050', elevation: 0, marginTop: formSpacing }}>
+						style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing,borderRadius:buttonBorderRadius }}>
 						<Octicons name='checklist' size={18} color='white' />
 						<Text style={{ color: 'white' }}>TO WISHLIST</Text>
 					</Button>
