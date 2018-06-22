@@ -3,6 +3,7 @@ import { View, FlatList, TouchableOpacity, I18nManager } from 'react-native'
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content } from 'native-base'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { mainColor } from '../../constants/Colors';
+import CounterCard from '../../components/CounterCard/index';
 import { imageBorderRadius,buttonBorderRadius, inputBorderRadius,boxBorderRadius } from '../../constants/gStyles';
 const formSpacing = 6
 
@@ -48,21 +49,8 @@ export default class Reviews extends Component {
 			<View style={{ flex: 0.6, padding: 12, justifyContent: 'center', alignItems: 'center' }}>
 				<View style={{ flex: 0.94, width: '100%', backgroundColor: '#c8c8c8', marginBottom: 10 ,borderRadius:imageBorderRadius}}></View>
 
-				<View style={{ flexDirection: 'row', flex: 0.06,top:5 }}>
-					<TouchableOpacity
-						style={{ backgroundColor:mainColor, justifyContent: 'center', paddingHorizontal:9.5,paddingTop:2.8 ,height:26,width:26,borderRadius:13,marginRight:5}}>
-						<Ionicons name='md-remove' size={17} color='white' />
-					</TouchableOpacity>
-					<TouchableOpacity
-					style={{ backgroundColor:'#eeeeee', justifyContent: 'center', paddingHorizontal:1,paddingTop:2.5 ,height:30,width:30,borderRadius:15,top:-3}}>
-					<Text
-						style={{backgroundColor: 'transparent',color: '#afafaf',paddingHorizontal: 9,textAlign: 'center',textAlignVertical: 'center',}}>{item.quantity}</Text>
-						</TouchableOpacity>
-					<TouchableOpacity
-						style={{ backgroundColor:mainColor, justifyContent: 'center',paddingHorizontal:7.5,paddingTop:2.8,height:26,width:26,borderRadius:13,marginLeft:5}}>
-						<Ionicons name='md-add' size={17} color= 'white' />
-					</TouchableOpacity>
-				</View>
+				<CounterCard navigation={this.props.navigation}
+					quantity={item.quantity}/>
 			</View>
 
 			<View style={{ flex: 1, justifyContent: 'center', padding: 12 }}>
