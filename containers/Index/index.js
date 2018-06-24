@@ -1,86 +1,266 @@
 import React, { Component } from "react";
-import { View } from 'react-native'
-import { Container, Form, Item, Input, Button, Text } from 'native-base';
+import { Text, Platform, StatusBar, FlatList, Image, TouchableOpacity, Dimensions } from "react-native";
+import { Container, Header, Left, Body, Right, Title, Subtitle, View} from 'native-base';
+
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+
+const screens = [
+	{
+		key: '1',
+		title: 'LOADING',
+		routeName: 'Screen_1',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '2',
+		title: 'SPLASH',
+		routeName: 'Screen_2',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '3',
+		title: 'LOGIN',
+		routeName: 'Screen_3',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '4',
+		title: 'REGISTER',
+		routeName: 'Screen_4',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '5',
+		title: 'RESET PASSWORD',
+		routeName: 'Screen_5',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '6',
+		title: 'HOME V1',
+		routeName: 'Screen_6',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '7',
+		title: 'HOME V2',
+		routeName: 'Screen_7',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '8',
+		title: 'HOME V3',
+		routeName: 'Screen_8',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '9',
+		title: 'MENU V1',
+		routeName: 'Screen_9',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '10',
+		title: 'MENU V2',
+		routeName: 'Screen_10',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '11',
+		title: 'CATEGORIES V1',
+		routeName: 'Screen_11',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '12',
+		title: 'CATEGORIES V2',
+		routeName: 'Screen_12',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '13',
+		title: 'PRODUCT LIST VIEW',
+		routeName: 'Screen_13',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '14',
+		title: 'PRODUCT GRID VIEW',
+		routeName: 'Screen_14',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '15',
+		title: 'SEARCH',
+		routeName: 'Screen_15',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '16',
+		title: 'PRODUCTS FILTER',
+		routeName: 'Screen_16',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '17',
+		title: 'PRODUCT V1',
+		routeName: 'Screen_17',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '18',
+		title: 'PRODUCT V2 DETAILS',
+		routeName: 'Screen_18',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '19',
+		title: 'PRODUCT V2 REVIEWS',
+		routeName: 'Screen_19',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '20',
+		title: 'PRODUCT V2 RELATED',
+		routeName: 'Screen_20',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '21',
+		title: 'MY ACCOUNT',
+		routeName: 'Screen_21',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '22',
+		title: 'CHANGE PASSWORD',
+		routeName: 'Screen_22',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '23',
+		title: 'ADD PAYMENT METHOD',
+		routeName: 'Screen_23',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '24',
+		title: 'EDIT SHIPPING ADDRESS',
+		routeName: 'Screen_24',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '25',
+		title: 'WISHLIST',
+		routeName: 'Screen_25',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '26',
+		title: 'SHOPPING CART LIST',
+		routeName: 'Screen_26',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '27',
+		title: 'ADD TO SHOPPING CART',
+		routeName: 'Screen_27',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '28',
+		title: 'SHOPPING CART',
+		routeName: 'Screen_28',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '29',
+		title: 'CHECKOUT BILLING AND CHECKING',
+		routeName: 'Screen_29',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '30',
+		title: 'CHECKOUT SHIPPING METHOD',
+		routeName: 'Screen_30',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '31',
+		title: 'CHECKOUT PAYMENT METHOD',
+		routeName: 'Screen_31',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	{
+		key: '32',
+		title: 'CHECKOUT CONFIRM ORDER',
+		routeName: 'Screen_32',
+		keyword: require('../../assets/images/screenshots/1.jpg'),
+	},
+	
+
+];
 
 export default class Index extends Component {
-	static navigationOptions = {
-		header: null
-	};
 
-	state = {
-		screenNumber: 0
+	componentWillMount() {
+        if(Platform.OS == 'android') {
+			StatusBar.setTranslucent(true);
+			StatusBar.setBackgroundColor('#000');
+		}
 	}
 
-	goToScreen = () => {
-		const { navigate } = this.props.navigation;
+	componentWillUnmount() {
+        if(Platform.OS == 'android')
+            StatusBar.setTranslucent(false);
+	}
 
-		if (this.state.screenNumber >= 1 && this.state.screenNumber <= 32) {
-			navigate(`Screen_${this.state.screenNumber}`, { })
-		}
+	renderItem = (item) => {
+		const { navigate } = this.props.navigation;
+		return (
+			<TouchableOpacity onPress={() => {
+				navigate(item.routeName)
+			}}>
+				<Image
+					style={{
+						width: width*0.85,
+						height: 250,
+						borderTopLeftRadius: 20, 
+						borderTopRightRadius: 20
+					}}
+					source={item.keyword}
+				/>
+				
+				<View style={{borderBottomLeftRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', paddingVertical: 15}}>
+					<Text style={{color: 'black', fontWeight: 'bold', fontSize: 23}}>{item.title}</Text>
+				</View>
+			</TouchableOpacity>
+		)
 	}
 
 	render() {
 		return (
-			<Container style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
-				<Input
-					style={{ backgroundColor: 'white', flex: 1, width: '80%', textAlign: 'center' }}
-					onChangeText={(text) => this.setState({ screenNumber: parseInt(text) })}
-					placeholder="Screen number (1-32)" />
+			<Container style={{ backgroundColor: '#333333' }}>
+				<Header 
+					noShadow={true}
+					androidStatusBarColor='white'
+					iosBarStyle='dark-content'
+					style={{ backgroundColor: '#333333' }}>
+					<Left style={{flex: 0.1}} />
+					<Body style={{flex: 1, alignItems: 'center'}}>
+						<Title style={{color: 'white'}}>AWESOME</Title>
+						<Subtitle style={{color: 'white'}}>E-COMMERCE</Subtitle>
+					</Body>
+					<Right style={{flex: 0.1}} />
+				</Header>
 
-				<View style={{ flexDirection: 'row', flex: 1 }}>
-					<Button 
-						block
-						large
-						success
-						onPress={this.goToScreen}
-						style={{ marginRight: 6 }}>
-						<Text>Go</Text>
-					</Button>
-
-					<Button
-						block
-						large
-						info
-						onPress={() => alert(screensList)}>
-						<Text>Screens list</Text>
-					</Button>
-				</View>
+				<FlatList
+					style={{paddingHorizontal: width*0.075, paddingVertical: 15}}
+					data={screens}
+					ItemSeparatorComponent={() => <View style={{ backgroundColor: '#333333', height: 20 }}></View>}
+					renderItem={({ item }) => this.renderItem(item)} />
 			</Container>
 		);
 	}
 }
-
-const screensList = `
-1	-	Loading
-2	-	Splash
-3	-	Login
-4	-	Register
-5	-	Reset Password
-6	-	Home v1
-7	-	Home v2
-8	-	Home v3
-9	-	Menu v1
-10	-	Menu v2
-11	-	Categories v1
-12	-	Categories v2
-13	-	Product List View
-14	-	Product Grid View
-15	-	Search
-16	-	Products Filter
-17	-	Products Details v1
-18	-	Products Details v2 Item Details
-19	-	Products Details v2 Reviews
-20	-	Products Details v2 Related Items
-21	-	My Account
-22	-	Change Password
-23	-	Add Payment Method
-24	-	Edit Shipping Address
-25	-	Wishlist
-26	-	Shopping Cart List
-27	-	Add to Shopping Cart
-28	-	Shopping Cart
-29	-	Checkout Billing and Shipping
-30	-	Checkout Shipping Method
-31	-	Checkout Payment Method
-32	-	Checkout Confirm Order
-`
