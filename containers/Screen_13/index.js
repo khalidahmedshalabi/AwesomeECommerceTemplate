@@ -372,7 +372,8 @@ export default class Screen extends Component {
 					oldPrice={item.oldPrice}
 					stars={item.stars}
 					badgeText={item.badgeText}
-					badgeColor={item.badgeColor} />
+					badgeColor={item.badgeColor}
+					buttonwishlist={true}/>
 			)
 		}
 	}
@@ -478,7 +479,7 @@ export default class Screen extends Component {
 						style={{flex: 0.8}}
 						data={data}
 						initValue="Categories"
-						supportedOrientations={['landscape']}
+						supportedOrientations={['portrait']}
 						accessible={true}
 						scrollViewAccessibilityLabel={'Scrollable options'}
 						cancelButtonAccessibilityLabel={'Cancel Button'}
@@ -501,7 +502,7 @@ export default class Screen extends Component {
 							size={17} />
 					</ModalSelector>
 
-					
+
 
 					<View style={{
 						flex: 1.5,
@@ -523,7 +524,7 @@ export default class Screen extends Component {
 						<ModalSelector
 							data={data}
 							initValue="Filter"
-							supportedOrientations={['landscape']}
+							supportedOrientations={['portrait']}
 							accessible={true}
 							scrollViewAccessibilityLabel={'Scrollable options'}
 							cancelButtonAccessibilityLabel={'Cancel Button'}
@@ -564,7 +565,7 @@ export default class Screen extends Component {
 						data={this.state.products}
 						style={{ flex: 1, backgroundColor: 'white' }}
 						ItemSeparatorComponent={
-							() => this.state.isGridView ? null 
+							() => this.state.isGridView ? null
 								: <View style={{ backgroundColor: '#dedede', height: 1 }}></View>
 						}
 						renderItem={({ item }) => this.renderProduct(item)}

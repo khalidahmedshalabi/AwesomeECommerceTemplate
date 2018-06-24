@@ -5,7 +5,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Stars from 'react-native-stars-rating'
 import IconBadge from 'react-native-icon-badge'
 import { mainColor } from '../../constants/Colors';
-
+import ProductCard from '../../components/ProductCard/index';
 export default class Reviews extends Component {
 	constructor() {
 		super()
@@ -56,57 +56,17 @@ export default class Reviews extends Component {
 		}
 	}
 
-	renderProduct = (item) => {
-		const priceTag = <Text style={{ fontSize: 13, color: mainColor }}>{item.currentPrice}$</Text>
-		const priceContainer = item.oldPrice === 0 ? priceTag : (
-			<View style={{ flexDirection: 'row' }}>
-				<Text style={{ fontSize: 13, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>{item.oldPrice}$</Text>
-				{priceTag}
-			</View>
-		)
-
-		return (
-			<View style={{ flex: 1, flexDirection: 'row', borderRadius: 1 }}>
-				<View style={{ flex: 0.6, backgroundColor: '#c8c8c8' }}>
-
-				</View>
-
-				<View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 13, paddingVertical: 9, justifyContent: 'center' }}>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-						<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-
-						<View
-							style={{
-								backgroundColor: mainColor,
-								paddingVertical: 3,
-								paddingHorizontal: 4
-							}}>
-							<Ionicons name='md-close' color='white' size={18} />
-						</View>
-					</View>
-
-					<Stars
-						isActive={false}
-						rateMax={5}
-						isHalfStarEnabled={false}
-						onStarPress={(rating) => console.log(rating)}
-						rate={item.stars}
-						color='#f9e784'
-						size={13}
-					/>
-
-					<Text style={{ color: '#969696', textAlign: 'justify', paddingVertical: 8 }}>{item.description}</Text>
-
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-						{priceContainer}
-						<View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: mainColor, padding: 6, borderRadius: 1 }}>
-							<Ionicons name='md-add' color='white' size={14} />
-							<Text style={{ color: 'white', fontSize: 12, marginLeft: 3 }}>ADD TO CART</Text>
-						</View>
-					</View>
-				</View>
-			</View>
-		)
+		renderProduct = (item) => {
+			return (
+				<ProductCard navigation={this.props.navigation}
+					title={item.title}
+					description={item.description}
+					currentPrice={item.currentPrice}
+					OldPrice={item.oldPrice}
+					stars={item.stars}
+					buttonwishlist={false}
+					 />
+			)
 	}
 
 	render() {
@@ -159,9 +119,8 @@ export default class Reviews extends Component {
 					data={this.state.products}
 					style={{ flex: 1 }}
 					contentContainerStyle={{ padding: 14 }}
-					ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', height: 14 }}></View>}
-					renderItem={({ item }) => this.renderProduct(item)}
-				/>
+					ItemSeparatorComponent={() => <View style={{ backgroundColor: '#dedede', height: 1 }}></View>}
+					renderItem = {({ item }) => this.renderProduct(item)} />
 			</Container>
 		)
 	}

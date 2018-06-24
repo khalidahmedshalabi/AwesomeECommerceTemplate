@@ -29,7 +29,8 @@ class CategoryTab extends Component {
 				description={item.description}
 				currentPrice={item.currentPrice}
 				oldPrice={item.oldPrice}
-				stars={item.stars} />
+				stars={item.stars}
+				buttonwishlist={true}/>
 		)
 	}
 
@@ -123,7 +124,7 @@ export default class Screen extends Component {
 					key: '2',
 					title: 'Second',
 					products: [
-						
+
 					]
 				},
 				{
@@ -150,7 +151,7 @@ export default class Screen extends Component {
 			]
 		}
 	}
-	
+
 	componentWillMount() {
 		StatusBar.setBarStyle('dark-content')
 		if (Platform.OS == 'android') {
@@ -174,9 +175,9 @@ export default class Screen extends Component {
 				alignItems: item.startFromLeft ? 'flex-start' : 'flex-end'
 			}}>
 
-				<View 
-					style={{ 
-						marginBottom: 32, 
+				<View
+					style={{
+						marginBottom: 32,
 						marginLeft: item.startFromLeft ? 30 : 0,
 						marginRight: item.startFromLeft ? 0 : 30,
 					}}>
