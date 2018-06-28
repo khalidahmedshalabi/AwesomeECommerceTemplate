@@ -233,15 +233,17 @@ export default class Index extends Component {
 				/>
 				
 				<View style={{borderBottomLeftRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', paddingVertical: 15}}>
-					<Text style={{color: 'black', fontWeight: 'bold', fontSize: 23}}>{item.title}</Text>
+					<Text style={{color: 'black', fontWeight: 'bold', fontSize: 17}}>{item.title}</Text>
 				</View>
+
+				<View style={{backgroundColor: '#333333', height: 20}}></View>
 			</TouchableOpacity>
 		)
 	}
 
 	render() {
 		return (
-			<Container style={{ backgroundColor: '#333333' }}>
+			<Container style={{ backgroundColor: '#333333'}}>
 				<Header 
 					noShadow={true}
 					androidStatusBarColor='white'
@@ -256,9 +258,8 @@ export default class Index extends Component {
 				</Header>
 
 				<FlatList
-					style={{paddingHorizontal: width*0.075, paddingVertical: 15}}
+					style={{paddingHorizontal: width*0.075, paddingTop: 10}}
 					data={screens}
-					ItemSeparatorComponent={() => <View style={{ backgroundColor: '#333333', height: 20 }}></View>}
 					renderItem={({ item }) => this.renderItem(item)} />
 			</Container>
 		);
