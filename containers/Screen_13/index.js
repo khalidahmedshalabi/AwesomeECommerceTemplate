@@ -23,7 +23,7 @@ const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
+import { buttonBorderRadius, inputBorderRadius,boxBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
@@ -259,7 +259,7 @@ export default class Screen extends Component {
 						backgroundColor: 'white',
 						alignItems: 'center',
 						justifyContent: 'center',
-						padding: betweenButton,
+						padding: betweenButton,borderRadius:boxBorderRadius
 					}}>
 					<Text style={{ marginBottom: 16, textAlign: 'center' }}>
 						<Text style={{ color: '#969696' }}>The item </Text>
@@ -267,7 +267,7 @@ export default class Screen extends Component {
 						<Text style={{ color: '#969696' }}>was successfully added to your cart</Text>
 					</Text>
 
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: buttonsContainerWidth }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: buttonsContainerWidth ,borderRadius:boxBorderRadius}}>
 						<TouchableOpacity
 							style={{
 								width: buttonWidth,
@@ -467,6 +467,7 @@ export default class Screen extends Component {
 									}
 								}
 							/>
+
 						</TouchableOpacity>
 					</Right>
 				</Header>
