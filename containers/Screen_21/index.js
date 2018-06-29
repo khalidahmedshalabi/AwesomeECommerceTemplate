@@ -308,16 +308,16 @@ export default class Screen extends Component {
 							<Text style={{ fontSize: 15, fontWeight: '400', marginBottom: 15, color: '#505050' }} uppercase={true}>personal information</Text>
 						</Item>
 						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7,marginVertical: 5, borderBottomWidth: 0  }}>
-						<TextInput placeholderTextColor='#afafaf' placeholder='First Name' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
+						<TextInput underlineColorAndroid='transparent' placeholderTextColor='#afafaf' placeholder='First Name' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
 						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
-						<TextInput placeholderTextColor='#afafaf' placeholder='Last Name' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
+						<TextInput underlineColorAndroid='transparent' placeholderTextColor='#afafaf' placeholder='Last Name' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
 						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
-						<TextInput placeholderTextColor='#afafaf' placeholder='Phone Number' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
+						<TextInput underlineColorAndroid='transparent' placeholderTextColor='#afafaf' placeholder='Phone Number' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
 						<Item fixedLabel style={{ backgroundColor: '#eeeeee', alignItems:'flex-start',paddingTop:7, marginVertical: 5, borderBottomWidth: 0  }}>
-						<TextInput placeholderTextColor='#afafaf' placeholder='Email' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
+						<TextInput underlineColorAndroid='transparent' placeholderTextColor='#afafaf' placeholder='Email' style={{fontSize: 15, backgroundColor: '#eeeeee', width: '100%', paddingLeft: 8, marginBottom: width * 0.03, borderRadius: inputBorderRadius}} />
 						</Item>
 						<Item style={{ marginTop: 10, borderBottomWidth: 0 }} >
 						<Button style={{ flex: 1, justifyContent: 'center', backgroundColor: mainColor , borderRadius:buttonBorderRadius,  }} onPress={() => this.setState({ chnagePasswordModalVisible: true }) } >
