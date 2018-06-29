@@ -31,6 +31,7 @@ export default class Screen extends Component {
 			isGridView: this.props.isGridView,
 			searchBarShown: this.props.searchBarShown,
 			cartClicked: this.props.clickCart,
+			OnCartClick:true,
 			addedToCart: this.props.addedToCart,
 			products: [
 				{
@@ -243,7 +244,7 @@ export default class Screen extends Component {
 	}
 
 	renderCartContent = () => {
-		if (this.state.cartClicked) {
+		if (this.state.OnCartClick) {
 			return (
 				<View
 					style={{
@@ -504,7 +505,9 @@ export default class Screen extends Component {
 						<Title style={{ color: 'black', alignSelf: 'center' }}>Awesome</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
-						<TouchableOpacity>
+						<TouchableOpacity
+						onPress={() => {
+                   this.setState({OnCartClick:!this.state.OnCartClick})}}>
 							<IconBadge
 								MainElement={
 									<View
