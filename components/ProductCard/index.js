@@ -27,9 +27,9 @@ export default class ProductCard extends Component {
 
 		return (
 			<View style={{ flex: 1, flexDirection: 'row', borderRadius: 1, paddingVertical: 10}}>
-				<View style={{ flex: 0.6, backgroundColor: '#c8c8c8', borderRadius: imageBorderRadius ,borderTopLeftRadius:imageBorderRadius,borderBottomLeftRadius:imageBorderRadius}}>
+				<View style={{ flex: 0.6, backgroundColor: '#c8c8c8', borderTopLeftRadius:imageBorderRadius,borderBottomLeftRadius:imageBorderRadius}}>
 				</View>
-				<View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 13, paddingVertical: 9, justifyContent: 'center' }}>
+				<View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 13, paddingVertical: 9, justifyContent: 'center' ,borderTopRightRadius:imageBorderRadius,borderBottomRightRadius:imageBorderRadius}}>
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 						<Text style={{ fontWeight: 'bold' }}>{this.props.title}</Text>
 						{
