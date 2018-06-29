@@ -62,7 +62,7 @@ export default class Reviews extends Component {
 					title={item.title}
 					description={item.description}
 					currentPrice={item.currentPrice}
-					OldPrice={item.oldPrice}
+					oldPrice={item.oldPrice}
 					stars={item.stars}
 					buttonwishlist={false}
 					 />

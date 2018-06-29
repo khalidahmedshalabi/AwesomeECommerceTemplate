@@ -12,11 +12,11 @@ export default class ProductCard extends Component {
 					style={{ backgroundColor:mainColor, justifyContent: 'center', paddingHorizontal:9.5,paddingTop:2.8 ,height:26,width:26,borderRadius:13,marginRight:5}}>
 					<Ionicons name='md-remove' size={17} color='white' />
 				</TouchableOpacity>
-				<TouchableOpacity
+				<View
 				style={{ backgroundColor:'#eeeeee', justifyContent: 'center',alignItems:'center',borderRadius:15,}}>
 				<Text
-					style={{backgroundColor: 'transparent',color: '#afafaf',paddingHorizontal: 9,textAlign: 'center',textAlignVertical: 'center',}}>{this.props.quantity}</Text>
-					</TouchableOpacity>
+					style={{color: '#afafaf',paddingHorizontal: 9,textAlign: 'center',textAlignVertical: 'center',}}>{this.props.quantity}</Text>
+					</View>
 				<TouchableOpacity
 					style={{ backgroundColor:mainColor, justifyContent: 'center',paddingHorizontal:7.5,paddingTop:2.8,height:26,width:26,borderRadius:13,marginLeft:5}}>
 					<Ionicons name='md-add' size={17} color= 'white' />

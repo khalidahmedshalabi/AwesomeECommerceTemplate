@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { View, Image, I18nManager } from 'react-native'
-import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Input } from 'native-base'
+import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Input,Item } from 'native-base'
 import { Ionicons } from '@expo/vector-icons';
 import { mainColor } from '../../constants/Colors'
 import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
-
+import ModalSelector from 'react-native-modal-selector';
 const formSpacing = 13
 
 export default class Screen extends Component {
@@ -14,6 +14,14 @@ export default class Screen extends Component {
 	}
 
 	render() {
+		const data = [
+			{ key: 0, label: 'Brazil' },
+			{ key: 1, label: 'Russia' },
+			{ key: 2, label: 'Spain' },
+			{ key: 3, label: 'England' },
+			{ key: 4, label: 'Germany' },
+			{ key: 5, label: 'Italy' },
+		];
 		return (
 			<Container>
 				<Header
@@ -55,7 +63,6 @@ export default class Screen extends Component {
 					</View>
 
 					<Text style={{ color: '#505050', marginLeft: 8 }}>Billing & Shipping</Text>
-
 					<Image
 						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
 						style={{ height: this.state.angleHeight}} />
@@ -172,16 +179,20 @@ export default class Screen extends Component {
 								style={{ width: this.state.inputWidth, fontSize: 14, backgroundColor: '#eeeeee', marginRight: 7 }}
 								placeholder='State' placeholderTextColor='#afafaf' />
 
-							<View style={{ width: this.state.inputWidth, flexDirection: 'row', backgroundColor: '#eeeeee', marginLeft: 7, justifyContent: 'center' }}>
+							<ModalSelector data={data} initValue="Country" supportedOrientations={['portrait']} accessible={true}
+								scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
+								cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
+								childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
+								onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
+								<Item style={{ width: this.state.inputWidth, flexDirection: 'row', backgroundColor: '#eeeeee', marginLeft: 7, justifyContent: 'center' }}>
 								<Input
 									style={{ fontSize: 14 }}
 									placeholder='Country' placeholderTextColor='#afafaf' />
-
 								<Ionicons style={{ alignSelf: 'center', marginRight: 10 }} name='ios-arrow-down' size={17} color='#afafaf' />
+								</Item>
+							</ModalSelector>
 							</View>
 						</View>
-					</View>
-
 					<View style={{ backgroundColor: 'white', marginHorizontal: 14, marginBottom: 14, padding: 14 }}>
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 							<Text style={{ fontWeight: 'bold', color: 'black' }}>SHIPPING ADDRESS</Text>

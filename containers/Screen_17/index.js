@@ -296,7 +296,7 @@ export default class Screen extends Component {
 										<Text style={{
 											marginLeft: 7,
 											color: 'white',
-											backgroundColor: '#f7b267',
+											backgroundColor: '#f44242',
 											paddingHorizontal: 4,
 											paddingVertical: 2,
 											fontSize: 12,
@@ -348,6 +348,7 @@ export default class Screen extends Component {
 										</View>
 									</View>
 								</View>
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Sizes</Text>
 								<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
 									scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
 									cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
@@ -360,6 +361,7 @@ export default class Screen extends Component {
 										<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
 									</Item>
 								</ModalSelector>
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Colors</Text>
 								<ColorsList
 									colorsListData={this.state.colors}
 								/>

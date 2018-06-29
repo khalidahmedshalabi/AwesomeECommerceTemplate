@@ -186,7 +186,7 @@ export default class ItemsDetails extends Component {
 					color='#f9e784'
 					size={50}
 				/>
-				<Text style={{ fontStyle: 'italic', fontSize: 13, marginTop: 10 }} >Tab on starts to rate</Text>
+				<Text style={{ fontStyle: 'italic', fontSize: 13, marginTop: 10 }} >Tab on stars to rate</Text>
 
 				<Form style={{ width :'100%' }} >
 					<Item floatingLabel>
@@ -200,10 +200,6 @@ export default class ItemsDetails extends Component {
 					<Item floatingLabel>
 					<Label>What's not good about this item?</Label>
 					<Input />
-					</Item>
-					<Item style={{ width: '100%' }}>
-					<Label>Review</Label>
-					<Textarea style={{ width: '100%' }} rowSpan={8} style={{ marginLeft: 10 }} />
 					</Item>
 					<Button style={{ width: '80%', marginLeft: '10%', backgroundColor: '#3ED185', marginTop: 30, justifyContent: 'center', alignItems: 'center' }} >
 						<Text style={{ textAlign: 'center' }} >submit</Text>

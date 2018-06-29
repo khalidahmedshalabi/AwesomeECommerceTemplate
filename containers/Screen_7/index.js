@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dimensions, View, StatusBar, Platform, FlatList, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
-import { Container, Body, Left, Right, Header, Button, Title, Badge, Text } from 'native-base';
+import { Container, Body, Left, Right, Header, Button, Title, Text } from 'native-base';
 import Carousel from 'react-native-carousel-view'
 import Stars from 'react-native-stars-rating'
 import IconBadge from 'react-native-icon-badge'
@@ -272,7 +272,6 @@ export default class Screen extends Component {
 
 				<FlatList
 					ListHeaderComponent={
-						<View style={{marginBottom: 14}}>
 							<Carousel
 								width={width}
 								height={270}
@@ -285,7 +284,6 @@ export default class Screen extends Component {
 								indicatorColor="white" >
 								{this.state.ads.map((ad, index) => this.renderCarouselPage(ad, index))}
 							</Carousel>
-						</View>
 					}
 					ItemSeparatorComponent={
 						() => <View style={{ height: 14 }}></View>

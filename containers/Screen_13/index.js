@@ -5,7 +5,6 @@ import {
 	StatusBar,
 	Platform,
 	FlatList,
-	ScrollView,
 	TouchableWithoutFeedback,
 	TouchableOpacity,
 	I18nManager
@@ -16,14 +15,14 @@ import Stars from 'react-native-stars-rating'
 import Modal from "react-native-modal"
 import IconBadge from 'react-native-icon-badge'
 import ProductCard from '../../components/ProductCard';
+import PopupDialog from 'react-native-popup-dialog';
 
-import ModalSelector from 'react-native-modal-selector'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-import { buttonBorderRadius, inputBorderRadius,boxBorderRadius } from '../../constants/gStyles';
+import { buttonBorderRadius, inputBorderRadius, imageBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
@@ -138,6 +137,58 @@ export default class Screen extends Component {
 					currentPrice: 240,
 					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
 				},
+			],
+			categories: [
+				{
+					key: '1',
+					title: 'First'
+				},
+				{
+					key: '2',
+					title: 'Second'
+				},
+				{
+					key: '3',
+					title: 'Third'
+				},
+				{
+					key: '4',
+					title: 'Fourth'
+				},
+				{
+					key: '5',
+					title: 'Fifth'
+				},
+				{
+					key: '6',
+					title: 'Sixth'
+				}
+			],
+			filter: [
+				{
+					key: '1',
+					title: 'First'
+				},
+				{
+					key: '2',
+					title: 'Second'
+				},
+				{
+					key: '3',
+					title: 'Third'
+				},
+				{
+					key: '4',
+					title: 'Fourth'
+				},
+				{
+					key: '5',
+					title: 'Fifth'
+				},
+				{
+					key: '6',
+					title: 'Sixth'
+				}
 			]
 		}
 	}
@@ -259,7 +310,7 @@ export default class Screen extends Component {
 						backgroundColor: 'white',
 						alignItems: 'center',
 						justifyContent: 'center',
-						padding: betweenButton,borderRadius:boxBorderRadius
+						padding: betweenButton,
 					}}>
 					<Text style={{ marginBottom: 16, textAlign: 'center' }}>
 						<Text style={{ color: '#969696' }}>The item </Text>
@@ -267,7 +318,7 @@ export default class Screen extends Component {
 						<Text style={{ color: '#969696' }}>was successfully added to your cart</Text>
 					</Text>
 
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: buttonsContainerWidth ,borderRadius:boxBorderRadius}}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: buttonsContainerWidth }}>
 						<TouchableOpacity
 							style={{
 								width: buttonWidth,
@@ -418,13 +469,23 @@ export default class Screen extends Component {
 		]
 	}
 
-	render () {
-		const data = [
-			{ key: 0, label: 'Test item 1' },
-			{ key: 1, label: 'Test item 2' },
-			{ key: 2, label: 'Test item 3' },
-		];
+	renderCategory = (item) => {
+		return (
+			<TouchableOpacity style={{backgroundColor: mainColor}}>
+					<Text style={{ color: 'white', marginVertical: 15, alignSelf: 'center' }}>{item.title}</Text>
+			</TouchableOpacity>
+		)
+	}
 
+	renderFilter = (item) => {
+		return (
+			<TouchableOpacity style={{ backgroundColor: mainColor }}>
+				<Text style={{ color: 'white', marginVertical: 15, alignSelf: 'center' }}>{item.title}</Text>
+			</TouchableOpacity>
+		)
+	}
+
+	render () {
 		return (
 			<Container>
 				<Header
@@ -467,53 +528,36 @@ export default class Screen extends Component {
 									}
 								}
 							/>
-
 						</TouchableOpacity>
 					</Right>
 				</Header>
 
 				<View
 					style={{
-						flexDirection: 'row', backgroundColor: 'white', elevation: 0 }}>
-
-					<ModalSelector
-						style={{flex: 0.8}}
-						data={data}
-						initValue="Categories"
-						supportedOrientations={['portrait']}
-						accessible={true}
-						scrollViewAccessibilityLabel={'Scrollable options'}
-						cancelButtonAccessibilityLabel={'Cancel Button'}
-						cancelText='Cancel'
-						optionTextStyle={{ color: mainColor }}
-						touchableStyle={{  flex: 1 }}
-						childrenContainerStyle={{
-							flexDirection: 'row',
-							justifyContent: 'space-between',
-							alignItems: 'center',
-							flex: 1.2,
-							paddingHorizontal: 18
-						}}
-						onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-						<Text style={{ color: '#969696', fontSize: 16, marginRight: 6 }} uppercase={false}>Categories</Text>
-
-						<Ionicons
-							name={'ios-arrow-down'}
-							color={'#969696'}
-							size={17} />
-					</ModalSelector>
-
-
+						flexDirection: 'row', backgroundColor: 'white', elevation: 0}}>
+					<View style={{flex: 0.60}}>
+						<TouchableOpacity
+							style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flex: 1 }}
+							onPress={() => {
+								this.popupDialog.show();
+							}}>
+							<Text style={{ color: '#969696', fontSize: 16}}>Categories</Text>
+							<Ionicons
+								name={'ios-arrow-down'}
+								color={'#969696'}
+								size={17} />
+						</TouchableOpacity>
+					</View>
 
 					<View style={{
-						flex: 1.5,
 						flexDirection: 'row',
 						justifyContent: 'space-around',
 						borderLeftWidth: 1,
 						borderLeftColor: '#e1e1e1',
+						flex: 1
 						}}>
 						<Button
-							style={{ marginLeft: 34 }}
+							style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
 							onPress={() => this.setState({ isGridView: !this.state.isGridView })}
 							transparent>
 							<FontAwesome
@@ -522,32 +566,19 @@ export default class Screen extends Component {
 								size={21} />
 						</Button>
 
-						<ModalSelector
-							data={data}
-							initValue="Filter"
-							supportedOrientations={['portrait']}
-							accessible={true}
-							scrollViewAccessibilityLabel={'Scrollable options'}
-							cancelButtonAccessibilityLabel={'Cancel Button'}
-							cancelText='Cancel'
-							optionTextStyle={{ color: mainColor }}
-							touchableStyle={{ flex: 1 }}
-							childrenContainerStyle={{
-								flexDirection: 'row',
-								justifyContent: 'space-between',
-								alignItems: 'center',
-								flex: 1,
-								paddingHorizontal: 16
-							}}
-							onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-
+						<Button
+							style={{backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center', borderColor: 'transparent'}}
+							onPress={() => {
+								this.popupDialog.show();
+							}}>
 							<FontAwesome
 								name={'filter'}
 								color={'#969696'}
 								size={21} />
-						</ModalSelector>
+						</Button>
 
 						<Button
+							style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
 							onPress={() => {this.setState({ searchBarShown: !this.state.searchBarShown })}}
 							transparent>
 							<FontAwesome
@@ -577,6 +608,33 @@ export default class Screen extends Component {
 
 				{this.renderCartContent()}
 				{this.state.addedToCart ? this.addToCartModal() : null}
+				<PopupDialog
+					dialogStyle={{backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11}}
+					width={0.80}
+					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+				>
+					<FlatList
+						data={this.state.categories}
+						ItemSeparatorComponent={
+							() => this.state.isGridView ? null
+								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
+						}
+						renderItem={({ item }) => this.renderCategory(item)} />
+				</PopupDialog>
+
+				<PopupDialog
+					dialogStyle={{backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
+					width={0.80}
+					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+				>
+					<FlatList
+						data={this.state.categories}
+						ItemSeparatorComponent={
+							() => this.state.isGridView ? null
+								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
+						}
+						renderItem={({ item }) => this.renderFilter(item)} />
+				</PopupDialog>
 			</Container>
 		)
 	}

@@ -47,10 +47,10 @@ export default class Reviews extends Component {
 	renderCartItem = (item) => (
 		<View style={{ flex: 1, flexDirection: 'row', borderRadius: boxBorderRadius, backgroundColor: 'white' }}>
 			<View style={{ flex: 0.6, padding: 12, justifyContent: 'center', alignItems: 'center' }}>
-				<View style={{ flex: 0.94, width: '100%', backgroundColor: '#c8c8c8', marginBottom: 10 ,borderRadius:imageBorderRadius}}></View>
-
-				<CounterCard navigation={this.props.navigation}
-					quantity={item.quantity}/>
+				<View style={{ flex: 0.94, width: '100%', backgroundColor: '#c8c8c8', marginBottom: 10 ,borderRadius:imageBorderRadius}}>
+				</View>
+				<View style={{justifyContent:'center'}}>
+				<CounterCard quantity={item.quantity}/></View>
 			</View>
 
 			<View style={{ flex: 1, justifyContent: 'center', padding: 12 }}>
