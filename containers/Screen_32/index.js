@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, I18nManager } from 'react-native'
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content } from 'native-base'
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons,Foundation } from '@expo/vector-icons';
 import { mainColor } from '../../constants/Colors'
 import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
 
@@ -53,10 +53,7 @@ export default class Screen extends Component {
 						}}>
 						<Text style={{ color: 'white', textAlign: 'center', fontSize: 11 }}>1</Text>
 					</View>
-
-					<Image
-						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
-						style={{ height: this.state.angleHeight}} />
+					<Foundation name='italic' size={40} color='#eeeeee' style={{paddingLeft:5,marginTop:3}}/>
 
 					<View
 						style={{
@@ -71,10 +68,7 @@ export default class Screen extends Component {
 						<Text style={{ color: 'white', textAlign: 'center', fontSize: 11 }}>2</Text>
 					</View>
 
-					<Image
-						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
-						style={{ height: this.state.angleHeight }} />
-
+					<Foundation name='italic' size={40} color='#eeeeee' style={{paddingLeft:5,marginTop:3}}/>
 					<View
 						style={{
 							backgroundColor: '#505050',
@@ -88,10 +82,7 @@ export default class Screen extends Component {
 						<Text style={{ color: 'white', textAlign: 'center', fontSize: 11 }}>3</Text>
 					</View>
 
-					<Image
-						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
-						style={{ height: this.state.angleHeight }} />
-
+					<Foundation name='italic' size={40} color='#eeeeee' style={{paddingLeft:5,marginTop:3}}/>
 					<View
 						style={{
 							backgroundColor: '#505050',
@@ -102,14 +93,12 @@ export default class Screen extends Component {
 							alignItems: 'center',
 							marginLeft: 8
 						}}>
-						<Text style={{ color: 'white', textAlign: 'center', fontSize: 11 }}>3</Text>
+						<Text style={{ color: 'white', textAlign: 'center', fontSize: 11 }}>4</Text>
 					</View>
 
 					<Text style={{ color: '#505050', marginLeft: 8 }}>Confirm Order</Text>
 
-					<Image
-						source={I18nManager.isRTL ? require('../../assets/images/angle_left.png') : require('../../assets/images/angle_right.png')}
-						style={{ height: this.state.angleHeight }} />
+					<Foundation name='italic' size={40} color='#505050' style={{paddingLeft:5,marginTop:3}}/>
 				</View>
 
 				<Content>
