@@ -20,9 +20,8 @@ import PopupDialog from 'react-native-popup-dialog';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-import { buttonBorderRadius, inputBorderRadius, imageBorderRadius,boxBorderRadius } from '../../constants/gStyles';
+import { buttonBorderRadius, imageBorderRadius,boxBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
