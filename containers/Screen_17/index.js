@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Dimensions, StatusBar, Platform, View, FlatList, TouchableOpacity, I18nManager,TextInput } from 'react-native'
 import { FontAwesome, Ionicons, Octicons } from '@expo/vector-icons';
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content ,Item} from 'native-base';
-import ModalSelector from 'react-native-modal-selector'
-import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
+import PopupDialog from 'react-native-popup-dialog';
+import { buttonBorderRadius, inputBorderRadius, imageBorderRadius } from '../../constants/gStyles';
 import Stars from 'react-native-stars-rating'
 import IconBadge from 'react-native-icon-badge'
 import ColorsList from '../../components/ColorsList';
@@ -73,52 +73,27 @@ export default class Screen extends Component {
 			sizes: [
 				{
 					key: '1',
-					text: 'XS',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: true,
+					title: 'Available Sizes'
 				},
 				{
 					key: '2',
-					text: 'S',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'Small'
 				},
 				{
 					key: '3',
-					text: 'M',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'Medium'
 				},
 				{
 					key: '4',
-					text: 'L',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'Large'
 				},
 				{
 					key: '5',
-					text: 'XL',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'X Large'
 				},
 				{
 					key: '6',
-					text: 'XXL',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '7',
-					text: 'All',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'XX Large'
 				}
 			]
 		}
@@ -185,26 +160,10 @@ export default class Screen extends Component {
 		)
 	}
 
-	renderSizeItem = (item) => {
+	renderSize = (item) => {
 		return (
-			<TouchableOpacity onPress={() => this.selectItem(item.key, 'sizes')} style={{ alignItems: 'center', }}>
-				<View
-					style={{
-						backgroundColor: item.selected ? '#fff' : item.bgColor,
-						borderWidth: item.selected ? 4 : 0,
-						borderColor: item.selected ? mainColor : '#fff',
-						width: 40,
-						height: 40,
-						borderRadius: 40/2,
-						justifyContent: 'center',
-						alignItems: 'center'
-					}}>
-					{
-						item.text ?
-							<Text style={{ color: item.textColor }}>{item.text}</Text>
-							: null
-					}
-				</View>
+			<TouchableOpacity style={{ backgroundColor: mainColor }}>
+				<Text style={{ color: 'white', marginVertical: 15, alignSelf: 'center' }}>{item.title}</Text>
 			</TouchableOpacity>
 		)
 	}
@@ -215,14 +174,6 @@ export default class Screen extends Component {
 	)
 
 	render () {
-		const data = [
-			{ key: 0, label: 'Available Sizes' },
-			{ key: 1, label: 'Small' },
-			{ key: 2, label: 'Medium' },
-			{ key: 3, label: 'Large' },
-			{ key: 4, label: 'X Large' },
-			{ key: 5, label: 'XX Large' },
-		];
 		return (
 			<Container>
 				<Header
@@ -348,19 +299,17 @@ export default class Screen extends Component {
 										</View>
 									</View>
 								</View>
-								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Sizes</Text>
-								<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
-									scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
-									cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
-									childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
-									onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
-										<TextInput
-											style={{ flex: 1, paddingVertical: 10}}
-											underlineColorAndroid='transparent' disabled placeholder='Available Sizes' placeholderTextColor='#afafaf' />
-										<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
-									</Item>
-								</ModalSelector>
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', textAlign: 'left' }}>Sizes</Text>
+								<TouchableOpacity style={{marginVertical: 15, paddingHorizontal: 10, flexDirection: 'row', backgroundColor: '#eeeeee', justifyContent: 'space-between', alignItems: 'center', borderRadius: inputBorderRadius }}
+									onPress={() => {
+										this.popupDialog.show();
+									}}>
+									<Text style={{ fontSize: 15, color: '#afafaf', marginVertical: 10 }}>Available Sizes</Text>
+									<Ionicons
+										name={'ios-arrow-down'}
+										color={'#969696'}
+										size={17} />
+								</TouchableOpacity>
 								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Colors</Text>
 								<ColorsList
 									colorsListData={this.state.colors}
@@ -386,6 +335,19 @@ export default class Screen extends Component {
 						</Button>
 					</View>
 				</Content>
+				<PopupDialog
+					dialogStyle={{ backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
+					width={0.80}
+					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+				>
+					<FlatList
+						data={this.state.sizes}
+						ItemSeparatorComponent={
+							() => this.state.isGridView ? null
+								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
+						}
+						renderItem={({ item }) => this.renderSize(item)} />
+				</PopupDialog>
 			</Container>
 		)
 	}
