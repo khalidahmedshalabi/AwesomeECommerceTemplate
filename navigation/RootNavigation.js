@@ -126,7 +126,7 @@ export default RootNavigation = createStackNavigator(
 		},
 	},
 	{
-		initialRouteName: 'Screen_13',
+		initialRouteName: 'Index',
 		navigationOptions: {
 			header: null
 		}

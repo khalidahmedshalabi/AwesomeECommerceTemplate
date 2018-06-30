@@ -22,7 +22,7 @@ const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-import { buttonBorderRadius, imageBorderRadius } from '../../constants/gStyles';
+import { buttonBorderRadius, imageBorderRadius,boxBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
@@ -31,6 +31,7 @@ export default class Screen extends Component {
 			isGridView: this.props.isGridView,
 			searchBarShown: this.props.searchBarShown,
 			cartClicked: this.props.clickCart,
+			OnCartClick:true,
 			addedToCart: this.props.addedToCart,
 			products: [
 				{
@@ -243,7 +244,7 @@ export default class Screen extends Component {
 	}
 
 	renderCartContent = () => {
-		if (this.state.cartClicked) {
+		if (this.state.OnCartClick) {
 			return (
 				<View
 					style={{
@@ -318,7 +319,7 @@ export default class Screen extends Component {
 						<Text style={{ color: '#969696' }}>was successfully added to your cart</Text>
 					</Text>
 
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: buttonsContainerWidth }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: buttonsContainerWidth,borderRadius:boxBorderRadius }}>
 						<TouchableOpacity
 							style={{
 								width: buttonWidth,
@@ -504,7 +505,9 @@ export default class Screen extends Component {
 						<Title style={{ color: 'black', alignSelf: 'center' }}>Awesome</Title>
 					</Body>
 					<Right style={{ flex: 1 }}>
-						<TouchableOpacity>
+						<TouchableOpacity
+						onPress={() => {
+                   this.setState({OnCartClick:!this.state.OnCartClick})}}>
 							<IconBadge
 								MainElement={
 									<View
