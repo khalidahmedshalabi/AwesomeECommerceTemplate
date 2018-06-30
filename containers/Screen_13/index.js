@@ -495,7 +495,9 @@ export default class Screen extends Component {
 					iosBarStyle='dark-content'
 					style={{ backgroundColor: 'white', borderBottomColor: '#e9e9e9', borderBottomWidth: this.state.cartClicked ? 0 : 1 }}>
 					<Left style={{ flex: 1 }}>
-						<TouchableOpacity style={{ flexDirection: 'row' }}>
+						<TouchableOpacity 
+							onPress={() => this.props.navigation.goBack()}						
+							style={{ flexDirection: 'row' }}>
 							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
 							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</TouchableOpacity>

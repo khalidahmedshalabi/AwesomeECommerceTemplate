@@ -27,6 +27,7 @@ export default class Screen extends Component {
 					<Left style={{ flex: 1 }}>
 						<Button
 							iconLeft
+							onPress={() => this.props.navigation.goBack()}
 							style={{ backgroundColor: 'transparent', elevation: 0 }}>
 							<Ionicons name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
 							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
