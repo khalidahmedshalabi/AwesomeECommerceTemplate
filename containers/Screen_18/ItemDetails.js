@@ -3,8 +3,8 @@ import { Dimensions, View, FlatList, TouchableOpacity, Modal, StatusBar,TextInpu
 import { FontAwesome, Ionicons, Octicons } from '@expo/vector-icons';
 import { Text, Content, Button, Container, Header, Form, Item, Label, Input, Textarea, } from 'native-base';
 import Stars from 'react-native-stars-rating'
-import { buttonBorderRadius, inputBorderRadius } from '../../constants/gStyles';
-import ModalSelector from 'react-native-modal-selector'
+import { buttonBorderRadius, inputBorderRadius, imageBorderRadius } from '../../constants/gStyles';
+import PopupDialog from 'react-native-popup-dialog';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
@@ -73,52 +73,27 @@ export default class ItemsDetails extends Component {
 			sizes: [
 				{
 					key: '1',
-					text: 'XS',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: true,
+					title: 'Available Sizes'
 				},
 				{
 					key: '2',
-					text: 'S',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'Small'
 				},
 				{
 					key: '3',
-					text: 'M',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'Medium'
 				},
 				{
 					key: '4',
-					text: 'L',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'Large'
 				},
 				{
 					key: '5',
-					text: 'XL',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'X Large'
 				},
 				{
 					key: '6',
-					text: 'XXL',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '7',
-					text: 'All',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
+					title: 'XX Large'
 				}
 			],
 			reviews: [
@@ -261,26 +236,10 @@ export default class ItemsDetails extends Component {
 		)
 	}
 
-	renderSizeItem = (item) => {
+	renderSize = (item) => {
 		return (
-			<TouchableOpacity onPress={() => this.selectItem(item.key, 'sizes')} style={{ alignItems: 'center', }}>
-				<View
-					style={{
-						backgroundColor: item.selected ? '#fff' : item.bgColor,
-						borderWidth: item.selected ? 4 : 0,
-						borderColor: item.selected ? mainColor : '#fff',
-						width: 40,
-						height: 40,
-						borderRadius: 40/2,
-						justifyContent: 'center',
-						alignItems: 'center'
-					}}>
-					{
-						item.text ?
-							<Text style={{ color: item.textColor }}>{item.text}</Text>
-							: null
-					}
-				</View>
+			<TouchableOpacity style={{ backgroundColor: mainColor }}>
+				<Text style={{ color: 'white', marginVertical: 15, alignSelf: 'center' }}>{item.title}</Text>
 			</TouchableOpacity>
 		)
 	}
@@ -309,147 +268,163 @@ export default class ItemsDetails extends Component {
 	)
 
 	render () {
-		const data = [
-			{ key: 0, label: 'Available Sizes' },
-			{ key: 1, label: 'Small' },
-			{ key: 2, label: 'Medium' },
-			{ key: 3, label: 'Large' },
-			{ key: 4, label: 'X Large' },
-			{ key: 5, label: 'XX Large' },
-		];
 		return (
-			<Content>
-				{this.RenderRatingModal()}
-				<View style={{ flex: 1, alignItems: 'center', padding: 14, }}>
-					<View style={{ width: '100%', marginBottom: formSpacing, backgroundColor: 'white', padding: 14 }}>
-						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
-							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-								<Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>Jacket with Shirt</Text>
-								<Text style={{
-									marginLeft: 7,
-									color: 'white',
-									backgroundColor: '#f7b267',
-									paddingHorizontal: 4,
-									paddingVertical: 2,
-									fontSize: 12
-								}}>NEW</Text>
-							</View>
-
-							<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-								<Text style={{ fontSize: 15, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>225$</Text>
-								<Text style={{ fontSize: 15, color: mainColor }}>170$</Text>
-							</View>
-						</View>
-
-						<Stars
-							isActive={false}
-							rateMax={5}
-							isHalfStarEnabled={false}
-							onStarPress={(rating) => console.log(rating)}
-							rate={5}
-							color='#f9e784'
-							size={13}
-						/>
-					</View>
-
-					<View
-						style={{ width: '100%', marginBottom: formSpacing }}
-						onLayout={(event) => this.setState({
-							largeImageWidth: event.nativeEvent.layout.width,
-							smallImageWidth: event.nativeEvent.layout.width * 0.235
-						})}>
-						<View style={{ width: this.state.largeImageWidth, height: this.state.largeImageWidth, backgroundColor: '#c8c8c8' }}>
-						</View>
-
-						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: formSpacing }}>
-							<FlatList
-								horizontal={true}
-								style={{ marginTop: formSpacing }}
-								data={this.state.imgs}
-								renderItem={({ item }) => this.renderImgItem(item)} />
-						</View>
-					</View>
-
-					<View style={{ width: '100%', backgroundColor: 'white', borderRadius: 1, padding: 14, }}>
-						<View>
-							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing }}>Details</Text>
-							<Text style={{ color: '#969696', marginBottom: formSpacing }}>{loremIpsum}</Text>
-
-							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing }}>Features</Text>
-							<View
-								style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-								<View style={{ justifyContent: 'center' }}>
-									<View style={{ flexDirection: 'row' }}>
-										<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Availability: </Text>
-										<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>In Stock</Text>
-									</View>
-
-									<View style={{ flexDirection: 'row' }}>
-										<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Weight: </Text>
-										<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>500g</Text>
-									</View>
+			[
+				<Content key='1'>
+					{this.RenderRatingModal()}
+					<View style={{ flex: 1, alignItems: 'center', padding: 14, }}>
+						<View style={{ width: '100%', marginBottom: formSpacing, backgroundColor: 'white', padding: 14 }}>
+							<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
+								<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+									<Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>Jacket with Shirt</Text>
+									<Text style={{
+										marginLeft: 7,
+										color: 'white',
+										backgroundColor: '#f7b267',
+										paddingHorizontal: 4,
+										paddingVertical: 2,
+										fontSize: 12
+									}}>NEW</Text>
 								</View>
 
-								<View style={{ justifyContent: 'center' }}>
-									<View style={{ flexDirection: 'row' }}>
-										<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Product Code: </Text>
-										<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>B01J88GV0C</Text>
-									</View>
-
-									<View style={{ flexDirection: 'row' }}>
-										<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Free Shipping: </Text>
-										<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>Yes</Text>
-									</View>
+								<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+									<Text style={{ fontSize: 15, color: '#969696', textDecorationLine: 'line-through', marginRight: 3 }}>225$</Text>
+									<Text style={{ fontSize: 15, color: mainColor }}>170$</Text>
 								</View>
 							</View>
 
+							<Stars
+								isActive={false}
+								rateMax={5}
+								isHalfStarEnabled={false}
+								onStarPress={(rating) => console.log(rating)}
+								rate={5}
+								color='#f9e784'
+								size={13}
+							/>
+						</View>
 
-							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginVertical: formSpacing }}>Available Sizes</Text>
-							<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
-								scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
-								cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
-								childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
-								onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-								<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
-									<TextInput
-										style={{ flex: 1, paddingVertical: 10}}
-										underlineColorAndroid='transparent' disabled placeholder='Available Sizes' placeholderTextColor='#afafaf' />
-									<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
-								</Item>
-							</ModalSelector>
+						<View
+							style={{ width: '100%', marginBottom: formSpacing }}
+							onLayout={(event) => this.setState({
+								largeImageWidth: event.nativeEvent.layout.width,
+								smallImageWidth: event.nativeEvent.layout.width * 0.235
+							})}>
+							<View style={{ width: this.state.largeImageWidth, height: this.state.largeImageWidth, backgroundColor: '#c8c8c8' }}>
+							</View>
+
+							<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: formSpacing }}>
+								<FlatList
+									horizontal={true}
+									style={{ marginTop: formSpacing }}
+									data={this.state.imgs}
+									renderItem={({ item }) => this.renderImgItem(item)} />
+							</View>
+						</View>
+
+						<View style={{ width: '100%', backgroundColor: 'white', borderRadius: 1, padding: 14, }}>
+							<View>
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing }}>Details</Text>
+								<Text style={{ color: '#969696', marginBottom: formSpacing }}>{loremIpsum}</Text>
+
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing }}>Features</Text>
+								<View
+									style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+									<View style={{ justifyContent: 'center' }}>
+										<View style={{ flexDirection: 'row' }}>
+											<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Availability: </Text>
+											<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>In Stock</Text>
+										</View>
+
+										<View style={{ flexDirection: 'row' }}>
+											<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Weight: </Text>
+											<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>500g</Text>
+										</View>
+									</View>
+
+									<View style={{ justifyContent: 'center' }}>
+										<View style={{ flexDirection: 'row' }}>
+											<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Product Code: </Text>
+											<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>B01J88GV0C</Text>
+										</View>
+
+										<View style={{ flexDirection: 'row' }}>
+											<Text style={{ color: 'black', fontSize: 13, marginBottom: formSpacing }}>Free Shipping: </Text>
+											<Text style={{ color: '#969696', fontSize: 13, marginBottom: formSpacing }}>Yes</Text>
+										</View>
+									</View>
+								</View>
+
+
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginVertical: formSpacing }}>Sizes</Text>
+
+								<TouchableOpacity style={{paddingHorizontal: 10, flexDirection: 'row', backgroundColor: '#eeeeee', justifyContent: 'space-between', alignItems: 'center', borderRadius: inputBorderRadius }}
+									onPress={() => {
+										this.popupDialog.show();
+									}}>
+									<Text style={{ fontSize: 15, color: '#afafaf', marginVertical: 10 }}>Available Sizes</Text>
+									<Ionicons
+										name={'ios-arrow-down'}
+										color={'#969696'}
+										size={17} />
+								</TouchableOpacity>
+
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginVertical: formSpacing }}>Colors</Text>
 								<ColorsList
 									colorsListData={this.state.colors}
 								/>
-							<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing, marginTop: formSpacing }}>Quantity</Text>
-							<CounterCard quantity={10}/>
-							<TouchableOpacity onPress={() => this.setState({ ReviewModalVisible: true })} style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 }} >
-								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginBottom: formSpacing,  }}>Reviews</Text>
-								<Text style={{ color: '#4286f4', fontSize: 15, fontWeight: '100', marginBottom: formSpacing,  }}> <Ionicons name='ios-add-circle-outline' color='#4286f4' size={20} style={{ marginHorizontal: 10 }} /> Write a review</Text>
-							</TouchableOpacity>
-							<FlatList
-								horizontal={true}
-								ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
-								data={this.state.reviews}
-								renderItem={({ item }) => this.renderReviewItem(item)} />
-						</View>
-					</View>
-					<Button
-						iconLeft
-						full
-						style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing,borderRadius:buttonBorderRadius }}>
-						<FontAwesome name='shopping-cart' size={18} color='white' />
-						<Text style={{ color: 'white' }}>ADD TO CART</Text>
-					</Button>
+								<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', marginVertical: formSpacing}}>Quantity</Text>
+								<CounterCard quantity={10}/>
 
-					<Button
-						iconLeft
-						full
-						style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing,borderRadius:buttonBorderRadius }}>
-						<Octicons name='checklist' size={18} color='white' />
-						<Text style={{ color: 'white' }}>TO WISHLIST</Text>
-					</Button>
-				</View>
-			</Content>
+								<TouchableOpacity 
+									onPress={() => this.setState({ ReviewModalVisible: true })} 
+									style={{paddingBottom: formSpacing, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 18 }} >
+									<Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold' }}>Reviews</Text>
+									<View style={{flexDirection: 'row', alignItems: 'center'}}>
+										<Ionicons name='ios-add-circle-outline' color={mainColor} size={20} style={{ marginHorizontal: 5 }}/>
+										<Text style={{ color: mainColor, fontSize: 15, fontWeight: '100'}}>Write a review</Text>
+									</View>
+								</TouchableOpacity>
+
+								<FlatList
+									horizontal={true}
+									ItemSeparatorComponent={() => <View style={{ backgroundColor: 'transparent', width: 14 }}></View>}
+									data={this.state.reviews}
+									renderItem={({ item }) => this.renderReviewItem(item)} />
+							</View>
+						</View>
+						<Button
+							iconLeft
+							full
+							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing,borderRadius:buttonBorderRadius }}>
+							<FontAwesome name='shopping-cart' size={18} color='white' />
+							<Text style={{ color: 'white' }}>ADD TO CART</Text>
+						</Button>
+
+						<Button
+							iconLeft
+							full
+							style={{ backgroundColor: mainColor, elevation: 0, marginTop: formSpacing,borderRadius:buttonBorderRadius }}>
+							<Octicons name='checklist' size={18} color='white' />
+							<Text style={{ color: 'white' }}>TO WISHLIST</Text>
+						</Button>
+					</View>
+				</Content>,
+				<PopupDialog
+					key='2'
+					dialogStyle={{ backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
+					width={0.80}
+					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+				>
+					<FlatList
+						data={this.state.sizes}
+						ItemSeparatorComponent={
+							() => this.state.isGridView ? null
+								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
+						}
+						renderItem={({ item }) => this.renderSize(item)} />
+				</PopupDialog>
+			]
 		)
 	}
 }
