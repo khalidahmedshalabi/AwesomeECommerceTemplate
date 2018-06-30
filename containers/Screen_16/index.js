@@ -61,57 +61,6 @@ export default class Screen extends Component {
 					selected: false,
 				}
 			],
-			sizes: [
-				{
-					key: '1',
-					text: 'XS',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: true,
-				},
-				{
-					key: '2',
-					text: 'S',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '3',
-					text: 'M',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '4',
-					text: 'L',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '5',
-					text: 'XL',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '6',
-					text: 'XXL',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				},
-				{
-					key: '7',
-					text: 'All',
-					textColor: '#afafaf',
-					bgColor: '#eeeeee',
-					selected: false,
-				}
-			],
 			categories: [
 				{
 					key: '1',
@@ -372,7 +321,7 @@ export default class Screen extends Component {
 					ref={(popupDialog) => { this.popupDialog2 = popupDialog; }}
 				>
 					<FlatList
-						data={this.state.categories}
+						data={this.state.sizes}
 						ItemSeparatorComponent={
 							() => this.state.isGridView ? null
 								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
