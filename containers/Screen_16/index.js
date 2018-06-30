@@ -3,13 +3,12 @@ import { Dimensions, StatusBar, Platform, View, FlatList, TouchableOpacity, Text
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Container, Body, Left, Right, Header, Button, Title, Text, Content, Item } from 'native-base';
 import IconBadge from 'react-native-icon-badge'
-import ModalSelector from 'react-native-modal-selector'
+import PopupDialog from 'react-native-popup-dialog';
 import ColorsList from '../../components/ColorsList';
-import CounterCard from '../../components/CounterCard';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 import { mainColor } from '../../constants/Colors'
-import { inputBorderRadius, buttonBorderRadius } from '../../constants/gStyles';
+import { inputBorderRadius, buttonBorderRadius, imageBorderRadius } from '../../constants/gStyles';
 
 const formSpacing = 13
 
@@ -112,6 +111,58 @@ export default class Screen extends Component {
 					bgColor: '#eeeeee',
 					selected: false,
 				}
+			],
+			categories: [
+				{
+					key: '1',
+					title: 'Available Sizes'
+				},
+				{
+					key: '2',
+					title: 'Small'
+				},
+				{
+					key: '3',
+					title: 'Medium'
+				},
+				{
+					key: '4',
+					title: 'Large'
+				},
+				{
+					key: '5',
+					title: 'X Large'
+				},
+				{
+					key: '6',
+					title: 'XX Large'
+				}
+			],
+			sizes: [
+				{
+					key: '1',
+					title: 'Available Sizes'
+				},
+				{
+					key: '2',
+					title: 'Small'
+				},
+				{
+					key: '3',
+					title: 'Medium'
+				},
+				{
+					key: '4',
+					title: 'Large'
+				},
+				{
+					key: '5',
+					title: 'X Large'
+				},
+				{
+					key: '6',
+					title: 'XX Large'
+				}
 			]
 		}
 	}
@@ -139,7 +190,6 @@ export default class Screen extends Component {
 		})
 		this.setState({ sizes: temp })
 	}
-
 	renderSizeItem = (item) => {
 		return (
 			<TouchableOpacity onPress={() => this.selectItem(item.key)} style={{ alignItems: 'center', }}>
@@ -163,16 +213,23 @@ export default class Screen extends Component {
 			</TouchableOpacity>
 		)
 	}
+	renderCategory = (item) => {
+		return (
+			<TouchableOpacity style={{ backgroundColor: mainColor }}>
+				<Text style={{ color: 'white', marginVertical: 15, alignSelf: 'center' }}>{item.title}</Text>
+			</TouchableOpacity>
+		)
+	}
+
+	renderSize = (item) => {
+		return (
+			<TouchableOpacity style={{ backgroundColor: mainColor }}>
+				<Text style={{ color: 'white', marginVertical: 15, alignSelf: 'center' }}>{item.title}</Text>
+			</TouchableOpacity>
+		)
+	}
 
 	render () {
-		const data = [
-			{ key: 0, label: 'Available Sizes' },
-			{ key: 1, label: 'Small' },
-			{ key: 2, label: 'Medium' },
-			{ key: 3, label: 'Large' },
-			{ key: 4, label: 'X Large' },
-			{ key: 5, label: 'XX Large' },
-		];
 		return (
 			<Container>
 				<Header
@@ -225,43 +282,22 @@ export default class Screen extends Component {
 								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Search Keyword</Text>
 								<TextInput
 									underlineColorAndroid='transparent'
-									style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, paddingVertical: 10, borderRadius: inputBorderRadius }}
+									style={{ fontSize: 15, backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, paddingVertical: 10, borderRadius: inputBorderRadius }}
 									placeholder='Enter item here...'
 									placeholderTextColor='#afafaf' />
 
 								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Select Category</Text>
 
-								<ModalSelector
-									data={data}
-									initValue="Jewellery & Accessories"
-									supportedOrientations={['portrait']}
-									accessible={true}
-									scrollViewAccessibilityLabel={'Scrollable options'}
-									cancelButtonAccessibilityLabel={'Cancel Button'}
-									cancelText='Cancel'
-									optionTextStyle={{ color: mainColor }}
-									touchableStyle={{ flex: 1 }}
-									childrenContainerStyle={{
-										flexDirection: 'row',
-										justifyContent: 'space-between',
-										alignItems: 'center',
-										flex: 1
-							}}
-									onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
-										<TextInput
-											style={{ flex: 1, paddingVertical: 10}}
-											underlineColorAndroid='transparent'
-											disabled
-											placeholder='Jewellery & Accessories'
-											placeholderTextColor='#afafaf' />
-										<Ionicons
-											name={'ios-arrow-down'}
-											color={'#969696'}
-											size={17}
-											style={{ marginRight: 16 }} />
-									</Item>
-								</ModalSelector>
+								<TouchableOpacity style={{paddingHorizontal: 10,flexDirection: 'row', backgroundColor: '#eeeeee', justifyContent: 'space-between', alignItems: 'center', marginBottom: formSpacing, borderRadius: inputBorderRadius}}
+									onPress={() => {
+										this.popupDialog1.show();
+									}}>
+									<Text style={{ fontSize: 15, color: '#afafaf', marginVertical: 10}}>Jewellery & Accessories</Text>
+									<Ionicons
+										name={'ios-arrow-down'}
+										color={'#969696'}
+										size={17}/>
+								</TouchableOpacity>
 
 								<Text style={{ color: 'black', fontWeight: 'bold', marginBottom: formSpacing, textAlign: 'left' }}>Price Range</Text>
 
@@ -269,7 +305,7 @@ export default class Screen extends Component {
 									<View style={{ flex: 1, backgroundColor: '#eeeeee', flexDirection: 'row', justifyContent: 'space-between', borderRadius: inputBorderRadius, marginRight: 15}}>
 										<TextInput
 											underlineColorAndroid='transparent'
-											style={{flex: 1, backgroundColor: '#eeeeee', paddingLeft: 7, paddingVertical: 10}}
+											style={{ fontSize: 15, flex: 1, backgroundColor: '#eeeeee', paddingLeft: 7, paddingVertical: 10}}
 											keyboardType= 'numeric'
 											placeholder='From...'
 											placeholderTextColor='#afafaf' />
@@ -295,18 +331,17 @@ export default class Screen extends Component {
 								/>
 
 								<Text style={{ color: 'black', fontWeight: 'bold', marginVertical: formSpacing, textAlign: 'left' }}>Sizes</Text>
-								<ModalSelector data={data} initValue="Available Sizes" supportedOrientations={['portrait']} accessible={true}
-									scrollViewAccessibilityLabel={'Scrollable options'} cancelButtonAccessibilityLabel={'Cancel Button'}
-									cancelText='Cancel' optionTextStyle={{ color: mainColor }} touchableStyle={{ flex: 1 }}
-									childrenContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',flex: 1}}
-									onChange={(option) => { this.setState({ textInputValue: option.label }) }}>
-									<Item style={{ backgroundColor: '#eeeeee', marginBottom: formSpacing, paddingLeft: 7, borderBottomWidth: 0, borderRadius: inputBorderRadius }}>
-										<TextInput
-											style={{ flex: 1, paddingVertical: 10}}
-											underlineColorAndroid='transparent' disabled placeholder='Available Sizes' placeholderTextColor='#afafaf' />
-										<Ionicons name={'ios-arrow-down'} color={'#969696'} size={17} style={{ marginRight: 16 }} />
-									</Item>
-								</ModalSelector>
+
+								<TouchableOpacity style={{paddingHorizontal: 10, flexDirection: 'row', backgroundColor: '#eeeeee', justifyContent: 'space-between', alignItems: 'center', borderRadius: inputBorderRadius }}
+									onPress={() => {
+										this.popupDialog1.show();
+									}}>
+									<Text style={{ fontSize: 15, color: '#afafaf', marginVertical: 10 }}>Available Sizes</Text>
+									<Ionicons
+										name={'ios-arrow-down'}
+										color={'#969696'}
+										size={17} />
+								</TouchableOpacity>
 							</View>
 						</View>
 						<Button
@@ -316,6 +351,34 @@ export default class Screen extends Component {
 						</Button>
 					</View>
 				</Content>
+
+				<PopupDialog
+					dialogStyle={{ backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
+					width={0.80}
+					ref={(popupDialog) => { this.popupDialog1 = popupDialog; }}
+				>
+					<FlatList
+						data={this.state.categories}
+						ItemSeparatorComponent={
+							() => this.state.isGridView ? null
+								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
+						}
+						renderItem={({ item }) => this.renderCategory(item)} />
+				</PopupDialog>
+
+				<PopupDialog
+					dialogStyle={{ backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
+					width={0.80}
+					ref={(popupDialog) => { this.popupDialog2 = popupDialog; }}
+				>
+					<FlatList
+						data={this.state.categories}
+						ItemSeparatorComponent={
+							() => this.state.isGridView ? null
+								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
+						}
+						renderItem={({ item }) => this.renderSize(item)} />
+				</PopupDialog>
 			</Container>
 		)
 	}

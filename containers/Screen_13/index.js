@@ -22,7 +22,7 @@ const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-import { buttonBorderRadius, inputBorderRadius, imageBorderRadius } from '../../constants/gStyles';
+import { buttonBorderRadius, imageBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
@@ -164,7 +164,7 @@ export default class Screen extends Component {
 					title: 'Sixth'
 				}
 			],
-			filter: [
+			filters: [
 				{
 					key: '1',
 					title: 'First'
@@ -539,7 +539,7 @@ export default class Screen extends Component {
 						<TouchableOpacity
 							style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flex: 1 }}
 							onPress={() => {
-								this.popupDialog.show();
+								this.popupDialog1.show();
 							}}>
 							<Text style={{ color: '#969696', fontSize: 16}}>Categories</Text>
 							<Ionicons
@@ -569,7 +569,7 @@ export default class Screen extends Component {
 						<Button
 							style={{backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center', borderColor: 'transparent'}}
 							onPress={() => {
-								this.popupDialog.show();
+								this.popupDialog2.show();
 							}}>
 							<FontAwesome
 								name={'filter'}
@@ -611,7 +611,7 @@ export default class Screen extends Component {
 				<PopupDialog
 					dialogStyle={{backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11}}
 					width={0.80}
-					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+					ref={(popupDialog) => { this.popupDialog1 = popupDialog; }}
 				>
 					<FlatList
 						data={this.state.categories}
@@ -625,10 +625,10 @@ export default class Screen extends Component {
 				<PopupDialog
 					dialogStyle={{backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
 					width={0.80}
-					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+					ref={(popupDialog) => { this.popupDialog2 = popupDialog; }}
 				>
 					<FlatList
-						data={this.state.categories}
+						data={this.state.filters}
 						ItemSeparatorComponent={
 							() => this.state.isGridView ? null
 								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
