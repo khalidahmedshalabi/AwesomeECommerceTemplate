@@ -251,8 +251,8 @@ export default class Index extends Component {
 					style={{ backgroundColor: '#333333' }}>
 					<Left style={{flex: 0.1}} />
 					<Body style={{flex: 1, alignItems: 'center'}}>
-						<Title style={{color: 'white'}}>AWESOME</Title>
-						<Subtitle style={{color: 'white'}}>E-COMMERCE</Subtitle>
+						<Title style={{color: 'white'}}>Ahmed</Title>
+						<Subtitle style={{color: 'white'}}>Waleed</Subtitle>
 					</Body>
 					<Right style={{flex: 0.1}} />
 				</Header>
