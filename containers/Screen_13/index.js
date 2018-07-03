@@ -31,7 +31,7 @@ export default class Screen extends Component {
 			isGridView: this.props.isGridView,
 			searchBarShown: this.props.searchBarShown,
 			cartClicked: this.props.clickCart,
-			OnCartClick:true,
+			OnCartClick:false,
 			addedToCart: this.props.addedToCart,
 			products: [
 				{
