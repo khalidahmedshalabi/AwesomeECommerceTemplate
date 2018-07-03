@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Dimensions, View, StatusBar, Platform, FlatList, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
-import { Body, Left, Right, Header, Button, Title, Text } from 'native-base';
-import LazyContainer from '../../components/LazyContainer'
+import { Container, Body, Left, Right, Header, Button, Title, Text } from 'native-base';
 import IconBadge from 'react-native-icon-badge'
 
 const width = Dimensions.get('window').width
@@ -94,7 +93,7 @@ export default class Screen extends Component {
 
 	render () {
 		return (
-			<LazyContainer style={{ flex: 1 }}>
+			<Container>
 				<Header
 					noShadow={true}
 					androidStatusBarColor='white'
@@ -143,7 +142,7 @@ export default class Screen extends Component {
 				<FlatList
 					data={this.state.categories}
 					renderItem={({ item }) => this.renderCategory(item)} />
-			</LazyContainer>
+			</Container>
 		)
 	}
 }
