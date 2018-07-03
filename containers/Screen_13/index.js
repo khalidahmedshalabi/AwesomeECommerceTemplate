@@ -368,7 +368,7 @@ export default class Screen extends Component {
 
 			return (
 				<View style={{ flex: 1, height: 300, borderRadius: 1, marginHorizontal: 5 }}>
-					<View style={{ height: '58%', backgroundColor: '#c8c8c8' }}>
+					<View style={{ height: '58%', backgroundColor: '#c8c8c8', borderRadius: imageBorderRadius }}>
 					</View>
 					<View style={{ height: '42%', backgroundColor: 'white', paddingHorizontal: 7, justifyContent: 'center', }}>
 						<Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
