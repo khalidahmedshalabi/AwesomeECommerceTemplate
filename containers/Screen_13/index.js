@@ -20,9 +20,8 @@ import PopupDialog from 'react-native-popup-dialog';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-const isSmallWidth = width <= 380;
 import { mainColor } from '../../constants/Colors'
-import { buttonBorderRadius, inputBorderRadius, imageBorderRadius,boxBorderRadius } from '../../constants/gStyles';
+import { buttonBorderRadius, imageBorderRadius,boxBorderRadius } from '../../constants/gStyles';
 export default class Screen extends Component {
 	constructor(props) {
 		super(props)
@@ -165,7 +164,7 @@ export default class Screen extends Component {
 					title: 'Sixth'
 				}
 			],
-			filter: [
+			filters: [
 				{
 					key: '1',
 					title: 'First'
@@ -496,7 +495,9 @@ export default class Screen extends Component {
 					iosBarStyle='dark-content'
 					style={{ backgroundColor: 'white', borderBottomColor: '#e9e9e9', borderBottomWidth: this.state.cartClicked ? 0 : 1 }}>
 					<Left style={{ flex: 1 }}>
-						<TouchableOpacity style={{ flexDirection: 'row' }}>
+						<TouchableOpacity 
+							onPress={() => this.props.navigation.goBack()}						
+							style={{ flexDirection: 'row' }}>
 							<Ionicons style={{ marginRight: 8 }} name={I18nManager.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'} size={23} color={mainColor} />
 							<Text style={{ color: mainColor }} uppercase={false}>Back</Text>
 						</TouchableOpacity>
@@ -542,7 +543,7 @@ export default class Screen extends Component {
 						<TouchableOpacity
 							style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flex: 1 }}
 							onPress={() => {
-								this.popupDialog.show();
+								this.popupDialog1.show();
 							}}>
 							<Text style={{ color: '#969696', fontSize: 16}}>Categories</Text>
 							<Ionicons
@@ -572,7 +573,7 @@ export default class Screen extends Component {
 						<Button
 							style={{backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center', borderColor: 'transparent'}}
 							onPress={() => {
-								this.popupDialog.show();
+								this.popupDialog2.show();
 							}}>
 							<FontAwesome
 								name={'filter'}
@@ -614,7 +615,7 @@ export default class Screen extends Component {
 				<PopupDialog
 					dialogStyle={{backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11}}
 					width={0.80}
-					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+					ref={(popupDialog) => { this.popupDialog1 = popupDialog; }}
 				>
 					<FlatList
 						data={this.state.categories}
@@ -628,10 +629,10 @@ export default class Screen extends Component {
 				<PopupDialog
 					dialogStyle={{backgroundColor: mainColor, borderRadius: imageBorderRadius, paddingVertical: 11 }}
 					width={0.80}
-					ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+					ref={(popupDialog) => { this.popupDialog2 = popupDialog; }}
 				>
 					<FlatList
-						data={this.state.categories}
+						data={this.state.filters}
 						ItemSeparatorComponent={
 							() => this.state.isGridView ? null
 								: <View style={{ backgroundColor: 'white', height: 1 }}></View>
