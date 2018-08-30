@@ -16,9 +16,12 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "bundleIdentifier": "com.AwesomeECommerceTemplate",
+      "bundleIdentifier": "com.tgs.awesomeecommercetemplate",
       "supportsTablet": true,
       "buildNumber": "1"
-    }
+	},
+	"android": {
+		"package": "com.tgs.awesomeecommercetemplate"
+	}
   }
 }
